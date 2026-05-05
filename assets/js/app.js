@@ -437,12 +437,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-      recentWrap.closest('.sidebar-widget')?.remove();
-    }
-  }
-});
+// ---- HAMBURGUER MENU ----
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.querySelector('header nav');
+  if (!toggle || !nav) return;
 
-      document.getElementById('recent-wrap') && (document.getElementById('recent-wrap').style.display = 'none');
-    }
-  }
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nav.classList.toggle('open');
+    const isOpen = nav.classList.contains('open');
+    toggle.innerHTML = isOpen
+      ? '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M6 18L18 6M6 6l12 12"/></svg>'
+      : '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  });
+
+  document.addEventListener('click', () => {
+    nav.classList.remove('open');
+    toggle.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  });
 });
