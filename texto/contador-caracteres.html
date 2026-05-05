@@ -10,7 +10,6 @@
   <link rel="canonical" href="https://canivetedigital.com.br/texto/contador-caracteres.html">
   <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
   <link rel="stylesheet" href="../assets/css/style.css">
-  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
 </head>
 <body data-tool-id="contador-caracteres">
 
@@ -46,7 +45,6 @@
 <div class="container">
   <div class="ad-wrap">
     <div class="ad-banner-leaderboard">
-      <!-- AdSense 728x90 -->
       <span>Publicidade • 728×90</span>
     </div>
   </div>
@@ -67,29 +65,130 @@
 
       <div class="tool-header tc">
         <div class="cat-badge cat-badge-c">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/>
+          </svg>
+          Texto
+        </div>
+        <h1>Contador de caracteres</h1>
+        <p>Cole ou digite seu texto abaixo e veja as estatísticas em tempo real.</p>
+      </div>
+
+      <div class="tool-box">
+        <label for="input-text">SEU TEXTO</label>
+        <textarea id="input-text" rows="10" placeholder="Cole ou digite seu texto aqui…"></textarea>
+
+        <div class="stats-row" id="stats-row">
+          <span class="stat-pill" id="stat-chars">0 caracteres</span>
+          <span class="stat-pill" id="stat-chars-no-space">0 sem espaços</span>
+          <span class="stat-pill" id="stat-words">0 palavras</span>
+          <span class="stat-pill" id="stat-sentences">0 frases</span>
+          <span class="stat-pill" id="stat-paragraphs">0 parágrafos</span>
+          <span class="stat-pill" id="stat-lines">0 linhas</span>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-outline btn-sm" onclick="document.getElementById('input-text').value=''; updateStats();">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+              <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+            </svg>
+            Limpar
+          </button>
+          <span id="reading-time" class="text-muted" style="font-size:0.8rem;margin-left:auto;"></span>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Como usar</h2>
+        <ol>
+          <li>Cole ou digite qualquer texto na área acima.</li>
+          <li>Os contadores atualizam automaticamente enquanto você digita.</li>
+          <li>Útil para limites de caracteres em formulários, redes sociais e SEO.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>O contador é indispensável quando o espaço é limitado. Títulos de e-mail, posts em redes sociais e campos de formulário têm limites que, se ignorados, cortam seu texto na hora errada.</p>
+        <ul>
+          <li>Referências rápidas: título SEO = 60 caracteres, meta description = 160, tweet = 280, legenda Instagram = 2.200, SMS = 160.</li>
+          <li>Copie texto diretamente de Word ou PDF — o contador ignora formatação e conta só o conteúdo.</li>
+          <li>Assuntos de e-mail com até 50 caracteres têm maior taxa de abertura em dispositivos móveis.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="remover-espacos.html">Remover espaços extras</a> antes de contar garante que o número reflita o texto real.</p>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect">
+          <span>Publicidade • 300×250</span>
+        </div>
+      </div>
+
+      <div class="sidebar-widget" id="recent-wrap">
+        <h3>Usadas recentemente</h3>
+        <div id="recent-tools"></div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Ferramentas de texto</h3>
+        <a href="converter-maiusculas.html" class="related-link tc">
+          <span class="r-icon cat-icon-c">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h12"/></svg>
+          </span>
+          Maiúsculas / minúsculas
+        </a>
+        <a href="remover-espacos.html" class="related-link tc">
+          <span class="r-icon cat-icon-c">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h8"/></svg>
+          </span>
+          Remover espaços extras
+        </a>
+        <a href="gerador-senha.html" class="related-link tc">
+          <span class="r-icon cat-icon-c">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          Gerador de senha
+        </a>
+        <a href="json-formatter.html" class="related-link tc">
+          <span class="r-icon cat-icon-c">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </span>
+          JSON Formatter
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
           <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
         </a>
-        <p>Ferramentas online gratuitas. Sem cadastro, sem instalação.</p>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
       </div>
-      <div class="footer-col">
-        <h4>Texto</h4>
+      <div class="footer-col"><h4>Texto</h4>
         <a href="contador-caracteres.html">Contador de caracteres</a>
         <a href="converter-maiusculas.html">Maiúsculas / minúsculas</a>
         <a href="remover-espacos.html">Remover espaços</a>
         <a href="gerador-senha.html">Gerador de senha</a>
         <a href="json-formatter.html">JSON Formatter</a>
       </div>
-      <div class="footer-col">
-        <h4>Imagem & PDF</h4>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
         <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
-        <a href="../imagem/redimensionar-imagem.html">Redimensionar</a>
         <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
         <a href="../pdf/comprimir-pdf.html">Comprimir PDF</a>
       </div>
-      <div class="footer-col">
-        <h4>Dev</h4>
+      <div class="footer-col"><h4>Dev & Cripto</h4>
         <a href="../dev/base64.html">Base64</a>
         <a href="../dev/url-encode.html">URL encode</a>
+        <a href="../cripto/qrcode.html">QR Code</a>
       </div>
     </div>
     <div class="footer-sobre">
@@ -128,7 +227,7 @@ function updateStats() {
   const charsNoSpace = text.replace(/\s/g, '').length;
   const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
   const sentences = text.trim() === '' ? 0 : countSentences(text);
-  const paragraphs = text.trim() === '' ? 0 : text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length || (text.trim() ? 1 : 0);
+  const paragraphs = text.trim() === '' ? 0 : text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length || 1;
   const lines = text === '' ? 0 : text.split('\n').length;
   const readMin = Math.ceil(words / 200);
 
@@ -138,21 +237,7 @@ function updateStats() {
   document.getElementById('stat-sentences').textContent = sentences + ' frases';
   document.getElementById('stat-paragraphs').textContent = paragraphs + ' parágrafos';
   document.getElementById('stat-lines').textContent = lines + ' linhas';
-  document.getElementById('reading-time').textContent = readMin <= 1 ? '≈ 1 min de leitura' : `≈ ${readMin} min de leitura`;
-
-  const detailBox = document.getElementById('detail-box');
-  const detailTable = document.getElementById('detail-table');
-  if (text.trim()) {
-    detailBox.style.display = 'block';
-    const freq = {};
-    for (const c of text) { if (c !== ' ' && c !== '\n') freq[c] = (freq[c] || 0) + 1; }
-    const top = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0,5);
-    detailTable.innerHTML = top.map(([c,n]) =>
-      `<tr><td style="padding:4px 8px;border-bottom:1px solid var(--border)">${c === '<' ? '&lt;' : c}</td><td style="padding:4px 8px;border-bottom:1px solid var(--border);color:var(--text-muted)">${n}x</td></tr>`
-    ).join('');
-  } else {
-    detailBox.style.display = 'none';
-  }
+  document.getElementById('reading-time').textContent = words > 0 ? (readMin <= 1 ? '≈ 1 min de leitura' : '≈ ' + readMin + ' min de leitura') : '';
 }
 
 inputEl.addEventListener('input', updateStats);
