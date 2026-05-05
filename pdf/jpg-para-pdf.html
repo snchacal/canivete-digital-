@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter JPG para PDF Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Junte várias imagens JPG, PNG e WebP em um único PDF. Organize a ordem, escolha o tamanho da página. Grátis, sem cadastro.">
+  <meta name="keywords" content="jpg para pdf online, converter imagem pdf, fotos para pdf, png para pdf gratis">
+  <link rel="canonical" href="https://canivetedigital.com.br/pdf/jpg-para-pdf.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="jpg-para-pdf">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="juntar-pdf.html" class="active">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="juntar-pdf.html">PDF</a><span class="sep">›</span>
+        JPG → PDF
+      </div>
+      <div class="tool-header pc">
+        <div class="cat-badge cat-badge-c">PDF</div>
+        <h1>JPG / PNG → PDF</h1>
+        <p>Converta uma ou mais imagens em um PDF. Cada imagem vira uma página. Arraste para reordenar.</p>
+      </div>
+
+      <div class="tool-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p><strong>Arraste imagens</strong> ou clique para selecionar</p>
+          <p style="font-size:0.8rem; margin-top:6px;">JPG, PNG, WebP — múltiplas imagens</p>
+        </div>
+      </div>
+
+      <div id="controls-box" class="tool-box" style="display:none">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px">
+          <div>
+            <label>TAMANHO DA PÁGINA</label>
+            <select id="page-size" style="margin-top:6px">
+              <option value="auto" selected>Ajustar à imagem</option>
+              <option value="a4">A4 (210×297 mm)</option>
+              <option value="letter">Letter (216×279 mm)</option>
+              <option value="a3">A3 (297×420 mm)</option>
+            </select>
+          </div>
+          <div>
+            <label>ORIENTAÇÃO</label>
+            <div class="options-grid" style="margin-top:8px">
+              <label class="opt-toggle selected" data-orient="auto" onclick="setOrient('auto',this)">Auto</label>
+              <label class="opt-toggle" data-orient="portrait" onclick="setOrient('portrait',this)">Retrato</label>
+              <label class="opt-toggle" data-orient="landscape" onclick="setOrient('landscape',this)">Paisagem</label>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <label style="margin-bottom:0">IMAGENS <span id="file-count"></span></label>
+          <button class="btn btn-outline btn-sm" onclick="addMore()">+ Adicionar mais</button>
+          <input type="file" id="add-input" accept="image/*" multiple style="display:none">
+        </div>
+        <ul class="file-list" id="file-list"></ul>
+        <div class="notice notice-info" style="margin-top:8px">Arraste os itens para reordenar</div>
+
+        <div class="tool-row" style="margin-top:16px">
+          <button class="btn btn-success" id="convert-btn" onclick="convertToPDF()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            Gerar PDF
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Limpar</button>
+        </div>
+      </div>
+
+      <div id="progress-box" style="display:none; padding:16px; background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:16px">
+        <p style="font-size:0.9rem; margin-bottom:8px; color:var(--text-muted)" id="progress-msg">Processando…</p>
+        <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+      </div>
+
+      <div id="result-box" class="tool-box" style="display:none">
+        <div class="notice notice-success" id="result-msg"></div>
+        <div class="tool-row" style="margin-top:14px">
+          <button class="btn btn-primary" id="download-btn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Baixar PDF
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Novo PDF</button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Como usar</h2>
+        <ol>
+          <li>Selecione ou arraste suas imagens JPG, PNG ou WebP.</li>
+          <li>Reordene arrastando os itens conforme necessário.</li>
+          <li>Escolha o tamanho da página — "Ajustar à imagem" usa as dimensões originais de cada foto.</li>
+          <li>Clique em <strong>Gerar PDF</strong> e baixe o resultado.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Transformar fotos tiradas com o celular em um PDF profissional é o jeito mais rápido de digitalizar documentos, contratos assinados à mão ou carteiras de identidade para envio formal.</p>
+        <ul>
+          <li>Fotografe documentos com boa iluminação e enquadramento reto — uma foto torta ou escura dificulta a leitura mesmo após a conversão.</li>
+          <li>Adicione as imagens na ordem correta antes de converter: a sequência de upload define a sequência de páginas no PDF final.</li>
+          <li>Para documentos com frente e verso, fotografe os dois lados, ajuste o brilho se necessário e adicione as duas imagens na ferramenta.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Depois de criar o PDF, use a <a href="comprimir-pdf.html">ferramenta de compressão</a> para reduzir o tamanho — PDFs gerados de fotos costumam ficar grandes.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de PDF</h3>
+        <a href="pdf-para-jpg.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14"/></svg></span>
+          PDF → JPG
+        </a>
+        <a href="juntar-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+          Juntar PDF
+        </a>
+        <a href="comprimir-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir PDF
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>PDF</h4>
+        <a href="juntar-pdf.html">Juntar PDF</a>
+        <a href="dividir-pdf.html">Dividir PDF</a>
+        <a href="comprimir-pdf.html">Comprimir PDF</a>
+        <a href="pdf-para-jpg.html">PDF → JPG</a>
+        <a href="jpg-para-pdf.html">JPG → PDF</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & Texto</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+let imgFiles = [];
+let orientation = 'auto';
+
+initDropArea('drop-area', 'file-input', files => loadImages(files));
+
+document.getElementById('add-input').addEventListener('change', e => {
+  if (e.target.files.length) loadImages(Array.from(e.target.files), true);
+});
+function addMore() { document.getElementById('add-input').click(); }
+
+function setOrient(o, el) {
+  orientation = o;
+  document.querySelectorAll('[data-orient]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function loadImages(files, append = false) {
+  const imgs = files.filter(f => f.type.startsWith('image/'));
+  if (!imgs.length) return;
+  if (append) imgFiles.push(...imgs);
+  else imgFiles = imgs;
+  renderList();
+  document.getElementById('controls-box').style.display = 'block';
+  document.getElementById('result-box').style.display = 'none';
+}
+
+function renderList() {
+  document.getElementById('file-count').textContent = `(${imgFiles.length} imagem${imgFiles.length !== 1 ? 's' : ''})`;
+  const ul = document.getElementById('file-list');
+  ul.innerHTML = imgFiles.map((f, i) => `
+    <li class="file-item" draggable="true" data-idx="${i}" style="cursor:grab">
+      <span style="color:var(--text-muted); font-size:0.8rem; flex-shrink:0; margin-right:6px">⠿ ${i+1}</span>
+      <span class="fname">${f.name}</span>
+      <span class="fsize">${fmtSize(f.size)}</span>
+      <button class="file-remove" onclick="removeFile(${i})">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </li>`).join('');
+
+  let dragIdx = null;
+  ul.querySelectorAll('li').forEach(li => {
+    li.addEventListener('dragstart', () => { dragIdx = parseInt(li.dataset.idx); li.style.opacity='0.5'; });
+    li.addEventListener('dragend', () => li.style.opacity='1');
+    li.addEventListener('dragover', e => e.preventDefault());
+    li.addEventListener('drop', () => {
+      const t = parseInt(li.dataset.idx);
+      if (dragIdx === t) return;
+      const moved = imgFiles.splice(dragIdx, 1)[0];
+      imgFiles.splice(t, 0, moved);
+      renderList();
+    });
+  });
+}
+
+function removeFile(idx) {
+  imgFiles.splice(idx, 1);
+  if (!imgFiles.length) { document.getElementById('controls-box').style.display = 'none'; return; }
+  renderList();
+}
+
+async function convertToPDF() {
+  if (!imgFiles.length) return;
+  const btn = document.getElementById('convert-btn');
+  btn.disabled = true;
+  document.getElementById('progress-box').style.display = 'block';
+  document.getElementById('result-box').style.display = 'none';
+
+  try {
+    const { PDFDocument } = PDFLib;
+    const pdf = await PDFDocument.create();
+    const pageSize = document.getElementById('page-size').value;
+
+    // Page size presets in points (1 pt = 1/72 inch)
+    const presets = {
+      a4:     [595.28, 841.89],
+      letter: [612, 792],
+      a3:     [841.89, 1190.55]
+    };
+
+    for (let i = 0; i < imgFiles.length; i++) {
+      document.getElementById('progress-msg').textContent = `Adicionando imagem ${i+1} de ${imgFiles.length}…`;
+      document.getElementById('progress-bar').style.width = ((i / imgFiles.length) * 90) + '%';
+
+      const file = imgFiles[i];
+      const bytes = await file.arrayBuffer();
+
+      let img;
+      try {
+        if (file.type === 'image/png') img = await pdf.embedPng(bytes);
+        else {
+          // Convert non-JPEG to JPEG via canvas
+          img = await pdf.embedJpg(bytes).catch(async () => {
+            const canvas = document.createElement('canvas');
+            const imgEl = await loadImgElement(file);
+            canvas.width = imgEl.naturalWidth; canvas.height = imgEl.naturalHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.drawImage(imgEl, 0, 0);
+            const jpgBytes = await new Promise(res => canvas.toBlob(b => b.arrayBuffer().then(res), 'image/jpeg', 0.92));
+            return pdf.embedJpg(jpgBytes);
+          });
+        }
+      } catch(e) {
+        // Fallback: canvas to jpeg
+        const imgEl = await loadImgElement(file);
+        const canvas = document.createElement('canvas');
+        canvas.width = imgEl.naturalWidth; canvas.height = imgEl.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.drawImage(imgEl, 0, 0);
+        const jpgBuf = await new Promise(res => canvas.toBlob(b => b.arrayBuffer().then(res), 'image/jpeg', 0.92));
+        img = await pdf.embedJpg(jpgBuf);
+      }
+
+      const iw = img.width, ih = img.height;
+      let pw, ph;
+
+      if (pageSize === 'auto') {
+        pw = iw; ph = ih;
+      } else {
+        [pw, ph] = presets[pageSize];
+        // Apply orientation
+        if (orientation === 'landscape' || (orientation === 'auto' && iw > ih)) [pw, ph] = [Math.max(pw,ph), Math.min(pw,ph)];
+        else [pw, ph] = [Math.min(pw,ph), Math.max(pw,ph)];
+      }
+
+      const page = pdf.addPage([pw, ph]);
+      // Scale image to fit page with margin
+      const margin = pageSize === 'auto' ? 0 : 20;
+      const maxW = pw - margin * 2, maxH = ph - margin * 2;
+      const scale = Math.min(maxW / iw, maxH / ih, 1);
+      const dw = iw * scale, dh = ih * scale;
+      const x = (pw - dw) / 2, y = (ph - dh) / 2;
+      page.drawImage(img, { x, y, width: dw, height: dh });
+    }
+
+    document.getElementById('progress-bar').style.width = '100%';
+    const pdfBytes = await pdf.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+
+    document.getElementById('result-msg').textContent =
+      `✓ PDF gerado com ${imgFiles.length} página${imgFiles.length !== 1 ? 's' : ''} · ${fmtSize(blob.size)}`;
+    document.getElementById('download-btn').onclick = () => downloadBlob(blob, 'imagens.pdf');
+    document.getElementById('progress-box').style.display = 'none';
+    document.getElementById('result-box').style.display = 'block';
+  } catch (err) {
+    document.getElementById('progress-box').style.display = 'none';
+    alert('Erro ao gerar PDF: ' + err.message);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Gerar PDF`;
+}
+
+function loadImgElement(file) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+    img.onload = () => { URL.revokeObjectURL(url); res(img); };
+    img.onerror = rej;
+    img.src = url;
+  });
+}
+
+function resetTool() {
+  imgFiles = [];
+  document.getElementById('controls-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

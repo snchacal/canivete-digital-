@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Base64 Encode e Decode Online — Canivete Digital</title>
+  <meta name="description" content="Codifique e decodifique texto em Base64 online, instantaneamente, grátis. Suporta texto e arquivos.">
+  <meta name="keywords" content="base64 encode decode online, converter base64, codificar base64, decodificar base64">
+  <link rel="canonical" href="https://canivetedigital.com.br/dev/base64.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="base64">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="base64.html" class="active">Dev</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="base64.html">Dev</a><span class="sep">›</span>
+        Base64 encode / decode
+      </div>
+      <div class="tool-header dc">
+        <div class="cat-badge cat-badge-c">Dev</div>
+        <h1>Base64 encode / decode</h1>
+        <p>Codifique texto em Base64 ou decodifique strings Base64 de volta para texto.</p>
+      </div>
+
+      <div class="tool-box">
+        <!-- Tabs -->
+        <div style="display:flex; border-bottom:2px solid var(--border); margin-bottom:18px; gap:0">
+          <button class="tab-btn active" id="tab-text" onclick="switchTab('text')"
+            style="padding:10px 20px; border:none; background:none; cursor:pointer; font-size:0.9rem; font-weight:600; color:var(--primary); border-bottom:2px solid var(--primary); margin-bottom:-2px; font-family:inherit">
+            Texto
+          </button>
+          <button class="tab-btn" id="tab-file" onclick="switchTab('file')"
+            style="padding:10px 20px; border:none; background:none; cursor:pointer; font-size:0.9rem; font-weight:500; color:var(--text-muted); border-bottom:2px solid transparent; margin-bottom:-2px; font-family:inherit">
+            Arquivo
+          </button>
+        </div>
+
+        <!-- TEXT MODE -->
+        <div id="text-mode">
+          <label for="input-text">ENTRADA</label>
+          <textarea id="input-text" rows="6" placeholder="Cole seu texto ou Base64 aqui…"
+            style="font-family: 'SF Mono','Fira Code',monospace; font-size:0.875rem;"></textarea>
+
+          <div style="display:flex; gap:8px; align-items:center; margin-top:8px; flex-wrap:wrap">
+            <label style="display:flex; align-items:center; gap:6px; font-size:0.875rem; text-transform:none; color:var(--text); cursor:pointer; font-weight:normal">
+              <input type="checkbox" id="cb-url-safe" style="width:14px; height:14px; accent-color:var(--primary)">
+              URL-safe (+/ → -_)
+            </label>
+            <label style="display:flex; align-items:center; gap:6px; font-size:0.875rem; text-transform:none; color:var(--text); cursor:pointer; font-weight:normal">
+              <input type="checkbox" id="cb-no-padding" style="width:14px; height:14px; accent-color:var(--primary)">
+              Sem padding (=)
+            </label>
+          </div>
+
+          <div class="tool-row">
+            <button class="btn btn-primary" onclick="encode()">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15">
+                <path stroke-linecap="round" d="M8 11V7a4 4 0 018 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+              </svg>
+              Encode → Base64
+            </button>
+            <button class="btn btn-outline" onclick="decode()">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15">
+                <path stroke-linecap="round" d="M8 11V7a4 4 0 018 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/>
+              </svg>
+              Decode ← Base64
+            </button>
+            <button class="btn btn-ghost btn-sm" onclick="clearAll()">Limpar</button>
+            <button class="btn btn-ghost btn-sm" onclick="swap()">⇄ Inverter</button>
+          </div>
+        </div>
+
+        <!-- FILE MODE -->
+        <div id="file-mode" style="display:none">
+          <div class="drop-area" id="drop-area" style="padding:32px 24px">
+            <input type="file" id="file-input-b64">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="width:32px; height:32px">
+              <path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <p style="margin-top:6px"><strong>Selecione um arquivo</strong> para converter em Base64</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+          <label style="margin-bottom:0" id="output-label">RESULTADO</label>
+          <button class="btn btn-outline btn-sm" onclick="copyOutput()">
+            <span id="copy-label">Copiar</span>
+          </button>
+        </div>
+        <div class="output-box" id="output-text" style="max-height:300px; overflow:auto; word-break:break-all"></div>
+        <div class="stats-row" style="margin-top:8px" id="output-stats"></div>
+      </div>
+
+      <div id="error-box" class="notice notice-warn" style="display:none"></div>
+
+      <div class="howto">
+        <h2>O que é Base64?</h2>
+        <ol>
+          <li>Base64 é uma forma de representar dados binários (como imagens ou arquivos) como texto ASCII.</li>
+          <li>Muito usado para incorporar imagens em HTML/CSS, enviar arquivos em JSON APIs e armazenar dados binários em campos de texto.</li>
+          <li>URL-safe substitui <code>+</code> por <code>-</code> e <code>/</code> por <code>_</code>, evitando conflitos em URLs.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Base64 é uma forma de representar dados binários (como imagens ou arquivos) usando apenas caracteres de texto. É amplamente usado em APIs, e-mails e para embutir imagens diretamente no HTML ou CSS.</p>
+        <ul>
+          <li>Para embutir uma imagem pequena diretamente no CSS sem requisição HTTP: encode em Base64 e use como <code>background-image: url('data:image/png;base64,...')</code>.</li>
+          <li>Base64 <strong>não é criptografia</strong> — qualquer pessoa pode decodificar instantaneamente. Use apenas para encoding de formato, não para ocultar dados.</li>
+          <li>O output Base64 é sempre maior que o original (cerca de 33% a mais) — não use para arquivos grandes.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para encoding de URLs e query strings, use o <a href="url-encode.html">URL encoder/decoder</a> — outro utilitário essencial no dia a dia de quem trabalha com APIs.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas Dev</h3>
+        <a href="url-encode.html" class="related-link dc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
+          URL encode/decode
+        </a>
+        <a href="../texto/json-formatter.html" class="related-link tc">
+          <span class="r-icon" style="background:#EFF6FF; color:#2563EB"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          JSON Formatter
+        </a>
+        <a href="../texto/gerador-senha.html" class="related-link tc">
+          <span class="r-icon" style="background:#EFF6FF; color:#2563EB"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          Gerador de senha
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="base64.html">Base64 encode/decode</a>
+        <a href="url-encode.html">URL encode/decode</a>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="../texto/json-formatter.html">JSON Formatter</a>
+        <a href="../texto/gerador-senha.html">Gerador de senha</a>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let currentTab = 'text';
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('text-mode').style.display = tab === 'text' ? 'block' : 'none';
+  document.getElementById('file-mode').style.display = tab === 'file' ? 'block' : 'none';
+
+  document.getElementById('tab-text').style.cssText = tab === 'text'
+    ? 'padding:10px 20px;border:none;background:none;cursor:pointer;font-size:0.9rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;font-family:inherit'
+    : 'padding:10px 20px;border:none;background:none;cursor:pointer;font-size:0.9rem;font-weight:500;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-2px;font-family:inherit';
+
+  document.getElementById('tab-file').style.cssText = tab === 'file'
+    ? 'padding:10px 20px;border:none;background:none;cursor:pointer;font-size:0.9rem;font-weight:600;color:var(--primary);border-bottom:2px solid var(--primary);margin-bottom:-2px;font-family:inherit'
+    : 'padding:10px 20px;border:none;background:none;cursor:pointer;font-size:0.9rem;font-weight:500;color:var(--text-muted);border-bottom:2px solid transparent;margin-bottom:-2px;font-family:inherit';
+
+  hideError();
+}
+
+function applyOptions(b64) {
+  const urlSafe = document.getElementById('cb-url-safe').checked;
+  const noPad = document.getElementById('cb-no-padding').checked;
+  if (urlSafe) b64 = b64.replace(/\+/g, '-').replace(/\//g, '_');
+  if (noPad) b64 = b64.replace(/=/g, '');
+  return b64;
+}
+
+function encode() {
+  const text = document.getElementById('input-text').value;
+  if (!text) return;
+  hideError();
+  try {
+    let encoded = btoa(unescape(encodeURIComponent(text)));
+    encoded = applyOptions(encoded);
+    showOutput('BASE64 CODIFICADO', encoded);
+  } catch(e) {
+    showError('Erro ao codificar: ' + e.message);
+  }
+}
+
+function decode() {
+  let text = document.getElementById('input-text').value.trim();
+  if (!text) return;
+  hideError();
+  try {
+    // Reverter URL-safe
+    text = text.replace(/-/g, '+').replace(/_/g, '/');
+    // Adicionar padding se necessário
+    while (text.length % 4) text += '=';
+    const decoded = decodeURIComponent(escape(atob(text)));
+    showOutput('TEXTO DECODIFICADO', decoded);
+  } catch(e) {
+    showError('Entrada inválida. Certifique-se de que é um Base64 válido.');
+  }
+}
+
+function showOutput(label, text) {
+  document.getElementById('output-label').textContent = label;
+  document.getElementById('output-text').textContent = text;
+  document.getElementById('output-box').style.display = 'block';
+  document.getElementById('output-stats').innerHTML = `
+    <span class="stat-pill">${text.length.toLocaleString('pt-BR')} chars</span>
+    <span class="stat-pill">${new Blob([text]).size} bytes</span>
+  `;
+  document.getElementById('copy-label').textContent = 'Copiar';
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('copy-label').textContent = 'Copiado!';
+    setTimeout(() => { document.getElementById('copy-label').textContent = 'Copiar'; }, 1600);
+  });
+}
+
+function swap() {
+  const output = document.getElementById('output-text').textContent;
+  if (output) document.getElementById('input-text').value = output;
+  document.getElementById('output-box').style.display = 'none';
+}
+
+function clearAll() {
+  document.getElementById('input-text').value = '';
+  document.getElementById('output-box').style.display = 'none';
+  hideError();
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-box');
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('error-box').style.display = 'none';
+}
+
+// File mode
+initDropArea('drop-area', 'file-input-b64', files => {
+  const file = files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const b64 = e.target.result.split(',')[1];
+    showOutput('BASE64 DO ARQUIVO', b64);
+    document.getElementById('output-text').style.wordBreak = 'break-all';
+  };
+  reader.readAsDataURL(file);
+});
+</script>
+</body>
+</html>

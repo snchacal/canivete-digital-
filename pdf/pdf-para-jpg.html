@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter PDF para JPG Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Converta páginas de PDF em imagens JPG ou PNG. Escolha a resolução e baixe individualmente ou todas de uma vez. Grátis.">
+  <meta name="keywords" content="pdf para jpg online, converter pdf imagem, pdf to jpg gratis, extrair imagem pdf">
+  <link rel="canonical" href="https://canivetedigital.com.br/pdf/pdf-para-jpg.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .page-thumb {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px;
+      width: 160px;
+    }
+    .page-thumb img { width: 100%; border-radius: 4px; border: 1px solid var(--border); }
+    .page-thumb span { font-size: 0.75rem; color: var(--text-muted); }
+    #pages-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  </style>
+</head>
+<body data-tool-id="pdf-para-jpg">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="juntar-pdf.html" class="active">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="juntar-pdf.html">PDF</a><span class="sep">›</span>
+        PDF → JPG
+      </div>
+      <div class="tool-header pc">
+        <div class="cat-badge cat-badge-c">PDF</div>
+        <h1>PDF → JPG / PNG</h1>
+        <p>Converta cada página do PDF em uma imagem de alta qualidade. Tudo no browser, sem upload de arquivos.</p>
+      </div>
+
+      <div class="tool-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="application/pdf">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <p><strong>Arraste seu PDF</strong> ou clique para selecionar</p>
+        </div>
+      </div>
+
+      <div id="controls-box" class="tool-box" style="display:none">
+        <div class="notice notice-info" id="pdf-info" style="margin-bottom:16px"></div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:14px">
+          <div>
+            <label>FORMATO DE SAÍDA</label>
+            <div class="options-grid" style="margin-top:8px">
+              <label class="opt-toggle selected" data-fmt="jpeg" onclick="setFmt('jpeg',this)">JPG</label>
+              <label class="opt-toggle" data-fmt="png" onclick="setFmt('png',this)">PNG</label>
+            </div>
+          </div>
+          <div>
+            <label>RESOLUÇÃO (DPI)</label>
+            <div class="options-grid" style="margin-top:8px">
+              <label class="opt-toggle" data-dpi="1" onclick="setDpi(1,this)">96 dpi (web)</label>
+              <label class="opt-toggle selected" data-dpi="2" onclick="setDpi(2,this)">192 dpi (boa)</label>
+              <label class="opt-toggle" data-dpi="3" onclick="setDpi(3,this)">288 dpi (alta)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-success" id="convert-btn" onclick="convertPDF()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            Converter páginas
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Trocar arquivo</button>
+        </div>
+      </div>
+
+      <div id="progress-box" style="display:none; padding:16px; background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:16px">
+        <p style="font-size:0.9rem; margin-bottom:8px; color:var(--text-muted)" id="progress-msg">Renderizando páginas…</p>
+        <div class="progress-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
+      </div>
+
+      <div id="result-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px">
+          <label style="margin-bottom:0">PÁGINAS CONVERTIDAS</label>
+          <button class="btn btn-primary btn-sm" id="dl-all-btn" onclick="downloadAll()">Baixar todas</button>
+        </div>
+        <div id="pages-grid"></div>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de resolução</h2>
+        <ol>
+          <li><strong>96 dpi</strong> — suficiente para exibição na web, arquivo menor.</li>
+          <li><strong>192 dpi</strong> — boa qualidade para visualização e uso geral.</li>
+          <li><strong>288 dpi</strong> — alta qualidade, ideal para imprimir ou usar em apresentações.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Converter páginas de PDF em imagens é útil para criar thumbnails, extrair gráficos ou compartilhar conteúdo em plataformas que não abrem PDF diretamente, como Stories e apresentações.</p>
+        <ul>
+          <li>Quanto maior a resolução escolhida, melhor a qualidade da imagem — mas maior o arquivo. Para web use 96–150 DPI; para impressão use 300 DPI.</li>
+          <li>Para extrair apenas uma slide ou gráfico específico, divida o PDF primeiro para isolar a página desejada, depois converta.</li>
+          <li>Imagens geradas de PDFs com texto tendem a ficar com texto legível mesmo em resoluções menores — ótimo para criar previews de documentos.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> As imagens geradas costumam ser pesadas. Use a <a href="../imagem/comprimir-imagem.html">ferramenta de compressão de imagem</a> para reduzir o tamanho antes de publicar ou enviar.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de PDF</h3>
+        <a href="jpg-para-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>
+          JPG → PDF
+        </a>
+        <a href="juntar-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+          Juntar PDF
+        </a>
+        <a href="dividir-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          Dividir PDF
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>PDF</h4>
+        <a href="juntar-pdf.html">Juntar PDF</a>
+        <a href="dividir-pdf.html">Dividir PDF</a>
+        <a href="comprimir-pdf.html">Comprimir PDF</a>
+        <a href="pdf-para-jpg.html">PDF → JPG</a>
+        <a href="jpg-para-pdf.html">JPG → PDF</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & Texto</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<!-- PDF.js -->
+<script src="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+
+let pdfDoc = null;
+let pdfFile = null;
+let imgFmt = 'jpeg';
+let dpiScale = 2;
+let renderedPages = [];
+
+initDropArea('drop-area', 'file-input', files => loadPDF(files[0]));
+
+function setFmt(fmt, el) {
+  imgFmt = fmt;
+  document.querySelectorAll('[data-fmt]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function setDpi(scale, el) {
+  dpiScale = scale;
+  document.querySelectorAll('[data-dpi]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+async function loadPDF(file) {
+  if (!file || (!file.type.includes('pdf') && !file.name.endsWith('.pdf'))) {
+    alert('Selecione um arquivo PDF válido.');
+    return;
+  }
+  pdfFile = file;
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    document.getElementById('pdf-info').textContent =
+      `📄 ${file.name} · ${pdfDoc.numPages} página${pdfDoc.numPages !== 1 ? 's' : ''} · ${fmtSize(file.size)}`;
+    document.getElementById('controls-box').style.display = 'block';
+    document.getElementById('result-box').style.display = 'none';
+  } catch (e) {
+    alert('Erro ao carregar PDF: ' + e.message);
+  }
+}
+
+async function convertPDF() {
+  if (!pdfDoc) return;
+  const btn = document.getElementById('convert-btn');
+  btn.disabled = true;
+  document.getElementById('progress-box').style.display = 'block';
+  document.getElementById('result-box').style.display = 'none';
+  renderedPages = [];
+
+  const totalPages = pdfDoc.numPages;
+  const mimeType = imgFmt === 'jpeg' ? 'image/jpeg' : 'image/png';
+  const ext = imgFmt === 'jpeg' ? 'jpg' : 'png';
+  const baseName = pdfFile.name.replace(/\.pdf$/i, '');
+
+  for (let i = 1; i <= totalPages; i++) {
+    document.getElementById('progress-msg').textContent = `Renderizando página ${i} de ${totalPages}…`;
+    document.getElementById('progress-bar').style.width = ((i / totalPages) * 100) + '%';
+
+    const page = await pdfDoc.getPage(i);
+    const viewport = page.getViewport({ scale: dpiScale });
+    const canvas = document.createElement('canvas');
+    canvas.width  = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    if (mimeType === 'image/jpeg') { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const blob = await new Promise(res => canvas.toBlob(res, mimeType, 0.93));
+    const url = URL.createObjectURL(blob);
+    const name = `${baseName}-pag${String(i).padStart(totalPages > 9 ? 2 : 1, '0')}.${ext}`;
+    renderedPages.push({ blob, url, name, width: Math.round(viewport.width), height: Math.round(viewport.height) });
+  }
+
+  document.getElementById('progress-box').style.display = 'none';
+  renderGrid();
+  document.getElementById('result-box').style.display = 'block';
+  document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  btn.disabled = false;
+  btn.innerHTML = `<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Converter páginas`;
+}
+
+function renderGrid() {
+  const grid = document.getElementById('pages-grid');
+  grid.innerHTML = renderedPages.map((p, i) => `
+    <div class="page-thumb">
+      <img src="${p.url}" alt="Página ${i+1}">
+      <span>Pág. ${i+1} · ${p.width}×${p.height}</span>
+      <button class="btn btn-outline btn-sm" style="width:100%" onclick="downloadBlob(renderedPages[${i}].blob, renderedPages[${i}].name)">Baixar</button>
+    </div>
+  `).join('');
+}
+
+async function downloadAll() {
+  for (const p of renderedPages) { downloadBlob(p.blob, p.name); await new Promise(r => setTimeout(r, 300)); }
+}
+
+function resetTool() {
+  pdfDoc = null; pdfFile = null; renderedPages = [];
+  document.getElementById('controls-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

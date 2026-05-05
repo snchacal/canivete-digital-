@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter JPG para PNG e PNG para JPG Online — Canivete Digital</title>
+  <meta name="description" content="Converta imagens JPG, PNG e WebP entre formatos online, grátis, diretamente no browser. Sem cadastro.">
+  <meta name="keywords" content="converter jpg para png, converter png para jpg, converter imagem online, webp para jpg">
+  <link rel="canonical" href="https://canivetedigital.com.br/imagem/converter-jpg-png.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="converter-jpg-png">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="comprimir-imagem.html" class="active">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="comprimir-imagem.html">Imagem</a><span class="sep">›</span>
+        Converter JPG / PNG
+      </div>
+      <div class="tool-header ic">
+        <div class="cat-badge cat-badge-c">Imagem</div>
+        <h1>Converter JPG / PNG / WebP</h1>
+        <p>Converta entre formatos de imagem com um clique. Tudo no browser, sem enviar arquivos.</p>
+      </div>
+
+      <div class="tool-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="image/*" multiple>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <polyline points="17 1 21 5 17 9"/>
+            <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+            <polyline points="7 23 3 19 7 15"/>
+            <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+          </svg>
+          <p><strong>Arraste imagens</strong> ou clique para selecionar</p>
+          <p style="font-size:0.8rem; margin-top:6px;">Suporta JPG, PNG, WebP, GIF, BMP — múltiplas imagens</p>
+        </div>
+      </div>
+
+      <div id="controls-box" class="tool-box" style="display:none">
+        <label>CONVERTER PARA</label>
+        <div class="options-grid" style="margin-top:10px">
+          <label class="opt-toggle selected" data-fmt="image/jpeg" onclick="setFmt('image/jpeg',this)">
+            JPG
+          </label>
+          <label class="opt-toggle" data-fmt="image/png" onclick="setFmt('image/png',this)">
+            PNG
+          </label>
+          <label class="opt-toggle" data-fmt="image/webp" onclick="setFmt('image/webp',this)">
+            WebP
+          </label>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.875rem; text-transform:none; color:var(--text); cursor:pointer">
+            <input type="checkbox" id="preserve-transparency" checked style="width:16px; height:16px; accent-color:var(--primary)">
+            Manter transparência (se PNG/WebP)
+          </label>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-success" onclick="convertAll()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <polyline points="17 1 21 5 17 9"/>
+              <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+              <polyline points="7 23 3 19 7 15"/>
+              <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+            Converter
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Limpar</button>
+        </div>
+      </div>
+
+      <!-- Lista de arquivos -->
+      <div id="file-list-box" class="tool-box" style="display:none">
+        <label>ARQUIVOS SELECIONADOS</label>
+        <ul class="file-list" id="file-list"></ul>
+      </div>
+
+      <!-- Resultados -->
+      <div id="results-box" class="tool-box" style="display:none">
+        <label>RESULTADOS</label>
+        <ul class="file-list" id="results-list"></ul>
+        <div class="tool-row">
+          <button id="download-all-btn" class="btn btn-primary" style="display:none" onclick="downloadAll()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Baixar todas
+          </button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Sobre os formatos</h2>
+        <ol>
+          <li><strong>JPG</strong> — menor tamanho, ideal para fotos. Não suporta transparência.</li>
+          <li><strong>PNG</strong> — sem perda de qualidade, suporta transparência. Arquivos maiores.</li>
+          <li><strong>WebP</strong> — formato moderno do Google. Ótima compressão com qualidade. Suportado por todos os navegadores modernos.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Escolher o formato errado resulta em arquivos maiores que o necessário ou perda de qualidade. Converter entre JPG e PNG leva segundos e resolve boa parte dos problemas de compatibilidade.</p>
+        <ul>
+          <li>PNG preserva transparência — use para logos, ícones e imagens que precisam ter fundo transparente. JPG não suporta transparência.</li>
+          <li>JPG é melhor para fotos coloridas complexas: arquivo significativamente menor com qualidade visual semelhante ao PNG.</li>
+          <li>Ao converter PNG para JPG, qualquer área transparente vira branco por padrão — verifique se isso é o comportamento desejado antes de usar.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Depois de converter, use a <a href="comprimir-imagem.html">ferramenta de compressão</a> para garantir que o arquivo esteja no tamanho ideal para web ou e-mail.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de imagem</h3>
+        <a href="comprimir-imagem.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir imagem
+        </a>
+        <a href="redimensionar-imagem.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg></span>
+          Redimensionar imagem
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Imagem</h4>
+        <a href="comprimir-imagem.html">Comprimir imagem</a>
+        <a href="redimensionar-imagem.html">Redimensionar</a>
+        <a href="converter-jpg-png.html">Converter JPG/PNG</a>
+      </div>
+      <div class="footer-col"><h4>Texto & PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let files = [];
+let results = [];
+let targetFmt = 'image/jpeg';
+
+initDropArea('drop-area', 'file-input', f => loadFiles(f));
+
+function loadFiles(newFiles) {
+  files = newFiles.filter(f => f.type.startsWith('image/'));
+  if (!files.length) { alert('Nenhuma imagem válida selecionada.'); return; }
+
+  document.getElementById('controls-box').style.display = 'block';
+  document.getElementById('results-box').style.display = 'none';
+
+  const list = document.getElementById('file-list');
+  list.innerHTML = files.map((f, i) => `
+    <li class="file-item">
+      <span class="fname">${f.name}</span>
+      <span class="fsize">${fmtSize(f.size)}</span>
+    </li>
+  `).join('');
+  document.getElementById('file-list-box').style.display = 'block';
+}
+
+function setFmt(fmt, el) {
+  targetFmt = fmt;
+  document.querySelectorAll('[data-fmt]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function getExt(fmt) {
+  return { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[fmt] || 'jpg';
+}
+
+function convertAll() {
+  if (!files.length) return;
+  results = [];
+  let done = 0;
+
+  files.forEach((file, i) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+
+        const keepTransparency = document.getElementById('preserve-transparency').checked;
+        if (targetFmt === 'image/jpeg' || !keepTransparency) {
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob(blob => {
+          const ext = getExt(targetFmt);
+          const newName = file.name.replace(/\.[^.]+$/, '') + '.' + ext;
+          results.push({ blob, name: newName, originalSize: file.size });
+          done++;
+          if (done === files.length) showResults();
+        }, targetFmt, 0.92);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function showResults() {
+  const list = document.getElementById('results-list');
+  list.innerHTML = results.map((r, i) => `
+    <li class="file-item">
+      <span class="fname">${r.name}</span>
+      <span class="fsize" style="color:#16A34A">${fmtSize(r.blob.size)}</span>
+      <button class="btn btn-outline btn-sm" onclick="downloadBlob(results[${i}].blob, results[${i}].name)">Baixar</button>
+    </li>
+  `).join('');
+
+  document.getElementById('results-box').style.display = 'block';
+  if (results.length > 1) document.getElementById('download-all-btn').style.display = 'inline-flex';
+  document.getElementById('results-box').scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+async function downloadAll() {
+  for (const r of results) {
+    downloadBlob(r.blob, r.name);
+    await new Promise(res => setTimeout(res, 300));
+  }
+}
+
+function resetTool() {
+  files = [];
+  results = [];
+  document.getElementById('controls-box').style.display = 'none';
+  document.getElementById('file-list-box').style.display = 'none';
+  document.getElementById('results-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

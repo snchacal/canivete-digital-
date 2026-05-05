@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Contador de Caracteres Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Conte letras, palavras, frases e parágrafos do seu texto em tempo real. Grátis, sem cadastro.">
+  <meta name="keywords" content="contador de caracteres, contador de palavras, contar letras, contar palavras online">
+  <link rel="canonical" href="https://canivetedigital.com.br/texto/contador-caracteres.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+</head>
+<body data-tool-id="contador-caracteres">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="contador-caracteres.html" class="active">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TOP AD -->
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard">
+      <!-- AdSense 728x90 -->
+      <span>Publicidade • 728×90</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <!-- MAIN -->
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a>
+        <span class="sep">›</span>
+        <a href="contador-caracteres.html">Texto</a>
+        <span class="sep">›</span>
+        Contador de caracteres
+      </div>
+
+      <div class="tool-header tc">
+        <div class="cat-badge cat-badge-c">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro, sem instalação.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Texto</h4>
+        <a href="contador-caracteres.html">Contador de caracteres</a>
+        <a href="converter-maiusculas.html">Maiúsculas / minúsculas</a>
+        <a href="remover-espacos.html">Remover espaços</a>
+        <a href="gerador-senha.html">Gerador de senha</a>
+        <a href="json-formatter.html">JSON Formatter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../imagem/redimensionar-imagem.html">Redimensionar</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../pdf/comprimir-pdf.html">Comprimir PDF</a>
+      </div>
+      <div class="footer-col">
+        <h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+const inputEl = document.getElementById('input-text');
+
+function countSentences(text) {
+  const matches = text.match(/[^.!?]*[.!?]+/g);
+  return matches ? matches.filter(s => s.trim().length > 0).length : (text.trim().length > 0 ? 1 : 0);
+}
+
+function updateStats() {
+  const text = inputEl.value;
+  const chars = text.length;
+  const charsNoSpace = text.replace(/\s/g, '').length;
+  const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+  const sentences = text.trim() === '' ? 0 : countSentences(text);
+  const paragraphs = text.trim() === '' ? 0 : text.split(/\n\s*\n/).filter(p => p.trim().length > 0).length || (text.trim() ? 1 : 0);
+  const lines = text === '' ? 0 : text.split('\n').length;
+  const readMin = Math.ceil(words / 200);
+
+  document.getElementById('stat-chars').textContent = chars.toLocaleString('pt-BR') + ' caracteres';
+  document.getElementById('stat-chars-no-space').textContent = charsNoSpace.toLocaleString('pt-BR') + ' sem espaços';
+  document.getElementById('stat-words').textContent = words.toLocaleString('pt-BR') + ' palavras';
+  document.getElementById('stat-sentences').textContent = sentences + ' frases';
+  document.getElementById('stat-paragraphs').textContent = paragraphs + ' parágrafos';
+  document.getElementById('stat-lines').textContent = lines + ' linhas';
+  document.getElementById('reading-time').textContent = readMin <= 1 ? '≈ 1 min de leitura' : `≈ ${readMin} min de leitura`;
+
+  const detailBox = document.getElementById('detail-box');
+  const detailTable = document.getElementById('detail-table');
+  if (text.trim()) {
+    detailBox.style.display = 'block';
+    const freq = {};
+    for (const c of text) { if (c !== ' ' && c !== '\n') freq[c] = (freq[c] || 0) + 1; }
+    const top = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0,5);
+    detailTable.innerHTML = top.map(([c,n]) =>
+      `<tr><td style="padding:4px 8px;border-bottom:1px solid var(--border)">${c === '<' ? '&lt;' : c}</td><td style="padding:4px 8px;border-bottom:1px solid var(--border);color:var(--text-muted)">${n}x</td></tr>`
+    ).join('');
+  } else {
+    detailBox.style.display = 'none';
+  }
+}
+
+inputEl.addEventListener('input', updateStats);
+updateStats();
+</script>
+</body>
+</html>

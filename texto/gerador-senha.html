@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Gerador de Senha Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Gere senhas fortes e aleatórias com letras, números e símbolos. Completamente seguro, gerado no seu browser.">
+  <meta name="keywords" content="gerador de senha, criar senha forte, senha aleatória online, password generator">
+  <link rel="canonical" href="https://canivetedigital.com.br/texto/gerador-senha.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="gerador-senha">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="contador-caracteres.html" class="active">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="contador-caracteres.html">Texto</a><span class="sep">›</span>
+        Gerador de senha
+      </div>
+      <div class="tool-header tc">
+        <div class="cat-badge cat-badge-c">Texto</div>
+        <h1>Gerador de senha</h1>
+        <p>Crie senhas fortes e aleatórias. Tudo gerado localmente — nada é enviado para nenhum servidor.</p>
+      </div>
+
+      <div class="tool-box">
+        <!-- Senha gerada em destaque -->
+        <div id="password-display" style="
+          font-family: 'SF Mono','Fira Code',monospace;
+          font-size: 1.5rem;
+          font-weight: 700;
+          padding: 20px;
+          background: #0F172A;
+          color: #E2E8F0;
+          border-radius: var(--radius-lg);
+          word-break: break-all;
+          min-height: 70px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          letter-spacing: 0.05em;
+          cursor: pointer;
+          user-select: all;
+        " onclick="copyPassword()" title="Clique para copiar">
+          <span style="color:#475569">Clique em "Gerar" para criar uma senha</span>
+        </div>
+
+        <div style="margin-top: 10px; display:flex; justify-content:space-between; align-items:center">
+          <div id="strength-bar-wrap" style="flex:1; margin-right: 16px; display:none">
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:4px" id="strength-label"></div>
+            <div class="progress-wrap">
+              <div class="progress-bar" id="strength-bar"></div>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" id="copy-pass-btn" onclick="copyPassword()" style="flex-shrink:0">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+              <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copiar
+          </button>
+        </div>
+
+        <hr class="divider">
+
+        <!-- Configurações -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div>
+            <label for="pw-length">COMPRIMENTO: <strong id="len-display">16</strong></label>
+            <input type="range" id="pw-length" min="4" max="64" value="16"
+              style="width:100%; margin-top:6px; accent-color: var(--primary);"
+              oninput="document.getElementById('len-display').textContent=this.value">
+          </div>
+          <div>
+            <label>QUANTIDADE</label>
+            <input type="number" id="pw-count" value="1" min="1" max="20" style="margin-top:6px">
+          </div>
+        </div>
+
+        <div class="options-grid">
+          <label class="opt-toggle selected" id="opt-upper">
+            <input type="checkbox" id="cb-upper" checked> A–Z maiúsculas
+          </label>
+          <label class="opt-toggle selected" id="opt-lower">
+            <input type="checkbox" id="cb-lower" checked> a–z minúsculas
+          </label>
+          <label class="opt-toggle selected" id="opt-numbers">
+            <input type="checkbox" id="cb-numbers" checked> 0–9 números
+          </label>
+          <label class="opt-toggle" id="opt-symbols">
+            <input type="checkbox" id="cb-symbols"> !@#$% símbolos
+          </label>
+          <label class="opt-toggle" id="opt-no-ambiguous">
+            <input type="checkbox" id="cb-no-ambiguous"> Sem ambíguos (0, O, l, 1)
+          </label>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="generate()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+            </svg>
+            Gerar senha
+          </button>
+        </div>
+      </div>
+
+      <!-- Lista de múltiplas senhas -->
+      <div id="bulk-output" class="tool-box" style="display:none">
+        <label>SENHAS GERADAS</label>
+        <div id="bulk-list"></div>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de segurança</h2>
+        <ol>
+          <li>Use pelo menos 16 caracteres para senhas importantes (banco, e-mail).</li>
+          <li>Ative símbolos para aumentar muito a complexidade da senha.</li>
+          <li>Nunca reutilize a mesma senha em sites diferentes.</li>
+          <li>A geração é 100% local — nenhuma senha é armazenada ou enviada.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Uma senha forte é a primeira linha de defesa de qualquer conta. O gerador cria combinações aleatórias que seriam praticamente impossíveis de adivinhar — diferente de datas de nascimento ou nomes de pets.</p>
+        <ul>
+          <li>Use no mínimo 16 caracteres com letras maiúsculas, minúsculas, números e símbolos para contas importantes como e-mail e banco.</li>
+          <li>Nunca reutilize senhas: se um site vazar sua senha, todas as outras contas ficam expostas. Gere uma senha diferente para cada serviço.</li>
+          <li>Guarde as senhas em um gerenciador como Bitwarden (gratuito e open source) ou 1Password — decorar senhas fortes é impossível.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Quer verificar se uma senha ou arquivo foi alterado? O <a href="hash-generator.html">Hash generator</a> cria uma assinatura única de qualquer texto.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de texto</h3>
+        <a href="contador-caracteres.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/></svg></span>
+          Contador de caracteres
+        </a>
+        <a href="converter-maiusculas.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h12"/></svg></span>
+          Maiúsculas / minúsculas
+        </a>
+        <a href="json-formatter.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          JSON Formatter
+        </a>
+        <a href="../dev/base64.html" class="related-link dc">
+          <span class="r-icon" style="background:#FFF7ED; color:#EA580C"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          Base64 encode/decode
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="contador-caracteres.html">Contador de caracteres</a>
+        <a href="converter-maiusculas.html">Maiúsculas / minúsculas</a>
+        <a href="remover-espacos.html">Remover espaços</a>
+        <a href="gerador-senha.html">Gerador de senha</a>
+        <a href="json-formatter.html">JSON Formatter</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+document.querySelectorAll('.opt-toggle').forEach(label => {
+  const cb = label.querySelector('input[type="checkbox"]');
+  if (cb) {
+    label.classList.toggle('selected', cb.checked);
+    label.addEventListener('click', () => setTimeout(() => label.classList.toggle('selected', cb.checked), 0));
+  }
+});
+
+const UPPER   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const LOWER   = 'abcdefghijklmnopqrstuvwxyz';
+const NUMBERS = '0123456789';
+const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+const AMBIGUOUS = /[0O1lI]/g;
+
+let lastPassword = '';
+
+function getStrength(pw) {
+  let score = 0;
+  if (pw.length >= 8)  score++;
+  if (pw.length >= 12) score++;
+  if (pw.length >= 16) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[a-z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  return score;
+}
+
+function generateOne(len, chars) {
+  const arr = new Uint32Array(len);
+  crypto.getRandomValues(arr);
+  return Array.from(arr).map(n => chars[n % chars.length]).join('');
+}
+
+function generate() {
+  let chars = '';
+  if (document.getElementById('cb-upper').checked)   chars += UPPER;
+  if (document.getElementById('cb-lower').checked)   chars += LOWER;
+  if (document.getElementById('cb-numbers').checked) chars += NUMBERS;
+  if (document.getElementById('cb-symbols').checked) chars += SYMBOLS;
+
+  if (!chars) {
+    alert('Selecione pelo menos um tipo de caractere.');
+    return;
+  }
+
+  if (document.getElementById('cb-no-ambiguous').checked) {
+    chars = chars.replace(AMBIGUOUS, '');
+  }
+
+  const len = parseInt(document.getElementById('pw-length').value);
+  const count = Math.min(20, Math.max(1, parseInt(document.getElementById('pw-count').value) || 1));
+
+  const passwords = Array.from({length: count}, () => generateOne(len, chars));
+  lastPassword = passwords[0];
+
+  // Exibir primeira senha em destaque
+  const display = document.getElementById('password-display');
+  display.innerHTML = `<span>${escHtml(lastPassword)}</span>`;
+  display.style.color = '#E2E8F0';
+
+  // Força
+  const strength = getStrength(lastPassword);
+  const labels = ['Muito fraca', 'Fraca', 'Razoável', 'Boa', 'Forte', 'Muito forte', 'Excelente', 'Máxima'];
+  const colors = ['#EF4444','#F97316','#EAB308','#84CC16','#22C55E','#10B981','#059669','#0D9488'];
+  const idx = Math.min(strength, 7);
+  document.getElementById('strength-label').textContent = `Força: ${labels[idx]}`;
+  const bar = document.getElementById('strength-bar');
+  bar.style.width = ((strength / 7) * 100) + '%';
+  bar.style.background = colors[idx];
+  document.getElementById('strength-bar-wrap').style.display = 'flex';
+  document.getElementById('strength-bar-wrap').style.flexDirection = 'column';
+
+  // Lista em bulk
+  if (count > 1) {
+    const bulk = document.getElementById('bulk-output');
+    bulk.style.display = 'block';
+    document.getElementById('bulk-list').innerHTML = passwords.map(pw => `
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:6px; font-family:monospace; font-size:0.875rem;">
+        <span>${escHtml(pw)}</span>
+        <button class="btn btn-ghost btn-sm" onclick="navigator.clipboard.writeText('${pw}'); this.textContent='✓'; setTimeout(()=>this.textContent='Copiar',1200)" style="padding:3px 9px; font-size:0.75rem">Copiar</button>
+      </div>
+    `).join('');
+  } else {
+    document.getElementById('bulk-output').style.display = 'none';
+  }
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function copyPassword() {
+  if (!lastPassword) return;
+  navigator.clipboard.writeText(lastPassword).then(() => {
+    const btn = document.getElementById('copy-pass-btn');
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => { btn.innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar'; }, 1600);
+    document.getElementById('password-display').style.boxShadow = '0 0 0 2px #22C55E';
+    setTimeout(() => { document.getElementById('password-display').style.boxShadow = ''; }, 600);
+  });
+}
+
+// Gera uma senha ao carregar
+window.addEventListener('load', generate);
+</script>
+</body>
+</html>

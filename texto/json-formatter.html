@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>JSON Formatter Online — Formatar e Validar JSON — Canivete Digital</title>
+  <meta name="description" content="Formate, valide e minifique JSON online. Identação automática, detecção de erros e syntax highlight. Grátis, sem cadastro.">
+  <meta name="keywords" content="json formatter online, formatar json, validar json, json beautify, minificar json">
+  <link rel="canonical" href="https://canivetedigital.com.br/texto/json-formatter.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="json-formatter">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="contador-caracteres.html" class="active">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="contador-caracteres.html">Texto</a><span class="sep">›</span>
+        JSON Formatter
+      </div>
+      <div class="tool-header tc">
+        <div class="cat-badge cat-badge-c">Texto</div>
+        <h1>JSON Formatter</h1>
+        <p>Cole seu JSON, formate com identação ou minifique para uma linha.</p>
+      </div>
+
+      <div class="tool-box">
+        <label for="json-input">JSON DE ENTRADA</label>
+        <textarea id="json-input" rows="10" placeholder='Cole seu JSON aqui… ex: {"nome":"João","idade":30}'
+          style="font-family: 'SF Mono','Fira Code',monospace; font-size: 0.875rem;"></textarea>
+
+        <div id="error-msg" class="notice notice-warn" style="display:none; margin-top: 10px;"></div>
+
+        <div style="display:flex; gap:8px; align-items:center; margin-top: 8px;">
+          <label style="font-size:0.8rem; text-transform:none; color:var(--text-muted);">Identação:</label>
+          <select id="indent-size" style="width:auto; padding:5px 8px; font-size:0.85rem;">
+            <option value="2" selected>2 espaços</option>
+            <option value="4">4 espaços</option>
+            <option value="tab">Tab</option>
+          </select>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="formatJSON()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            Formatar (Beautify)
+          </button>
+          <button class="btn btn-outline" onclick="minifyJSON()">Minificar</button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+          <button class="btn btn-ghost btn-sm" onclick="loadSample()">Exemplo</button>
+        </div>
+      </div>
+
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <label style="margin-bottom:0">RESULTADO</label>
+          <div style="display:flex; gap:8px; align-items:center">
+            <span id="json-stats" style="font-size:0.8rem; color:var(--text-muted)"></span>
+            <button class="btn btn-outline btn-sm" onclick="copyOutput()">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="13" height="13">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <span id="copy-label">Copiar</span>
+            </button>
+          </div>
+        </div>
+        <pre id="output-text" style="background:#0F172A; color:#E2E8F0; padding:16px; border-radius:var(--radius); overflow:auto; max-height:500px; font-family:'SF Mono','Fira Code',monospace; font-size:0.85rem; line-height:1.6; white-space:pre-wrap; word-break:break-all;"></pre>
+      </div>
+
+      <div class="howto">
+        <h2>Como usar</h2>
+        <ol>
+          <li>Cole o JSON bruto no campo de entrada.</li>
+          <li>Clique em <strong>Formatar</strong> para identar com espaços ou tab.</li>
+          <li>Use <strong>Minificar</strong> para comprimir o JSON em uma linha (ideal para APIs).</li>
+          <li>Se o JSON tiver erros de sintaxe, a ferramenta vai apontar o problema.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>JSON mal formatado é difícil de ler e ainda mais difícil de depurar. O formatador organiza a estrutura com indentação correta e destaca erros de sintaxe antes que virem problema em produção.</p>
+        <ul>
+          <li>O erro mais comum em JSON é a vírgula após o último item de um array ou objeto — JSON não aceita trailing commas como JavaScript.</li>
+          <li>Use o modo "minify" antes de colar o JSON em produção ou em variáveis de ambiente — remove todos os espaços e quebras de linha, reduzindo o tamanho.</li>
+          <li>Ao receber um JSON de API com dados sensíveis, formate localmente aqui — o texto não sai do seu browser.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Se precisa transformar o JSON em planilha, vá direto para o <a href="json-csv.html">Conversor JSON → CSV</a> e abra os dados no Excel ou Google Sheets.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de texto</h3>
+        <a href="contador-caracteres.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/></svg></span>
+          Contador de caracteres
+        </a>
+        <a href="converter-maiusculas.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h12"/></svg></span>
+          Maiúsculas / minúsculas
+        </a>
+        <a href="../dev/base64.html" class="related-link dc">
+          <span class="r-icon" style="background:#FFF7ED; color:#EA580C"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          Base64 encode/decode
+        </a>
+        <a href="../dev/url-encode.html" class="related-link dc">
+          <span class="r-icon" style="background:#FFF7ED; color:#EA580C"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"/><path stroke-linecap="round" d="M14.828 14.828a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.1-1.1"/></svg></span>
+          URL encode/decode
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="contador-caracteres.html">Contador de caracteres</a>
+        <a href="converter-maiusculas.html">Maiúsculas / minúsculas</a>
+        <a href="remover-espacos.html">Remover espaços</a>
+        <a href="gerador-senha.html">Gerador de senha</a>
+        <a href="json-formatter.html">JSON Formatter</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let lastResult = '';
+
+function getIndent() {
+  const v = document.getElementById('indent-size').value;
+  return v === 'tab' ? '\t' : parseInt(v);
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg');
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('error-msg').style.display = 'none';
+}
+
+function formatJSON() {
+  const raw = document.getElementById('json-input').value.trim();
+  if (!raw) return;
+  hideError();
+  try {
+    const parsed = JSON.parse(raw);
+    const formatted = JSON.stringify(parsed, null, getIndent());
+    lastResult = formatted;
+    showResult(formatted, parsed);
+  } catch (e) {
+    showError(e.message);
+    document.getElementById('output-box').style.display = 'none';
+  }
+}
+
+function minifyJSON() {
+  const raw = document.getElementById('json-input').value.trim();
+  if (!raw) return;
+  hideError();
+  try {
+    const parsed = JSON.parse(raw);
+    const minified = JSON.stringify(parsed);
+    lastResult = minified;
+    showResult(minified, parsed);
+  } catch (e) {
+    showError(e.message);
+    document.getElementById('output-box').style.display = 'none';
+  }
+}
+
+function showResult(text, parsed) {
+  document.getElementById('output-text').textContent = text;
+  document.getElementById('output-box').style.display = 'block';
+
+  // Stats
+  const keys = countKeys(parsed);
+  const size = new Blob([text]).size;
+  document.getElementById('json-stats').textContent =
+    `${keys} chave${keys !== 1 ? 's' : ''} · ${fmtSize(size)}`;
+
+  document.getElementById('copy-label').textContent = 'Copiar';
+}
+
+function countKeys(obj) {
+  if (typeof obj !== 'object' || obj === null) return 0;
+  let count = 0;
+  if (Array.isArray(obj)) {
+    obj.forEach(v => { count += countKeys(v); });
+  } else {
+    Object.keys(obj).forEach(k => { count++; count += countKeys(obj[k]); });
+  }
+  return count;
+}
+
+function fmtSize(b) {
+  if (b < 1024) return b + ' B';
+  return (b / 1024).toFixed(1) + ' KB';
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(lastResult).then(() => {
+    document.getElementById('copy-label').textContent = 'Copiado!';
+    setTimeout(() => { document.getElementById('copy-label').textContent = 'Copiar'; }, 1600);
+  });
+}
+
+function clearAll() {
+  document.getElementById('json-input').value = '';
+  document.getElementById('output-box').style.display = 'none';
+  hideError();
+}
+
+function loadSample() {
+  document.getElementById('json-input').value = '{"nome":"Maria Silva","idade":28,"email":"maria@exemplo.com","enderecos":[{"tipo":"casa","cidade":"São Paulo","estado":"SP"},{"tipo":"trabalho","cidade":"Campinas","estado":"SP"}],"ativo":true}';
+}
+
+// Ctrl+Enter para formatar
+document.getElementById('json-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.ctrlKey) formatJSON();
+});
+</script>
+</body>
+</html>

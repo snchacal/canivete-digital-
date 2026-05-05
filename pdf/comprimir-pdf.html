@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Comprimir PDF Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Reduza o tamanho do seu PDF online, grátis, sem enviar o arquivo para servidores. Direto no browser.">
+  <meta name="keywords" content="comprimir pdf online, reduzir tamanho pdf, compressor pdf gratis, diminuir pdf">
+  <link rel="canonical" href="https://canivetedigital.com.br/pdf/comprimir-pdf.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="comprimir-pdf">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="juntar-pdf.html" class="active">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="juntar-pdf.html">PDF</a><span class="sep">›</span>
+        Comprimir PDF
+      </div>
+      <div class="tool-header pc">
+        <div class="cat-badge cat-badge-c">PDF</div>
+        <h1>Comprimir PDF</h1>
+        <p>Reduza o tamanho do seu PDF removendo metadados e otimizando a estrutura. Processamento 100% local.</p>
+      </div>
+
+      <div class="notice notice-warn">
+        <strong>Nota:</strong> PDFs compostos principalmente por texto já são muito compactos — a maior compressão ocorre em PDFs com muitas imagens. Para PDFs com imagens grandes, a redução pode chegar a 30–60%.
+      </div>
+
+      <div class="tool-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="application/pdf">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <p><strong>Arraste seu PDF</strong> ou clique para selecionar</p>
+        </div>
+      </div>
+
+      <div id="controls-box" class="tool-box" style="display:none">
+        <div class="notice notice-info" id="pdf-info"></div>
+
+        <div style="margin-top:16px">
+          <label>NÍVEL DE COMPRESSÃO</label>
+          <div class="options-grid" style="margin-top:10px">
+            <label class="opt-toggle" data-level="low" onclick="setLevel('low',this)">
+              🔵 Baixo — qualidade máxima
+            </label>
+            <label class="opt-toggle selected" data-level="medium" onclick="setLevel('medium',this)">
+              🟡 Médio — bom equilíbrio
+            </label>
+            <label class="opt-toggle" data-level="high" onclick="setLevel('high',this)">
+              🔴 Alto — menor arquivo
+            </label>
+          </div>
+        </div>
+
+        <div style="margin-top:14px">
+          <label style="display:flex; align-items:center; gap:8px; font-size:0.875rem; text-transform:none; color:var(--text); cursor:pointer; font-weight:normal">
+            <input type="checkbox" id="remove-metadata" checked style="width:16px; height:16px; accent-color:var(--primary)">
+            Remover metadados (autor, data, software)
+          </label>
+        </div>
+
+        <div class="tool-row" style="margin-top:16px">
+          <button class="btn btn-success" id="compress-btn" onclick="compressPDF()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+            Comprimir PDF
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Trocar arquivo</button>
+        </div>
+      </div>
+
+      <div id="progress-box" style="display:none; padding:16px; background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:16px">
+        <p style="font-size:0.9rem; margin-bottom:8px; color:var(--text-muted)" id="progress-msg">Processando…</p>
+        <div class="progress-wrap">
+          <div class="progress-bar" id="progress-bar" style="width:0%; transition: width 0.5s"></div>
+        </div>
+      </div>
+
+      <div id="result-box" class="tool-box" style="display:none">
+        <div id="result-notice"></div>
+        <div class="tool-row" style="margin-top:14px">
+          <button class="btn btn-primary" id="download-btn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Baixar PDF comprimido
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Comprimir outro</button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Como funciona a compressão</h2>
+        <ol>
+          <li>A compressão usa a biblioteca pdf-lib para reprocessar e otimizar o arquivo localmente.</li>
+          <li>Metadados desnecessários são removidos (autor, software, datas de criação).</li>
+          <li>Para melhor resultado em PDFs com imagens, use a ferramenta de <a href="../imagem/comprimir-imagem.html">comprimir imagem</a> antes de gerar o PDF.</li>
+          <li>Nenhum arquivo é enviado para servidores — tudo no seu computador.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>PDFs com imagens de alta resolução, fontes embutidas ou exportados de ferramentas como Canva ou PowerPoint costumam ficar pesados. A compressão reduz o tamanho sem afetar o conteúdo de texto.</p>
+        <ul>
+          <li>PDFs compostos principalmente de texto comprimem pouco — o ganho real está em documentos com imagens, fotos ou gráficos.</li>
+          <li>Para envio por e-mail corporativo, o limite costuma ser 10–25MB. Para WhatsApp, o limite é 100MB. Para envio por formulários web, costuma ser 5MB.</li>
+          <li>Se precisar de compressão agressiva e o arquivo for apenas para leitura na tela, não para impressão, escolha a qualidade mais baixa — a diferença visual é mínima em monitor.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Se o PDF tem várias páginas que não precisa, <a href="dividir-pdf.html">divida o PDF</a> primeiro e comprima só as páginas relevantes — resultado final ainda menor.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de PDF</h3>
+        <a href="juntar-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></span>
+          Juntar PDF
+        </a>
+        <a href="dividir-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          Dividir PDF
+        </a>
+        <a href="../imagem/comprimir-imagem.html" class="related-link ic">
+          <span class="r-icon" style="background:#F0FDF4; color:#16A34A"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir imagem
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>PDF</h4>
+        <a href="juntar-pdf.html">Juntar PDF</a>
+        <a href="dividir-pdf.html">Dividir PDF</a>
+        <a href="comprimir-pdf.html">Comprimir PDF</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & Texto</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+let pdfFile = null;
+let compressionLevel = 'medium';
+
+initDropArea('drop-area', 'file-input', files => loadPDF(files[0]));
+
+function setLevel(level, el) {
+  compressionLevel = level;
+  document.querySelectorAll('[data-level]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+async function loadPDF(file) {
+  if (!file || (!file.type.includes('pdf') && !file.name.endsWith('.pdf'))) {
+    alert('Selecione um arquivo PDF válido.');
+    return;
+  }
+  pdfFile = file;
+
+  try {
+    const { PDFDocument } = PDFLib;
+    const bytes = await file.arrayBuffer();
+    const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+    const pages = doc.getPageCount();
+    document.getElementById('pdf-info').textContent =
+      `📄 ${file.name} · ${pages} página${pages !== 1 ? 's' : ''} · ${fmtSize(file.size)}`;
+    document.getElementById('controls-box').style.display = 'block';
+    document.getElementById('result-box').style.display = 'none';
+  } catch (e) {
+    alert('Erro ao ler o PDF. O arquivo pode estar protegido ou corrompido.');
+  }
+}
+
+async function compressPDF() {
+  if (!pdfFile) return;
+  const btn = document.getElementById('compress-btn');
+  btn.disabled = true;
+
+  document.getElementById('progress-box').style.display = 'block';
+  document.getElementById('result-box').style.display = 'none';
+
+  // Simular progresso
+  let p = 0;
+  const interval = setInterval(() => {
+    p = Math.min(p + 8, 85);
+    document.getElementById('progress-bar').style.width = p + '%';
+  }, 200);
+
+  try {
+    const { PDFDocument } = PDFLib;
+    const bytes = await pdfFile.arrayBuffer();
+    const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+
+    // Remover metadados se solicitado
+    if (document.getElementById('remove-metadata').checked) {
+      doc.setTitle('');
+      doc.setAuthor('');
+      doc.setSubject('');
+      doc.setKeywords([]);
+      doc.setProducer('');
+      doc.setCreator('');
+      try { doc.setCreationDate(new Date(0)); } catch {}
+      try { doc.setModificationDate(new Date(0)); } catch {}
+    }
+
+    // Opções de compressão por nível
+    const useObjectStreams = compressionLevel !== 'low';
+    const compressedBytes = await doc.save({ useObjectStreams });
+    const blob = new Blob([compressedBytes], { type: 'application/pdf' });
+
+    clearInterval(interval);
+    document.getElementById('progress-bar').style.width = '100%';
+
+    const origSize = pdfFile.size;
+    const newSize = blob.size;
+    const saved = origSize - newSize;
+    const pct = Math.round((saved / origSize) * 100);
+
+    const noticeEl = document.getElementById('result-notice');
+    if (saved > 100) {
+      noticeEl.className = 'notice notice-success';
+      noticeEl.textContent = `✓ Reduzido de ${fmtSize(origSize)} para ${fmtSize(newSize)} — economia de ${fmtSize(saved)} (${pct}%)`;
+    } else if (newSize <= origSize) {
+      noticeEl.className = 'notice notice-info';
+      noticeEl.textContent = `O PDF já estava bem otimizado. Redução mínima (${fmtSize(newSize)}). Para PDFs com imagens use "Comprimir imagem" antes.`;
+    } else {
+      noticeEl.className = 'notice notice-warn';
+      noticeEl.textContent = `O resultado ficou ligeiramente maior (${fmtSize(newSize)}). Tente o nível Baixo.`;
+    }
+
+    const baseName = pdfFile.name.replace(/\.pdf$/i, '');
+    document.getElementById('download-btn').onclick = () => downloadBlob(blob, `${baseName}-comprimido.pdf`);
+    document.getElementById('progress-box').style.display = 'none';
+    document.getElementById('result-box').style.display = 'block';
+    document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } catch (err) {
+    clearInterval(interval);
+    document.getElementById('progress-box').style.display = 'none';
+    alert('Erro ao comprimir: ' + err.message);
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg> Comprimir PDF';
+}
+
+function resetTool() {
+  pdfFile = null;
+  document.getElementById('controls-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

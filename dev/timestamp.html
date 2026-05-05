@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter Timestamp Unix Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Converta timestamp Unix para data e hora legível, e vice-versa. Suporta segundos e milissegundos. Mostra fuso horário local e UTC. Grátis, sem cadastro.">
+  <meta name="keywords" content="timestamp converter, unix timestamp, converter timestamp data, epoch time, timestamp para data, data para timestamp">
+  <link rel="canonical" href="https://canivetedigital.com.br/dev/timestamp.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="timestamp">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="base64.html" class="active">Dev</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="base64.html">Dev</a><span class="sep">›</span>
+        Timestamp converter
+      </div>
+      <div class="tool-header dc">
+        <div class="cat-badge cat-badge-d">Dev</div>
+        <h1>Timestamp converter</h1>
+        <p>Converta timestamps Unix para datas legíveis e vice-versa. Segundos ou milissegundos.</p>
+      </div>
+
+      <!-- Timestamp atual ao vivo -->
+      <div class="tool-box" style="background: var(--surface-2)">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px">
+          <div>
+            <label style="margin-bottom:4px">AGORA</label>
+            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:4px">
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-muted); display:block">Segundos</span>
+                <span id="now-sec" style="font-family: monospace; font-size:1.05rem; font-weight:600; color:var(--primary)">—</span>
+              </div>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-muted); display:block">Milissegundos</span>
+                <span id="now-ms" style="font-family: monospace; font-size:1.05rem; font-weight:600; color:var(--text-muted)">—</span>
+              </div>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-muted); display:block">ISO 8601</span>
+                <span id="now-iso" style="font-family: monospace; font-size:0.875rem; color:var(--text-muted)">—</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="useNow()">Usar agora</button>
+        </div>
+      </div>
+
+      <!-- Timestamp → Data -->
+      <div class="tool-box">
+        <label>TIMESTAMP → DATA</label>
+        <p style="font-size:0.875rem; color:var(--text-muted); margin-top:4px; margin-bottom:12px">Cole um número Unix (em segundos ou milissegundos)</p>
+
+        <div style="display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap">
+          <div style="flex:1; min-width:180px">
+            <label style="font-size:0.75rem; margin-bottom:6px">TIMESTAMP</label>
+            <input type="text" id="ts-input" placeholder="1714000000" style="font-family:monospace" oninput="convertTs()">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; margin-bottom:6px">UNIDADE</label>
+            <div class="options-grid" style="margin-top:0">
+              <label class="opt-toggle selected" data-unit="auto" onclick="setUnit('auto',this)">Auto</label>
+              <label class="opt-toggle" data-unit="s" onclick="setUnit('s',this)">Segundos</label>
+              <label class="opt-toggle" data-unit="ms" onclick="setUnit('ms',this)">Milissegundos</label>
+            </div>
+          </div>
+        </div>
+
+        <div id="ts-result" style="display:none; margin-top:16px">
+          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:10px">
+            <div class="output-box" style="padding:10px 14px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">LOCAL (<span id="tz-name">—</span>)</span>
+              <span id="res-local" style="font-family:monospace; font-size:0.875rem">—</span>
+            </div>
+            <div class="output-box" style="padding:10px 14px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">UTC</span>
+              <span id="res-utc" style="font-family:monospace; font-size:0.875rem">—</span>
+            </div>
+            <div class="output-box" style="padding:10px 14px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">ISO 8601</span>
+              <span id="res-iso" style="font-family:monospace; font-size:0.875rem">—</span>
+            </div>
+            <div class="output-box" style="padding:10px 14px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">DD/MM/AAAA HH:MM:SS</span>
+              <span id="res-br" style="font-family:monospace; font-size:0.875rem">—</span>
+            </div>
+            <div class="output-box" style="padding:10px 14px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">Relativo</span>
+              <span id="res-rel" style="font-family:monospace; font-size:0.875rem">—</span>
+            </div>
+            <div class="output-box" style="padding:10px 14px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">Dia da semana</span>
+              <span id="res-dow" style="font-family:monospace; font-size:0.875rem">—</span>
+            </div>
+          </div>
+        </div>
+        <div id="ts-error" class="notice notice-error" style="display:none"></div>
+      </div>
+
+      <!-- Data → Timestamp -->
+      <div class="tool-box">
+        <label>DATA → TIMESTAMP</label>
+        <p style="font-size:0.875rem; color:var(--text-muted); margin-top:4px; margin-bottom:12px">Informe a data e hora para obter o timestamp Unix</p>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; max-width:420px">
+          <div>
+            <label style="font-size:0.75rem; margin-bottom:6px">DATA</label>
+            <input type="date" id="dt-date" oninput="convertDate()">
+          </div>
+          <div>
+            <label style="font-size:0.75rem; margin-bottom:6px">HORA</label>
+            <input type="time" id="dt-time" value="00:00" step="1" oninput="convertDate()">
+          </div>
+        </div>
+
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+          <label class="opt-toggle selected" data-tz="local" onclick="setTz('local',this)" style="font-size:0.8rem">Local</label>
+          <label class="opt-toggle" data-tz="utc" onclick="setTz('utc',this)" style="font-size:0.8rem">UTC</label>
+        </div>
+
+        <div id="dt-result" style="display:none; margin-top:14px">
+          <div style="display:flex; gap:10px; flex-wrap:wrap">
+            <div class="output-box" style="padding:10px 14px; flex:1; min-width:160px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">Segundos</span>
+              <span id="dt-res-sec" style="font-family:monospace; font-size:1rem; font-weight:600">—</span>
+            </div>
+            <div class="output-box" style="padding:10px 14px; flex:1; min-width:160px">
+              <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:3px">Milissegundos</span>
+              <span id="dt-res-ms" style="font-family:monospace; font-size:1rem; font-weight:600">—</span>
+            </div>
+          </div>
+          <div style="margin-top:8px; display:flex; gap:8px">
+            <button class="btn btn-outline btn-sm" onclick="copyField('dt-res-sec')">Copiar segundos</button>
+            <button class="btn btn-outline btn-sm" onclick="copyField('dt-res-ms')">Copiar ms</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>O que é timestamp Unix?</h2>
+        <ol>
+          <li>Timestamp Unix é o número de segundos (ou milissegundos) desde 1 de janeiro de 1970 às 00:00:00 UTC.</li>
+          <li>Amplamente usado em bancos de dados, APIs, logs e sistemas de arquivos.</li>
+          <li>Timestamps em segundos têm ~10 dígitos (ex: 1714000000). Em milissegundos têm ~13 dígitos.</li>
+          <li>O modo "Auto" detecta automaticamente se é segundos ou milissegundos pelo número de dígitos.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Timestamps são o jeito universal de registrar momentos no tempo em sistemas, logs e bancos de dados. Saber converter entre Unix timestamp e data legível é essencial para debugar e analisar dados.</p>
+        <ul>
+          <li>Timestamps de 10 dígitos estão em segundos (padrão Unix/Python/PHP). Timestamps de 13 dígitos estão em milissegundos (padrão JavaScript). Se a data parecer errada, provavelmente é essa a causa.</li>
+          <li>Para encontrar um evento em logs, converta o horário desejado para timestamp e use como filtro — muito mais preciso que procurar por string de data.</li>
+          <li>O fuso horário importa: um timestamp é sempre UTC. Certifique-se de converter para o fuso local antes de comparar com horários do mundo real.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para verificar a integridade de arquivos de log ou comparar versões, o <a href="hash-generator.html">Hash generator</a> gera uma assinatura única de qualquer conteúdo.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas Dev</h3>
+        <a href="base64.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          Base64 encode/decode
+        </a>
+        <a href="json-csv.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+          JSON → CSV
+        </a>
+        <a href="hash-generator.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span>
+          Hash generator
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="base64.html">Base64</a>
+        <a href="url-encode.html">URL encode</a>
+        <a href="json-csv.html">JSON → CSV</a>
+        <a href="timestamp.html">Timestamp</a>
+        <a href="hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../texto/ordenar-texto.html">Ordenar texto</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let tsUnit = 'auto';
+let dtTz = 'local';
+let clockInterval;
+
+const DAYS_PT = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+const MONTHS_PT = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+
+function pad(n, w=2) { return String(n).padStart(w,'0'); }
+
+function startClock() {
+  function tick() {
+    const now = Date.now();
+    const sec = Math.floor(now / 1000);
+    document.getElementById('now-sec').textContent = sec;
+    document.getElementById('now-ms').textContent = now;
+    document.getElementById('now-iso').textContent = new Date(now).toISOString();
+    document.getElementById('tz-name').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  }
+  tick();
+  clockInterval = setInterval(tick, 1000);
+}
+
+function setUnit(u, el) {
+  tsUnit = u;
+  document.querySelectorAll('[data-unit]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+  convertTs();
+}
+
+function setTz(tz, el) {
+  dtTz = tz;
+  document.querySelectorAll('[data-tz]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+  convertDate();
+}
+
+function useNow() {
+  const sec = Math.floor(Date.now() / 1000);
+  document.getElementById('ts-input').value = sec;
+  // Force seconds mode
+  setUnit('s', document.querySelector('[data-unit="s"]'));
+  convertTs();
+}
+
+function detectUnit(num) {
+  // ms timestamps are ~13 digits, sec are ~10
+  return num > 9999999999 ? 'ms' : 's';
+}
+
+function relativeTime(ms) {
+  const diff = Date.now() - ms;
+  const abs = Math.abs(diff);
+  const future = diff < 0;
+  const prefix = future ? 'em ' : 'há ';
+  const suffix = future ? '' : ' atrás';
+
+  if (abs < 60000) return prefix + Math.round(abs/1000) + ' segundos' + suffix;
+  if (abs < 3600000) return prefix + Math.round(abs/60000) + ' minutos' + suffix;
+  if (abs < 86400000) return prefix + Math.round(abs/3600000) + ' horas' + suffix;
+  if (abs < 2592000000) return prefix + Math.round(abs/86400000) + ' dias' + suffix;
+  if (abs < 31536000000) return prefix + Math.round(abs/2592000000) + ' meses' + suffix;
+  return prefix + Math.round(abs/31536000000) + ' anos' + suffix;
+}
+
+function formatLocal(d) {
+  return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+function formatUTC(d) {
+  return `${pad(d.getUTCDate())}/${pad(d.getUTCMonth()+1)}/${d.getUTCFullYear()} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())} UTC`;
+}
+
+function convertTs() {
+  const raw = document.getElementById('ts-input').value.trim();
+  const errBox = document.getElementById('ts-error');
+  const resBox = document.getElementById('ts-result');
+  errBox.style.display = 'none';
+
+  if (!raw) { resBox.style.display = 'none'; return; }
+
+  const num = Number(raw);
+  if (isNaN(num) || !Number.isFinite(num)) {
+    errBox.textContent = 'Valor inválido. Informe apenas números.';
+    errBox.style.display = 'block';
+    resBox.style.display = 'none';
+    return;
+  }
+
+  const unit = tsUnit === 'auto' ? detectUnit(num) : tsUnit;
+  const ms = unit === 'ms' ? num : num * 1000;
+  const d = new Date(ms);
+
+  if (isNaN(d.getTime())) {
+    errBox.textContent = 'Data inválida. Verifique o timestamp.';
+    errBox.style.display = 'block';
+    resBox.style.display = 'none';
+    return;
+  }
+
+  document.getElementById('res-local').textContent = formatLocal(d);
+  document.getElementById('res-utc').textContent = formatUTC(d);
+  document.getElementById('res-iso').textContent = d.toISOString();
+  document.getElementById('res-br').textContent = `${pad(d.getDate())} de ${MONTHS_PT[d.getMonth()]} de ${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  document.getElementById('res-rel').textContent = relativeTime(ms);
+  document.getElementById('res-dow').textContent = DAYS_PT[d.getDay()];
+  resBox.style.display = 'block';
+}
+
+function convertDate() {
+  const dateVal = document.getElementById('dt-date').value;
+  const timeVal = document.getElementById('dt-time').value || '00:00:00';
+  const resBox = document.getElementById('dt-result');
+
+  if (!dateVal) { resBox.style.display = 'none'; return; }
+
+  let ms;
+  if (dtTz === 'utc') {
+    ms = Date.parse(dateVal + 'T' + timeVal + 'Z');
+  } else {
+    ms = new Date(dateVal + 'T' + timeVal).getTime();
+  }
+
+  if (isNaN(ms)) { resBox.style.display = 'none'; return; }
+
+  const sec = Math.floor(ms / 1000);
+  document.getElementById('dt-res-sec').textContent = sec;
+  document.getElementById('dt-res-ms').textContent = ms;
+  resBox.style.display = 'block';
+}
+
+function copyField(id) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+}
+
+// Set today's date as default
+const today = new Date();
+document.getElementById('dt-date').value = today.toISOString().slice(0,10);
+startClock();
+</script>
+</body>
+</html>

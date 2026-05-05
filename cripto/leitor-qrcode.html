@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Leitor de QR Code Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Leia QR Codes no computador: faça upload de uma imagem ou use a câmera. Resultado instantâneo no browser.">
+  <meta name="keywords" content="leitor QR code online, ler QR code computador, decodificar QR code, scanner QR online">
+  <link rel="canonical" href="https://canivetedigital.com.br/cripto/leitor-qrcode.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+</head>
+<body data-tool-id="leitor-qrcode">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="binario.html" class="active">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="binario.html">Cripto</a><span class="sep">›</span>
+        Leitor de QR Code
+      </div>
+      <div class="tool-header cc">
+        <div class="cat-badge cat-badge-c">Cripto</div>
+        <h1>Leitor de QR Code</h1>
+        <p>Leia QR Codes por upload de imagem ou pela câmera. Tudo no browser.</p>
+      </div>
+
+      <div class="tool-box">
+        <div style="display:flex;gap:8px;margin-bottom:16px">
+          <button class="btn btn-primary" id="btn-file" onclick="setTab('file')">📁 Arquivo / Imagem</button>
+          <button class="btn btn-outline" id="btn-cam" onclick="setTab('cam')">📷 Câmera</button>
+        </div>
+        <div id="tab-file">
+          <div class="drop-area" id="drop-area" style="min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer" onclick="document.getElementById('file-input').click()">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="36" height="36" style="color:var(--text-muted)"><path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span style="font-size:0.9rem;color:var(--text-muted)">Clique ou arraste a imagem do QR Code aqui</span>
+            <span style="font-size:0.8rem;color:var(--text-muted)">PNG, JPG, WEBP</span>
+          </div>
+          <input type="file" id="file-input" accept="image/*" style="display:none" onchange="readFile(this.files[0])">
+          <canvas id="file-canvas" style="display:none"></canvas>
+        </div>
+        <div id="tab-cam" style="display:none">
+          <div style="position:relative;border-radius:10px;overflow:hidden;background:#000;min-height:240px;display:flex;align-items:center;justify-content:center">
+            <video id="cam-video" autoplay playsinline style="width:100%;border-radius:10px;display:block"></video>
+            <canvas id="cam-canvas" style="display:none"></canvas>
+          </div>
+          <div style="margin-top:10px;display:flex;gap:8px">
+            <button class="btn btn-primary" id="btn-start-cam" onclick="startCam()">Iniciar câmera</button>
+            <button class="btn btn-outline" id="btn-stop-cam" onclick="stopCam()" style="display:none">Parar câmera</button>
+          </div>
+        </div>
+      </div>
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <label style="margin:0">CONTEÚDO DO QR CODE</label>
+          <button class="btn btn-outline btn-sm" onclick="copyResult()"><span id="copy-label">Copiar</span></button>
+        </div>
+        <div class="output-box" id="output-text" style="word-break:break-all;white-space:pre-wrap"></div>
+        <div id="qr-type" style="margin-top:8px;font-size:0.8rem;color:var(--text-muted)"></div>
+      </div>
+      <div id="error-box" class="notice notice-error" style="display:none"></div>
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Ler QR Codes no computador é útil quando você precisa copiar uma URL, verificar o conteúdo de um QR impresso ou processar um QR de um print de tela sem precisar do celular.</p>
+        <ul>
+          <li>Para ler pela câmera, posicione o QR Code centralizado na imagem e a uma distância que o código fique nítido.</li>
+          <li>Se o upload de imagem não funcionar, verifique se a imagem tem boa resolução e o QR não está cortado ou muito distorcido.</li>
+          <li>QR Codes de pagamento (Pix, cartão) lidos aqui não são processados — você só vê o payload de texto, não realiza transações.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para gerar seu próprio QR Code, use o <a href="qrcode.html">Gerador de QR Code</a>.</p>
+      </div>
+
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Cripto &amp; Codificação</h3>
+        <a href="binario.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="4" rx="1"/><rect x="4" y="10" width="4" height="4" rx="1"/><rect x="10" y="4" width="4" height="4" rx="1"/><rect x="16" y="10" width="4" height="4" rx="1"/><rect x="16" y="16" width="4" height="4" rx="1"/><rect x="10" y="16" width="4" height="4" rx="1"/></svg></span>Código Binário</a>
+        <a href="morse.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="11" cy="12" r="2" fill="currentColor"/><rect x="15" y="9" width="5" height="6" rx="2" fill="currentColor"/></svg></span>Código Morse</a>
+        <a href="texto-criptografado.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path stroke-linecap="round" d="M8 11V7a4 4 0 018 0v4"/></svg></span>Texto Criptografado</a>
+        <a href="qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path stroke-linecap="round" d="M14 14h3v3m0 0v3h-3m3 0h3"/></svg></span>Gerador de QR Code</a>
+        <a href="qrcode-wifi.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>QR Code Wi-Fi</a>
+        <a href="qrcode-pix.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>QR Code Pix</a>
+        <a href="leitor-qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 9V5a2 2 0 012-2h4M15 3h4a2 2 0 012 2v4M21 15v4a2 2 0 01-2 2h-4M9 21H5a2 2 0 01-2-2v-4M8 12h8"/></svg></span>Leitor de QR Code</a>
+        <a href="codigo-barras.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6v12M8 6v12M12 6v12M14 6v12M17 6v12M20 6v12M6 6v12"/></svg></span>Código de Barras 1D</a>
+        <a href="codigo-barras-lote.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 5v7M7 5v7M10 5v7M12 5v7M15 5v7M18 5v7M20 5v7M4 16h16M4 19h16"/></svg></span>Código de Barras em Lote</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Cripto</h4>
+        <a href="binario.html">Binário</a>
+        <a href="morse.html">Morse</a>
+        <a href="qrcode.html">QR Code</a>
+        <a href="qrcode-wifi.html">QR Wi-Fi</a>
+        <a href="qrcode-pix.html">QR Pix</a>
+        <a href="codigo-barras-lote.html">Barras em Lote</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+        <a href="../dev/json-csv.html">JSON → CSV</a>
+        <a href="../dev/timestamp.html">Timestamp</a>
+        <a href="../dev/hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto &amp; PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script>
+let camStream=null,scanInterval=null,result='';
+function setTab(t){
+  document.getElementById('tab-file').style.display=t==='file'?'':'none';
+  document.getElementById('tab-cam').style.display=t==='cam'?'':'none';
+  document.getElementById('btn-file').className=t==='file'?'btn btn-primary':'btn btn-outline';
+  document.getElementById('btn-cam').className=t==='cam'?'btn btn-primary':'btn btn-outline';
+  if(t==='file')stopCam();
+}
+function readFile(file){
+  if(!file)return;
+  const img=new Image();
+  const url=URL.createObjectURL(file);
+  img.onload=()=>{
+    const canvas=document.getElementById('file-canvas');
+    canvas.width=img.width;canvas.height=img.height;
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0);
+    const imgData=ctx.getImageData(0,0,canvas.width,canvas.height);
+    const code=jsQR(imgData.data,imgData.width,imgData.height);
+    URL.revokeObjectURL(url);
+    if(code){showResult(code.data);}
+    else{showError('Nenhum QR Code encontrado na imagem. Tente com uma imagem mais nítida.');}
+  };
+  img.src=url;
+}
+function startCam(){
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}}).then(stream=>{
+    camStream=stream;
+    const video=document.getElementById('cam-video');
+    video.srcObject=stream;
+    document.getElementById('btn-start-cam').style.display='none';
+    document.getElementById('btn-stop-cam').style.display='';
+    scanInterval=setInterval(()=>{
+      const canvas=document.getElementById('cam-canvas');
+      if(video.readyState!==video.HAVE_ENOUGH_DATA)return;
+      canvas.width=video.videoWidth;canvas.height=video.videoHeight;
+      const ctx=canvas.getContext('2d');ctx.drawImage(video,0,0);
+      const imgData=ctx.getImageData(0,0,canvas.width,canvas.height);
+      const code=jsQR(imgData.data,imgData.width,imgData.height);
+      if(code){showResult(code.data);stopCam();}
+    },200);
+  }).catch(()=>showError('Não foi possível acessar a câmera. Verifique as permissões do browser.'));
+}
+function stopCam(){
+  if(camStream)camStream.getTracks().forEach(t=>t.stop());
+  if(scanInterval)clearInterval(scanInterval);
+  camStream=null;scanInterval=null;
+  document.getElementById('btn-start-cam').style.display='';
+  document.getElementById('btn-stop-cam').style.display='none';
+}
+function showResult(data){
+  result=data;
+  document.getElementById('output-text').textContent=data;
+  let type='Texto';
+  if(data.startsWith('http'))type='URL';
+  else if(data.startsWith('WIFI:'))type='Wi-Fi';
+  else if(data.startsWith('BEGIN:VCARD'))type='Contato (vCard)';
+  else if(data.startsWith('mailto:'))type='E-mail';
+  else if(data.includes('BR.GOV.BCB.PIX'))type='Pix';
+  document.getElementById('qr-type').textContent='Tipo detectado: '+type;
+  document.getElementById('output-box').style.display='block';
+  document.getElementById('error-box').style.display='none';
+  document.getElementById('copy-label').textContent='Copiar';
+  document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';document.getElementById('output-box').style.display='none';}
+function copyResult(){navigator.clipboard.writeText(result).then(()=>{document.getElementById('copy-label').textContent='Copiado!';setTimeout(()=>document.getElementById('copy-label').textContent='Copiar',1600);});}
+// Drag and drop
+const drop=document.getElementById('drop-area');
+drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('dragover');});
+drop.addEventListener('dragleave',()=>drop.classList.remove('dragover'));
+drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('dragover');if(e.dataTransfer.files[0])readFile(e.dataTransfer.files[0]);});
+</script>
+</body>
+</html>

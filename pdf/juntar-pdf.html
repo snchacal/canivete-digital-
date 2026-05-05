@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Juntar PDF Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Una vários arquivos PDF em um único documento online, grátis, direto no browser. Sem cadastro, sem servidor.">
+  <meta name="keywords" content="juntar pdf online, mesclar pdf, unir pdf, combinar pdf gratis">
+  <link rel="canonical" href="https://canivetedigital.com.br/pdf/juntar-pdf.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="juntar-pdf">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="juntar-pdf.html" class="active">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="juntar-pdf.html">PDF</a><span class="sep">›</span>
+        Juntar PDF
+      </div>
+      <div class="tool-header pc">
+        <div class="cat-badge cat-badge-c">PDF</div>
+        <h1>Juntar PDF</h1>
+        <p>Selecione vários PDFs, organize a ordem e gere um único arquivo. Tudo local — nenhum arquivo é enviado.</p>
+      </div>
+
+      <div class="tool-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="application/pdf" multiple>
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <p><strong>Arraste seus PDFs</strong> ou clique para selecionar</p>
+          <p style="font-size:0.8rem; margin-top:6px;">Selecione 2 ou mais arquivos PDF</p>
+        </div>
+      </div>
+
+      <div id="file-list-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px">
+          <label style="margin-bottom:0">ARQUIVOS <span id="file-count"></span></label>
+          <button class="btn btn-outline btn-sm" onclick="addMore()">+ Adicionar mais</button>
+          <input type="file" id="add-input" accept="application/pdf" multiple style="display:none">
+        </div>
+        <ul class="file-list" id="file-list" style="margin-bottom:14px;"></ul>
+        <div class="notice notice-info">Arraste os itens para reordenar</div>
+
+        <div class="tool-row" style="margin-top:16px">
+          <button class="btn btn-success" id="merge-btn" onclick="mergePDFs()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            Juntar PDFs
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Limpar</button>
+        </div>
+      </div>
+
+      <div id="progress-box" style="display:none; padding:16px; background:var(--card-bg); border:1px solid var(--border); border-radius:var(--radius-lg); margin-bottom:16px">
+        <p style="font-size:0.9rem; margin-bottom:8px; color:var(--text-muted)" id="progress-msg">Processando…</p>
+        <div class="progress-wrap">
+          <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div id="result-box" class="tool-box" style="display:none">
+        <div class="notice notice-success" id="result-msg"></div>
+        <div class="tool-row" style="margin-top:14px">
+          <button class="btn btn-primary" id="download-btn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Baixar PDF unido
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Novo merge</button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Como usar</h2>
+        <ol>
+          <li>Selecione dois ou mais arquivos PDF.</li>
+          <li>Reordene arrastando os itens conforme necessário.</li>
+          <li>Clique em <strong>Juntar PDFs</strong> — o processamento é local, sem enviar arquivos.</li>
+          <li>Baixe o PDF resultante.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Reunir contratos, comprovantes, boletos e laudos em um único PDF facilita o envio, o arquivamento e a assinatura digital. É muito mais prático do que mandar vários arquivos separados.</p>
+        <ul>
+          <li>Arraste os arquivos na ordem exata em que quer que apareçam no documento final — a ordem de upload é a ordem do PDF.</li>
+          <li>Para juntar um PDF com uma página de assinatura escaneada, basta adicionar o JPG ou PNG da assinatura: ele é automaticamente convertido antes de mesclar.</li>
+          <li>Ótimo para reunir declarações do IR, notas fiscais ou extratos de diferentes bancos em um único arquivo para a contabilidade.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Se o arquivo combinado ficou grande, use a <a href="comprimir-pdf.html">ferramenta de compressão de PDF</a> para reduzir o tamanho antes de enviar por e-mail.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de PDF</h3>
+        <a href="dividir-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          Dividir PDF
+        </a>
+        <a href="comprimir-pdf.html" class="related-link pc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir PDF
+        </a>
+        <a href="../imagem/comprimir-imagem.html" class="related-link ic">
+          <span class="r-icon" style="background:#F0FDF4; color:#16A34A"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir imagem
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>PDF</h4>
+        <a href="juntar-pdf.html">Juntar PDF</a>
+        <a href="dividir-pdf.html">Dividir PDF</a>
+        <a href="comprimir-pdf.html">Comprimir PDF</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & Texto</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../assets/js/app.js"></script>
+<script>
+let pdfFiles = [];
+let sortable = null;
+
+initDropArea('drop-area', 'file-input', files => loadPDFs(files));
+
+document.getElementById('add-input').addEventListener('change', e => {
+  if (e.target.files.length) loadPDFs(Array.from(e.target.files), true);
+});
+
+function addMore() { document.getElementById('add-input').click(); }
+
+function loadPDFs(newFiles, append = false) {
+  const pdfs = newFiles.filter(f => f.type === 'application/pdf' || f.name.endsWith('.pdf'));
+  if (!pdfs.length) { alert('Selecione arquivos PDF válidos.'); return; }
+
+  if (append) pdfFiles.push(...pdfs);
+  else pdfFiles = pdfs;
+
+  renderList();
+  document.getElementById('file-list-box').style.display = 'block';
+  document.getElementById('result-box').style.display = 'none';
+}
+
+function renderList() {
+  const ul = document.getElementById('file-list');
+  document.getElementById('file-count').textContent = `(${pdfFiles.length} arquivo${pdfFiles.length !== 1 ? 's' : ''})`;
+  ul.innerHTML = pdfFiles.map((f, i) => `
+    <li class="file-item" draggable="true" data-idx="${i}" style="cursor:grab">
+      <span style="color:var(--text-muted); font-size:0.8rem; margin-right:8px; flex-shrink:0">⠿ ${i+1}</span>
+      <span class="fname">${f.name}</span>
+      <span class="fsize">${fmtSize(f.size)}</span>
+      <button class="file-remove" onclick="removeFile(${i})" title="Remover">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </li>
+  `).join('');
+
+  // Drag-to-reorder
+  let dragIdx = null;
+  ul.querySelectorAll('li').forEach(li => {
+    li.addEventListener('dragstart', () => { dragIdx = parseInt(li.dataset.idx); li.style.opacity='0.5'; });
+    li.addEventListener('dragend', () => { li.style.opacity='1'; });
+    li.addEventListener('dragover', e => e.preventDefault());
+    li.addEventListener('drop', () => {
+      const targetIdx = parseInt(li.dataset.idx);
+      if (dragIdx === targetIdx) return;
+      const moved = pdfFiles.splice(dragIdx, 1)[0];
+      pdfFiles.splice(targetIdx, 0, moved);
+      renderList();
+    });
+  });
+}
+
+function removeFile(idx) {
+  pdfFiles.splice(idx, 1);
+  if (!pdfFiles.length) { document.getElementById('file-list-box').style.display = 'none'; return; }
+  renderList();
+}
+
+async function mergePDFs() {
+  if (pdfFiles.length < 2) { alert('Adicione pelo menos 2 arquivos PDF.'); return; }
+
+  const btn = document.getElementById('merge-btn');
+  btn.disabled = true;
+  btn.textContent = 'Processando…';
+
+  document.getElementById('progress-box').style.display = 'block';
+  document.getElementById('result-box').style.display = 'none';
+
+  try {
+    const { PDFDocument } = PDFLib;
+    const merged = await PDFDocument.create();
+    let totalPages = 0;
+
+    for (let i = 0; i < pdfFiles.length; i++) {
+      const msg = `Adicionando: ${pdfFiles[i].name} (${i+1}/${pdfFiles.length})`;
+      document.getElementById('progress-msg').textContent = msg;
+      document.getElementById('progress-bar').style.width = ((i / pdfFiles.length) * 80) + '%';
+
+      const bytes = await pdfFiles[i].arrayBuffer();
+      const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+      const pages = await merged.copyPages(doc, doc.getPageIndices());
+      pages.forEach(p => { merged.addPage(p); totalPages++; });
+    }
+
+    document.getElementById('progress-bar').style.width = '100%';
+    document.getElementById('progress-msg').textContent = 'Finalizando…';
+
+    const pdfBytes = await merged.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const size = fmtSize(blob.size);
+
+    document.getElementById('result-msg').textContent =
+      `✓ PDF unido com ${totalPages} páginas · ${size}`;
+    document.getElementById('download-btn').onclick = () => downloadBlob(blob, 'pdf-unido.pdf');
+    document.getElementById('result-box').style.display = 'block';
+    document.getElementById('progress-box').style.display = 'none';
+  } catch (err) {
+    document.getElementById('progress-box').style.display = 'none';
+    alert('Erro ao processar PDF: ' + err.message + '\nAlguns PDFs protegidos por senha não podem ser mesclados.');
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg> Juntar PDFs';
+}
+
+function resetTool() {
+  pdfFiles = [];
+  document.getElementById('file-list-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

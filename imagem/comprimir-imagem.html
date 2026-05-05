@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Comprimir Imagem Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Comprima imagens JPG e PNG diretamente no browser, sem perder qualidade visual. Grátis, sem cadastro, sem enviar para servidor.">
+  <meta name="keywords" content="comprimir imagem online, reduzir tamanho imagem, compressor de imagem, comprimir jpg png gratis">
+  <link rel="canonical" href="https://canivetedigital.com.br/imagem/comprimir-imagem.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="comprimir-imagem">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="comprimir-imagem.html" class="active">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="comprimir-imagem.html">Imagem</a><span class="sep">›</span>
+        Comprimir imagem
+      </div>
+      <div class="tool-header ic">
+        <div class="cat-badge cat-badge-c">Imagem</div>
+        <h1>Comprimir imagem</h1>
+        <p>Reduza o tamanho do arquivo mantendo boa qualidade visual. Tudo processado localmente no seu browser.</p>
+      </div>
+
+      <div class="tool-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp,image/gif">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p><strong>Arraste uma imagem</strong> ou clique para selecionar</p>
+          <p style="font-size:0.8rem; margin-top:6px;">JPG, PNG, WebP — até 20 MB</p>
+        </div>
+      </div>
+
+      <div id="controls-box" class="tool-box" style="display:none">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <label>QUALIDADE: <strong id="quality-display">80</strong>%</label>
+            <input type="range" id="quality-slider" min="10" max="100" value="80"
+              style="width:100%; margin-top:6px; accent-color: #16A34A;"
+              oninput="document.getElementById('quality-display').textContent=this.value">
+            <div style="display:flex; justify-content:space-between; font-size:0.72rem; color:var(--text-muted); margin-top:3px">
+              <span>Menor arquivo</span><span>Máxima qualidade</span>
+            </div>
+          </div>
+          <div>
+            <label>FORMATO DE SAÍDA</label>
+            <select id="output-format" style="margin-top:6px">
+              <option value="auto">Manter original</option>
+              <option value="image/jpeg">JPG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WebP (menor)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-success" onclick="compress()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+            </svg>
+            Comprimir imagem
+          </button>
+          <button class="btn btn-outline" onclick="resetTool()">Trocar imagem</button>
+        </div>
+      </div>
+
+      <!-- Preview + resultado -->
+      <div id="result-box" class="tool-box" style="display:none">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px">
+          <div>
+            <label>ORIGINAL</label>
+            <img id="original-preview" style="width:100%; border-radius:var(--radius); border:1px solid var(--border); margin-top:6px; max-height:300px; object-fit:contain">
+            <p id="original-info" style="font-size:0.8rem; color:var(--text-muted); margin-top:6px; text-align:center"></p>
+          </div>
+          <div>
+            <label>COMPRIMIDA</label>
+            <img id="result-preview" style="width:100%; border-radius:var(--radius); border:1px solid var(--border); margin-top:6px; max-height:300px; object-fit:contain">
+            <p id="result-info" style="font-size:0.8rem; color:var(--text-muted); margin-top:6px; text-align:center"></p>
+          </div>
+        </div>
+        <div id="saving-badge" class="notice notice-success" style="margin-top:14px"></div>
+        <div class="tool-row">
+          <button class="btn btn-primary" id="download-btn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Baixar imagem comprimida
+          </button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Como funciona</h2>
+        <ol>
+          <li>Selecione ou arraste sua imagem.</li>
+          <li>Ajuste a qualidade — 70 a 85% costuma ser o melhor equilíbrio.</li>
+          <li>Clique em <strong>Comprimir imagem</strong> e compare os resultados.</li>
+          <li>Tudo roda no seu browser. Nenhuma imagem sai do seu computador.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Imagens pesadas são uma das principais causas de sites lentos e e-mails que não abrem. Comprimir antes de publicar ou enviar é um hábito simples que melhora a experiência de quem recebe.</p>
+        <ul>
+          <li>Para web, qualidade 75–85% é imperceptível visualmente e pode reduzir o arquivo em 60% ou mais. Só use 100% em impressão.</li>
+          <li>JPEG é melhor para fotos e imagens com gradientes. PNG é ideal para logos, capturas de tela e imagens com texto ou fundo transparente.</li>
+          <li>E-mails com imagens acima de 1MB costumam ir para spam ou demorar para carregar no celular. Sempre comprima antes de anexar.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para um resultado ainda melhor, <a href="redimensionar-imagem.html">redimensione a imagem</a> para as dimensões reais de exibição antes de comprimir — tamanho menor significa compressão mais eficiente.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de imagem</h3>
+        <a href="redimensionar-imagem.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg></span>
+          Redimensionar imagem
+        </a>
+        <a href="converter-jpg-png.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+          Converter JPG / PNG
+        </a>
+        <a href="../pdf/comprimir-pdf.html" class="related-link pc">
+          <span class="r-icon" style="background:#FEF2F2; color:#DC2626"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir PDF
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Imagem</h4>
+        <a href="comprimir-imagem.html">Comprimir imagem</a>
+        <a href="redimensionar-imagem.html">Redimensionar</a>
+        <a href="converter-jpg-png.html">Converter JPG/PNG</a>
+      </div>
+      <div class="footer-col"><h4>Texto & PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../pdf/comprimir-pdf.html">Comprimir PDF</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let originalFile = null;
+let compressedBlob = null;
+
+initDropArea('drop-area', 'file-input', files => loadImage(files[0]));
+
+function loadImage(file) {
+  if (!file || !file.type.startsWith('image/')) {
+    alert('Selecione um arquivo de imagem válido.');
+    return;
+  }
+  if (file.size > 20 * 1024 * 1024) {
+    alert('A imagem é muito grande. Limite de 20 MB.');
+    return;
+  }
+  originalFile = file;
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('original-preview').src = e.target.result;
+    document.getElementById('original-info').textContent = `${file.name} · ${fmtSize(file.size)} · original`;
+    document.getElementById('controls-box').style.display = 'block';
+    document.getElementById('result-box').style.display = 'none';
+    document.getElementById('drop-area').querySelector('p').textContent = '✓ ' + file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+function compress() {
+  if (!originalFile) return;
+  const quality = parseInt(document.getElementById('quality-slider').value) / 100;
+  let mimeType = document.getElementById('output-format').value;
+  if (mimeType === 'auto') mimeType = originalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+
+      // Fundo branco para PNG→JPG
+      if (mimeType === 'image/jpeg') {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob(blob => {
+        compressedBlob = blob;
+        const url = URL.createObjectURL(blob);
+        document.getElementById('result-preview').src = url;
+        document.getElementById('result-info').textContent = `${fmtSize(blob.size)} · comprimida`;
+
+        const saved = originalFile.size - blob.size;
+        const pct = Math.round((saved / originalFile.size) * 100);
+        const badge = document.getElementById('saving-badge');
+        if (saved > 0) {
+          badge.textContent = `✓ Economia de ${fmtSize(saved)} (${pct}% menor)`;
+          badge.className = 'notice notice-success';
+        } else {
+          badge.textContent = 'A imagem já estava bem otimizada. Tente reduzir a qualidade.';
+          badge.className = 'notice notice-info';
+        }
+
+        const ext = mimeType === 'image/jpeg' ? 'jpg' : mimeType === 'image/webp' ? 'webp' : 'png';
+        const baseName = originalFile.name.replace(/\.[^.]+$/, '');
+        document.getElementById('download-btn').onclick = () => downloadBlob(blob, `${baseName}-comprimido.${ext}`);
+        document.getElementById('result-box').style.display = 'block';
+        document.getElementById('result-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, mimeType, quality);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(originalFile);
+}
+
+function resetTool() {
+  originalFile = null;
+  compressedBlob = null;
+  document.getElementById('controls-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+  document.getElementById('drop-area').querySelector('p').innerHTML = '<strong>Arraste uma imagem</strong> ou clique para selecionar';
+}
+</script>
+</body>
+</html>

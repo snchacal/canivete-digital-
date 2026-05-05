@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>URL Encode e Decode Online — Canivete Digital</title>
+  <meta name="description" content="Encode e decode de URLs, query strings e caracteres especiais online. Grátis, sem cadastro.">
+  <meta name="keywords" content="url encode decode online, codificar url, decodificar url, percent encoding, query string encode">
+  <link rel="canonical" href="https://canivetedigital.com.br/dev/url-encode.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="url-encode">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="base64.html" class="active">Dev</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="base64.html">Dev</a><span class="sep">›</span>
+        URL encode / decode
+      </div>
+      <div class="tool-header dc">
+        <div class="cat-badge cat-badge-c">Dev</div>
+        <h1>URL encode / decode</h1>
+        <p>Codifique e decodifique URLs, query strings e percent encoding. Resultado em tempo real.</p>
+      </div>
+
+      <div class="tool-box">
+        <div style="display:flex; gap:10px; align-items:center; margin-bottom:14px; flex-wrap:wrap">
+          <span style="font-size:0.8125rem; font-weight:600; color:var(--text-muted); text-transform:uppercase">MODO:</span>
+          <div class="options-grid" style="margin-top:0">
+            <label class="opt-toggle selected" data-mode="component" onclick="setMode('component',this)">
+              encodeURIComponent
+            </label>
+            <label class="opt-toggle" data-mode="full" onclick="setMode('full',this)">
+              encodeURI (URL completa)
+            </label>
+          </div>
+        </div>
+
+        <label for="input-text">ENTRADA</label>
+        <textarea id="input-text" rows="5"
+          placeholder="Cole a URL ou texto para codificar/decodificar…"
+          style="font-family:'SF Mono','Fira Code',monospace; font-size:0.875rem;"
+          oninput="autoProcess()"></textarea>
+
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="encode()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15">
+              <path stroke-linecap="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+            Encode URL
+          </button>
+          <button class="btn btn-outline" onclick="decode()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15">
+              <path stroke-linecap="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+            </svg>
+            Decode URL
+          </button>
+          <button class="btn btn-ghost btn-sm" onclick="clearAll()">Limpar</button>
+          <button class="btn btn-ghost btn-sm" onclick="swap()">⇄ Inverter</button>
+        </div>
+      </div>
+
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+          <label style="margin-bottom:0" id="output-label">RESULTADO</label>
+          <button class="btn btn-outline btn-sm" onclick="copyOutput()">
+            <span id="copy-label">Copiar</span>
+          </button>
+        </div>
+        <div class="output-box" id="output-text" style="word-break:break-all"></div>
+        <div class="stats-row" style="margin-top:8px" id="output-stats"></div>
+      </div>
+
+      <div id="error-box" class="notice notice-warn" style="display:none; margin-top:10px"></div>
+
+      <!-- Exemplos práticos -->
+      <div class="tool-box" style="margin-top:16px">
+        <label>EXEMPLOS RÁPIDOS</label>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:10px">
+          <button class="btn btn-ghost btn-sm" style="justify-content:flex-start; text-align:left; font-family:monospace"
+            onclick="loadExample('https://exemplo.com/busca?q=canivete digital&categoria=texto')">
+            URL com espaços e caracteres especiais
+          </button>
+          <button class="btn btn-ghost btn-sm" style="justify-content:flex-start; text-align:left; font-family:monospace"
+            onclick="loadExample('João Silva & Maria — Café com açúcar')">
+            Texto com acentos e símbolos
+          </button>
+          <button class="btn btn-ghost btn-sm" style="justify-content:flex-start; text-align:left; font-family:monospace"
+            onclick="loadExample('chave=valor&outro=test%20123&acento=%C3%A7%C3%A3o')">
+            Query string para decodificar
+          </button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Quando usar cada modo</h2>
+        <ol>
+          <li><strong>encodeURIComponent</strong> — codifica tudo incluindo <code>://?#[]@!$&'()*+,;=</code>. Use para partes individuais da URL (query params, valores).</li>
+          <li><strong>encodeURI</strong> — preserva os caracteres estruturais da URL (<code>:/?#[]@</code>). Use para URLs completas.</li>
+          <li>Para decodificar, ambos os modos usam <code>decodeURIComponent</code>, que converte <code>%XX</code> de volta para os caracteres originais.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Caracteres especiais como espaços, &, = e ? têm significado reservado em URLs. Sem encoding, eles quebram a query string ou causam erros silenciosos em requisições de API.</p>
+        <ul>
+          <li>Espaço vira <code>%20</code> ou <code>+</code>, <code>&</code> vira <code>%26</code>, <code>=</code> vira <code>%3D</code>. Esses são os mais comuns em query strings.</li>
+          <li>Ao debugar chamadas de API, cole a URL aqui para decodificar e ler os parâmetros com clareza — muito mais rápido que decifrar manualmente.</li>
+          <li>Em formulários HTML, o browser faz URL encoding automaticamente. O problema aparece quando você monta URLs manualmente no código.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para encoding de dados binários ou imagens em texto, o <a href="base64.html">Base64 encoder</a> é o complemento ideal para quem trabalha com APIs e integrações.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas Dev</h3>
+        <a href="base64.html" class="related-link dc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          Base64 encode/decode
+        </a>
+        <a href="../texto/json-formatter.html" class="related-link tc">
+          <span class="r-icon" style="background:#EFF6FF; color:#2563EB"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          JSON Formatter
+        </a>
+        <a href="../texto/gerador-senha.html" class="related-link tc">
+          <span class="r-icon" style="background:#EFF6FF; color:#2563EB"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          Gerador de senha
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="base64.html">Base64 encode/decode</a>
+        <a href="url-encode.html">URL encode/decode</a>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="../texto/json-formatter.html">JSON Formatter</a>
+        <a href="../texto/gerador-senha.html">Gerador de senha</a>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let encodeMode = 'component';
+
+function setMode(mode, el) {
+  encodeMode = mode;
+  document.querySelectorAll('[data-mode]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function encode() {
+  const text = document.getElementById('input-text').value;
+  if (!text) return;
+  hideError();
+  try {
+    const result = encodeMode === 'component'
+      ? encodeURIComponent(text)
+      : encodeURI(text);
+    showOutput('URL CODIFICADA (encode)', result);
+  } catch(e) {
+    showError('Erro ao codificar: ' + e.message);
+  }
+}
+
+function decode() {
+  const text = document.getElementById('input-text').value;
+  if (!text) return;
+  hideError();
+  try {
+    const result = decodeURIComponent(text);
+    showOutput('TEXTO DECODIFICADO (decode)', result);
+  } catch(e) {
+    showError('Entrada inválida. Verifique se o percent-encoding está correto (ex: %20, %C3%A7).');
+  }
+}
+
+let autoTimer = null;
+function autoProcess() {
+  // Auto-detecta e processa ao digitar
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(() => {
+    const text = document.getElementById('input-text').value.trim();
+    if (!text) { document.getElementById('output-box').style.display = 'none'; return; }
+
+    // Se contém %XX provavelmente é encoded → decode
+    if (/%[0-9A-Fa-f]{2}/.test(text)) {
+      try {
+        const decoded = decodeURIComponent(text);
+        if (decoded !== text) showOutput('AUTO-DETECTADO: texto decodificado', decoded);
+      } catch {}
+    }
+  }, 600);
+}
+
+function showOutput(label, text) {
+  document.getElementById('output-label').textContent = label;
+  document.getElementById('output-text').textContent = text;
+  document.getElementById('output-box').style.display = 'block';
+  document.getElementById('output-stats').innerHTML = `<span class="stat-pill">${text.length} chars</span>`;
+  document.getElementById('copy-label').textContent = 'Copiar';
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    document.getElementById('copy-label').textContent = 'Copiado!';
+    setTimeout(() => { document.getElementById('copy-label').textContent = 'Copiar'; }, 1600);
+  });
+}
+
+function swap() {
+  const output = document.getElementById('output-text').textContent;
+  if (output) {
+    document.getElementById('input-text').value = output;
+    document.getElementById('output-box').style.display = 'none';
+  }
+}
+
+function clearAll() {
+  document.getElementById('input-text').value = '';
+  document.getElementById('output-box').style.display = 'none';
+  hideError();
+}
+
+function loadExample(text) {
+  document.getElementById('input-text').value = text;
+  document.getElementById('output-box').style.display = 'none';
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-box');
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('error-box').style.display = 'none';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Cortar Imagem Online Grátis — Crop de Foto — Canivete Digital</title>
+  <meta name="description" content="Corte imagens diretamente no browser com seleção por arrastar. Suporta proporções livres e predefinidas. Grátis, sem cadastro.">
+  <meta name="keywords" content="cortar imagem online, crop foto, recortar imagem, crop online gratis, cortar foto">
+  <link rel="canonical" href="https://canivetedigital.com.br/imagem/cortar-imagem.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    #canvas-wrap { position: relative; display: inline-block; max-width: 100%; cursor: crosshair; }
+    #img-canvas { max-width: 100%; display: block; border-radius: var(--radius); border: 1px solid var(--border); }
+    #selection-overlay {
+      position: absolute; border: 2px solid #3B82F6;
+      box-shadow: 0 0 0 9999px rgba(0,0,0,0.45);
+      pointer-events: none; display: none;
+    }
+    #sel-dims {
+      position: absolute; background: #3B82F6; color: white;
+      font-size: 0.7rem; padding: 2px 7px; border-radius: 3px;
+      pointer-events: none; display: none; white-space: nowrap;
+    }
+  </style>
+</head>
+<body data-tool-id="cortar-imagem">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="comprimir-imagem.html" class="active">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="comprimir-imagem.html">Imagem</a><span class="sep">›</span>
+        Cortar imagem
+      </div>
+      <div class="tool-header ic">
+        <div class="cat-badge cat-badge-c">Imagem</div>
+        <h1>Cortar imagem</h1>
+        <p>Selecione a área de corte arrastando o mouse. Livre, quadrado, 16:9 e mais. Tudo no browser.</p>
+      </div>
+
+      <!-- UPLOAD -->
+      <div class="tool-box" id="upload-box">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="image/*">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p><strong>Arraste uma imagem</strong> ou clique para selecionar</p>
+          <p style="font-size:0.8rem; margin-top:6px;">JPG, PNG, WebP</p>
+        </div>
+      </div>
+
+      <!-- EDITOR -->
+      <div id="editor-box" class="tool-box" style="display:none">
+        <!-- Proporções -->
+        <div style="margin-bottom:14px">
+          <label style="margin-bottom:8px; display:block;">PROPORÇÃO</label>
+          <div class="options-grid">
+            <label class="opt-toggle selected" data-ratio="free" onclick="setRatio('free',this)">Livre</label>
+            <label class="opt-toggle" data-ratio="1:1" onclick="setRatio('1:1',this)">1:1 (quadrado)</label>
+            <label class="opt-toggle" data-ratio="16:9" onclick="setRatio('16:9',this)">16:9</label>
+            <label class="opt-toggle" data-ratio="4:3" onclick="setRatio('4:3',this)">4:3</label>
+            <label class="opt-toggle" data-ratio="3:2" onclick="setRatio('3:2',this)">3:2</label>
+            <label class="opt-toggle" data-ratio="9:16" onclick="setRatio('9:16',this)">9:16 (vertical)</label>
+          </div>
+        </div>
+
+        <!-- Canvas de seleção -->
+        <div id="canvas-wrap">
+          <canvas id="img-canvas"></canvas>
+          <div id="selection-overlay"></div>
+          <div id="sel-dims"></div>
+        </div>
+
+        <div id="crop-info" style="font-size:0.8rem; color:var(--text-muted); margin-top:8px; display:none">
+          Seleção: <strong id="crop-coords"></strong>
+        </div>
+
+        <div class="tool-row" style="margin-top:14px">
+          <button class="btn btn-success" id="crop-btn" onclick="cropImage()" disabled>
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <polyline points="6 2 6 8 2 8"/><polyline points="18 22 18 16 22 16"/>
+              <path stroke-linecap="round" d="M2 8l5.5 5.5a4 4 0 0 0 5.66 0l5.34-5.34"/><path stroke-linecap="round" d="M22 16l-5.5-5.5a4 4 0 0 0-5.66 0l-5.34 5.34"/>
+            </svg>
+            Cortar
+          </button>
+          <button class="btn btn-outline" onclick="resetSelection()">Resetar seleção</button>
+          <button class="btn btn-outline" onclick="resetTool()">Trocar imagem</button>
+        </div>
+      </div>
+
+      <!-- RESULTADO -->
+      <div id="result-box" class="tool-box" style="display:none">
+        <label>RESULTADO DO CORTE</label>
+        <img id="result-img" style="max-width:100%; border-radius:var(--radius); border:1px solid var(--border); margin:10px 0; display:block; max-height:400px; object-fit:contain">
+        <div id="result-info" class="notice notice-success"></div>
+        <div class="tool-row">
+          <button class="btn btn-primary" id="download-btn">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Baixar imagem cortada
+          </button>
+          <button class="btn btn-outline" onclick="backToEditor()">Cortar de novo</button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Como usar</h2>
+        <ol>
+          <li>Selecione ou arraste sua imagem.</li>
+          <li>Escolha uma proporção ou deixe em "Livre" para corte personalizado.</li>
+          <li>Clique e arraste na imagem para marcar a área de corte.</li>
+          <li>Clique em <strong>Cortar</strong> e baixe o resultado.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Cortar uma imagem vai além de remover bordas — é enquadrar o que importa e eliminar o que distrai. Um bom corte melhora o impacto visual sem precisar de editor complexo.</p>
+        <ul>
+          <li>Para thumbnails do YouTube use proporção 16:9. Para posts do Instagram use 1:1 (quadrado) ou 4:5 (retrato). Redes sociais cortam automaticamente fora dessas proporções.</li>
+          <li>Posicione o elemento principal nos terços da imagem — não no centro exato. Essa "regra dos terços" torna a composição visualmente mais interessante.</li>
+          <li>Ao cortar fotos de documentos ou placas, mantenha margem suficiente ao redor do texto para facilitar a leitura.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Depois de cortar, passe pela <a href="comprimir-imagem.html">compressão de imagem</a> para otimizar o arquivo antes de publicar ou enviar.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de imagem</h3>
+        <a href="comprimir-imagem.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg></span>
+          Comprimir imagem
+        </a>
+        <a href="redimensionar-imagem.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg></span>
+          Redimensionar imagem
+        </a>
+        <a href="converter-jpg-png.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+          Converter JPG / PNG
+        </a>
+        <a href="converter-webp.html" class="related-link ic">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+          WebP converter
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Imagem</h4>
+        <a href="comprimir-imagem.html">Comprimir imagem</a>
+        <a href="redimensionar-imagem.html">Redimensionar</a>
+        <a href="cortar-imagem.html">Cortar imagem</a>
+        <a href="converter-jpg-png.html">Converter JPG/PNG</a>
+        <a href="converter-webp.html">WebP converter</a>
+      </div>
+      <div class="footer-col"><h4>Texto & PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let originalFile = null;
+let img = null;
+let scale = 1; // canvas display scale vs natural size
+let cropRatio = 'free';
+
+// Seleção
+let isDragging = false;
+let startX = 0, startY = 0;
+let selX = 0, selY = 0, selW = 0, selH = 0;
+
+const canvas   = document.getElementById('img-canvas');
+const overlay  = document.getElementById('selection-overlay');
+const dimsEl   = document.getElementById('sel-dims');
+const cropBtn  = document.getElementById('crop-btn');
+
+initDropArea('drop-area', 'file-input', files => loadImage(files[0]));
+
+function loadImage(file) {
+  if (!file || !file.type.startsWith('image/')) return;
+  originalFile = file;
+  const reader = new FileReader();
+  reader.onload = e => {
+    img = new Image();
+    img.onload = () => {
+      drawCanvas();
+      document.getElementById('upload-box').style.display = 'none';
+      document.getElementById('editor-box').style.display = 'block';
+      document.getElementById('result-box').style.display = 'none';
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function drawCanvas() {
+  const maxW = Math.min(img.naturalWidth, 760);
+  scale = maxW / img.naturalWidth;
+  canvas.width  = Math.round(img.naturalWidth  * scale);
+  canvas.height = Math.round(img.naturalHeight * scale);
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  resetSelection();
+}
+
+function setRatio(ratio, el) {
+  cropRatio = ratio;
+  document.querySelectorAll('[data-ratio]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+  resetSelection();
+}
+
+// --- MOUSE EVENTS ---
+const wrap = document.getElementById('canvas-wrap');
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: Math.max(0, Math.min(clientX - rect.left, canvas.offsetWidth)),
+    y: Math.max(0, Math.min(clientY - rect.top,  canvas.offsetHeight))
+  };
+}
+
+canvas.addEventListener('mousedown', startDrag);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); startDrag(e); }, { passive: false });
+
+function startDrag(e) {
+  const pos = getPos(e);
+  startX = pos.x; startY = pos.y;
+  isDragging = true;
+  overlay.style.display = 'none';
+  dimsEl.style.display = 'none';
+  cropBtn.disabled = true;
+}
+
+document.addEventListener('mousemove', onDrag);
+document.addEventListener('touchmove', e => { if (isDragging) { e.preventDefault(); onDrag(e); }}, { passive: false });
+
+function onDrag(e) {
+  if (!isDragging) return;
+  const pos = getPos(e);
+
+  let w = pos.x - startX;
+  let h = pos.y - startY;
+
+  if (cropRatio !== 'free') {
+    const parts = cropRatio.split(':').map(Number);
+    const r = parts[0] / parts[1];
+    if (Math.abs(w) / Math.abs(h) > r) {
+      w = Math.sign(w) * Math.abs(h) * r;
+    } else {
+      h = Math.sign(h) * Math.abs(w) / r;
+    }
+  }
+
+  // Normalise so x/y is top-left
+  selX = w >= 0 ? startX : startX + w;
+  selY = h >= 0 ? startY : startY + h;
+  selW = Math.abs(w);
+  selH = Math.abs(h);
+
+  // Clamp to canvas
+  if (selX < 0) { selW += selX; selX = 0; }
+  if (selY < 0) { selH += selY; selY = 0; }
+  if (selX + selW > canvas.offsetWidth)  selW = canvas.offsetWidth  - selX;
+  if (selY + selH > canvas.offsetHeight) selH = canvas.offsetHeight - selY;
+
+  const wrapRect = wrap.getBoundingClientRect();
+  const canvRect = canvas.getBoundingClientRect();
+  const offX = canvRect.left - wrapRect.left;
+  const offY = canvRect.top  - wrapRect.top;
+
+  overlay.style.left   = (offX + selX) + 'px';
+  overlay.style.top    = (offY + selY) + 'px';
+  overlay.style.width  = selW + 'px';
+  overlay.style.height = selH + 'px';
+  overlay.style.display = 'block';
+
+  // Real pixel dims
+  const displayScale = canvas.offsetWidth / canvas.width;
+  const realW = Math.round(selW / displayScale);
+  const realH = Math.round(selH / displayScale);
+  dimsEl.textContent = `${realW} × ${realH}`;
+  dimsEl.style.left = (offX + selX) + 'px';
+  dimsEl.style.top  = (offY + selY - 22) + 'px';
+  dimsEl.style.display = 'block';
+}
+
+document.addEventListener('mouseup',  endDrag);
+document.addEventListener('touchend', endDrag);
+
+function endDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  if (selW > 5 && selH > 5) {
+    cropBtn.disabled = false;
+    document.getElementById('crop-info').style.display = 'block';
+    const displayScale = canvas.offsetWidth / canvas.width;
+    const rW = Math.round(selW / displayScale);
+    const rH = Math.round(selH / displayScale);
+    document.getElementById('crop-coords').textContent = `${rW} × ${rH} px`;
+  }
+}
+
+function cropImage() {
+  if (!img || selW < 5 || selH < 5) return;
+
+  const displayScale = canvas.offsetWidth / canvas.width;
+
+  // Convert overlay coords back to natural image pixels
+  const naturalX = Math.round((selX / displayScale) / scale);
+  const naturalY = Math.round((selY / displayScale) / scale);
+  const naturalW = Math.round((selW / displayScale) / scale);
+  const naturalH = Math.round((selH / displayScale) / scale);
+
+  const out = document.createElement('canvas');
+  out.width  = naturalW;
+  out.height = naturalH;
+  const ctx = out.getContext('2d');
+  ctx.drawImage(img, naturalX, naturalY, naturalW, naturalH, 0, 0, naturalW, naturalH);
+
+  const mimeType = originalFile && originalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+  out.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    document.getElementById('result-img').src = url;
+    document.getElementById('result-info').textContent = `✓ ${naturalW} × ${naturalH} px · ${fmtSize(blob.size)}`;
+    const ext = mimeType === 'image/jpeg' ? 'jpg' : 'png';
+    const baseName = (originalFile ? originalFile.name : 'imagem').replace(/\.[^.]+$/, '');
+    document.getElementById('download-btn').onclick = () => downloadBlob(blob, `${baseName}-cortada.${ext}`);
+    document.getElementById('editor-box').style.display = 'none';
+    document.getElementById('result-box').style.display = 'block';
+  }, mimeType, 0.93);
+}
+
+function backToEditor() {
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('editor-box').style.display = 'block';
+  resetSelection();
+}
+
+function resetSelection() {
+  selX = selY = selW = selH = 0;
+  overlay.style.display = 'none';
+  dimsEl.style.display = 'none';
+  document.getElementById('crop-info').style.display = 'none';
+  cropBtn.disabled = true;
+}
+
+function resetTool() {
+  originalFile = null;
+  img = null;
+  document.getElementById('upload-box').style.display = 'block';
+  document.getElementById('editor-box').style.display = 'none';
+  document.getElementById('result-box').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+</script>
+</body>
+</html>

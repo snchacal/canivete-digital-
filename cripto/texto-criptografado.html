@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Criptografar Texto Online Grátis com AES-256 — Canivete Digital</title>
+  <meta name="description" content="Criptografe e descriptografe texto com chave AES-256. Seguro, processado no browser, sem enviar dados a servidores.">
+  <meta name="keywords" content="criptografar texto, descriptografar texto, AES-256, cifra de texto online, criptografia online">
+  <link rel="canonical" href="https://canivetedigital.com.br/cripto/texto-criptografado.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+</head>
+<body data-tool-id="texto-criptografado">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="binario.html" class="active">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="binario.html">Cripto</a><span class="sep">›</span>
+        Texto Criptografado
+      </div>
+      <div class="tool-header cc">
+        <div class="cat-badge cat-badge-c">Cripto</div>
+        <h1>Texto Criptografado</h1>
+        <p>Criptografe e descriptografe texto com chave AES-256-GCM. Nenhum dado sai do seu browser.</p>
+      </div>
+
+      <div class="tool-box">
+        <div style="display:flex;gap:8px;margin-bottom:14px">
+          <button class="btn btn-primary" id="btn-enc" onclick="setMode('enc')">🔒 Criptografar</button>
+          <button class="btn btn-outline" id="btn-dec" onclick="setMode('dec')">🔓 Descriptografar</button>
+        </div>
+        <label for="input-text" id="lbl-in">TEXTO ORIGINAL</label>
+        <textarea id="input-text" rows="6" placeholder="Digite o texto que deseja criptografar…" style="margin-top:6px"></textarea>
+        <label style="margin-top:14px;display:block" for="input-key">CHAVE SECRETA</label>
+        <div style="position:relative;margin-top:6px">
+          <input type="password" id="input-key" placeholder="Sua senha / chave secreta" style="padding-right:42px;width:100%;box-sizing:border-box">
+          <button onclick="toggleKey()" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);padding:4px" title="Mostrar/ocultar chave">
+            <svg id="eye-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" height="18"><path stroke-linecap="round" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:6px">⚠️ Guarde a chave — sem ela é impossível descriptografar.</p>
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="run()" id="btn-run">Criptografar</button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+        </div>
+      </div>
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <label id="lbl-out" style="margin:0">TEXTO CRIPTOGRAFADO</label>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-outline btn-sm" onclick="copyResult()"><span id="copy-label">Copiar</span></button>
+            <button class="btn btn-primary btn-sm" onclick="downloadTxt()">Baixar .txt</button>
+          </div>
+        </div>
+        <div class="output-box" id="output-text" style="max-height:200px;overflow:auto;word-break:break-all;font-family:monospace;font-size:0.8125rem"></div>
+      </div>
+      <div id="error-box" class="notice notice-error" style="display:none"></div>
+      <div class="howto">
+        <h2>Como funciona</h2>
+        <ol>
+          <li>Escreva ou cole o texto que deseja proteger.</li>
+          <li>Digite uma chave secreta — use algo longo e que só você saiba.</li>
+          <li>Clique em Criptografar. O resultado é um bloco de texto em Base64.</li>
+          <li>Para recuperar o texto original, cole o bloco criptografado, informe a mesma chave e clique em Descriptografar.</li>
+        </ol>
+      </div>
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>A criptografia aqui usa AES-256-GCM com derivação de chave via PBKDF2 (100.000 iterações) — o mesmo padrão usado em gerenciadores de senha profissionais. Tudo acontece no browser; nenhum dado é enviado a servidores.</p>
+        <ul>
+          <li>A chave é o único segredo — o algoritmo é público. Quanto mais longa e aleatória a chave, mais segura a criptografia.</li>
+          <li>O texto criptografado contém um salt e IV aleatórios embutidos — cada vez que você criptografa o mesmo texto com a mesma chave, o resultado é diferente (e isso é bom).</li>
+          <li>Ideal para proteger senhas, anotações pessoais ou mensagens antes de salvar em locais públicos como Google Drive ou e-mail.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para compartilhar um acesso seguro via QR Code, use o <a href="qrcode.html">Gerador de QR Code</a> com o texto já criptografado.</p>
+      </div>
+
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Cripto &amp; Codificação</h3>
+        <a href="binario.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="4" rx="1"/><rect x="4" y="10" width="4" height="4" rx="1"/><rect x="10" y="4" width="4" height="4" rx="1"/><rect x="16" y="10" width="4" height="4" rx="1"/><rect x="16" y="16" width="4" height="4" rx="1"/><rect x="10" y="16" width="4" height="4" rx="1"/></svg></span>Código Binário</a>
+        <a href="morse.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="11" cy="12" r="2" fill="currentColor"/><rect x="15" y="9" width="5" height="6" rx="2" fill="currentColor"/></svg></span>Código Morse</a>
+        <a href="texto-criptografado.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path stroke-linecap="round" d="M8 11V7a4 4 0 018 0v4"/></svg></span>Texto Criptografado</a>
+        <a href="qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path stroke-linecap="round" d="M14 14h3v3m0 0v3h-3m3 0h3"/></svg></span>Gerador de QR Code</a>
+        <a href="qrcode-wifi.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>QR Code Wi-Fi</a>
+        <a href="qrcode-pix.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>QR Code Pix</a>
+        <a href="leitor-qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 9V5a2 2 0 012-2h4M15 3h4a2 2 0 012 2v4M21 15v4a2 2 0 01-2 2h-4M9 21H5a2 2 0 01-2-2v-4M8 12h8"/></svg></span>Leitor de QR Code</a>
+        <a href="codigo-barras.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6v12M8 6v12M12 6v12M14 6v12M17 6v12M20 6v12M6 6v12"/></svg></span>Código de Barras 1D</a>
+        <a href="codigo-barras-lote.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 5v7M7 5v7M10 5v7M12 5v7M15 5v7M18 5v7M20 5v7M4 16h16M4 19h16"/></svg></span>Código de Barras em Lote</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Cripto</h4>
+        <a href="binario.html">Binário</a>
+        <a href="morse.html">Morse</a>
+        <a href="qrcode.html">QR Code</a>
+        <a href="qrcode-wifi.html">QR Wi-Fi</a>
+        <a href="qrcode-pix.html">QR Pix</a>
+        <a href="codigo-barras-lote.html">Barras em Lote</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+        <a href="../dev/json-csv.html">JSON → CSV</a>
+        <a href="../dev/timestamp.html">Timestamp</a>
+        <a href="../dev/hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto &amp; PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let mode='enc', result='';
+function setMode(m){mode=m;document.getElementById('btn-enc').className=m==='enc'?'btn btn-primary':'btn btn-outline';document.getElementById('btn-dec').className=m==='dec'?'btn btn-primary':'btn btn-outline';document.getElementById('lbl-in').textContent=m==='enc'?'TEXTO ORIGINAL':'TEXTO CRIPTOGRAFADO';document.getElementById('input-text').placeholder=m==='enc'?'Digite o texto que deseja criptografar…':'Cole o texto criptografado aqui…';document.getElementById('btn-run').textContent=m==='enc'?'Criptografar':'Descriptografar';document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';}
+function toggleKey(){const inp=document.getElementById('input-key');inp.type=inp.type==='password'?'text':'password';}
+async function getKey(pw,salt){const enc=new TextEncoder();const km=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);}
+async function run(){
+  const text=document.getElementById('input-text').value;
+  const pw=document.getElementById('input-key').value;
+  if(!text.trim()){showError('Cole algum texto antes de continuar.');return;}
+  if(!pw){showError('Informe uma chave secreta.');return;}
+  const btn=document.getElementById('btn-run');btn.disabled=true;btn.textContent='Aguarde…';
+  try{
+    if(mode==='enc'){
+      const enc=new TextEncoder();
+      const salt=crypto.getRandomValues(new Uint8Array(16));
+      const iv=crypto.getRandomValues(new Uint8Array(12));
+      const key=await getKey(pw,salt);
+      const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(text));
+      const buf=new Uint8Array(28+ct.byteLength);buf.set(salt,0);buf.set(iv,16);buf.set(new Uint8Array(ct),28);
+      result=btoa(String.fromCharCode(...buf));
+      document.getElementById('lbl-out').textContent='TEXTO CRIPTOGRAFADO';
+    } else {
+      const buf=Uint8Array.from(atob(text.trim()),c=>c.charCodeAt(0));
+      const salt=buf.slice(0,16),iv=buf.slice(16,28),ct=buf.slice(28);
+      const key=await getKey(pw,salt);
+      const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,ct);
+      result=new TextDecoder().decode(pt);
+      document.getElementById('lbl-out').textContent='TEXTO DESCRIPTOGRAFADO';
+    }
+    document.getElementById('output-text').textContent=result;
+    document.getElementById('output-box').style.display='block';
+    document.getElementById('error-box').style.display='none';
+    document.getElementById('copy-label').textContent='Copiar';
+    document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){showError(mode==='dec'?'Chave incorreta ou texto inválido.':'Erro: '+e.message);}
+  btn.disabled=false;btn.textContent=mode==='enc'?'Criptografar':'Descriptografar';
+}
+function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';document.getElementById('output-box').style.display='none';}
+function clearAll(){document.getElementById('input-text').value='';document.getElementById('input-key').value='';document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';result='';}
+function copyResult(){navigator.clipboard.writeText(result).then(()=>{document.getElementById('copy-label').textContent='Copiado!';setTimeout(()=>document.getElementById('copy-label').textContent='Copiar',1600);});}
+function downloadTxt(){if(!result)return;downloadBlob(new Blob([result],{type:'text/plain'}),'texto-criptografado.txt');}
+</script>
+</body>
+</html>

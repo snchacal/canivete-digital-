@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter JSON para CSV Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Converta JSON para CSV instantaneamente. Cole seu JSON e baixe o arquivo .csv pronto para abrir no Excel ou Google Sheets. Grátis, sem cadastro.">
+  <meta name="keywords" content="json para csv, converter json csv, json to csv online, exportar json csv, transformar json tabela">
+  <link rel="canonical" href="https://canivetedigital.com.br/dev/json-csv.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="json-csv">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="base64.html" class="active">Dev</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="base64.html">Dev</a><span class="sep">›</span>
+        JSON → CSV
+      </div>
+      <div class="tool-header dc">
+        <div class="cat-badge cat-badge-d">Dev</div>
+        <h1>JSON → CSV</h1>
+        <p>Cole um array JSON e converta para CSV. Abre direto no Excel e Google Sheets.</p>
+      </div>
+
+      <div class="tool-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px">
+          <label for="input-json">JSON DE ENTRADA</label>
+          <button class="btn btn-ghost btn-sm" onclick="loadSample()">Exemplo</button>
+        </div>
+        <textarea id="input-json" rows="12" placeholder='[
+  {"nome": "Ana", "idade": 28, "cidade": "São Paulo"},
+  {"nome": "Bruno", "idade": 34, "cidade": "Rio de Janeiro"}
+]' style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 0.8125rem;"></textarea>
+
+        <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:16px; align-items:center">
+          <div>
+            <label style="font-size:0.8125rem; margin-bottom:6px; display:block">SEPARADOR</label>
+            <div class="options-grid" style="margin-top:0">
+              <label class="opt-toggle selected" data-sep="," onclick="setSep(',',this)">Vírgula (,)</label>
+              <label class="opt-toggle" data-sep=";" onclick="setSep(';',this)">Ponto e vírgula (;)</label>
+              <label class="opt-toggle" data-sep="	" onclick="setSep('\t',this)">Tab</label>
+            </div>
+          </div>
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal; margin-top:18px">
+            <input type="checkbox" id="cb-bom" checked style="width:15px; height:15px; accent-color:var(--primary)">
+            BOM UTF-8 (para Excel)
+          </label>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="convert()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+              <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+            </svg>
+            Converter
+          </button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+        </div>
+
+        <div id="error-box" class="notice notice-error" style="display:none"></div>
+      </div>
+
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <label style="margin-bottom:0">RESULTADO <span id="result-stats" style="font-weight:400; text-transform:none; color:var(--text-muted); font-size:0.8rem"></span></label>
+          <div style="display:flex; gap:8px">
+            <button class="btn btn-outline btn-sm" onclick="copyOutput()"><span id="copy-label">Copiar</span></button>
+            <button class="btn btn-primary btn-sm" onclick="downloadCsv()">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="14" height="14">
+                <path stroke-linecap="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14"/>
+                <path stroke-linecap="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+              </svg>
+              Baixar .csv
+            </button>
+          </div>
+        </div>
+        <div class="output-box" id="output-text" style="max-height:320px; overflow:auto; white-space:pre; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size:0.8125rem;"></div>
+      </div>
+
+      <div class="howto">
+        <h2>Como funciona</h2>
+        <ol>
+          <li>Cole um array JSON (lista de objetos com as mesmas chaves).</li>
+          <li>Escolha o separador — use ponto e vírgula se for abrir no Excel em português.</li>
+          <li>Marque "BOM UTF-8" para garantir que acentos apareçam corretamente no Excel.</li>
+          <li>Clique em Converter e baixe o .csv.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Recebeu dados de uma API em JSON e precisa analisar no Excel ou compartilhar com alguém que não sabe programar? A conversão para CSV deixa tudo pronto para abrir direto em qualquer planilha.</p>
+        <ul>
+          <li>Se for abrir no Excel em português, escolha ponto e vírgula como separador — o Excel BR usa <code>;</code> por padrão ao importar CSV.</li>
+          <li>O conversor achata objetos aninhados automaticamente: <code>{"endereco": {"cidade": "SP"}}</code> vira uma coluna chamada <code>endereco.cidade</code>.</li>
+          <li>Marque a opção BOM UTF-8 para garantir que acentos e caracteres especiais apareçam corretamente ao abrir no Excel — sem essa opção, ç e á ficam corrompidos.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Antes de converter, valide e formate o JSON com o <a href="../texto/json-formatter.html">JSON Formatter</a> — JSON mal formatado ou com erros vai interromper a conversão.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas Dev</h3>
+        <a href="base64.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          Base64 encode/decode
+        </a>
+        <a href="url-encode.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"/><path stroke-linecap="round" d="M14.828 14.828a4 4 0 015.656 0l4-4a4 4 0 01-5.656-5.656l-1.102 1.101"/></svg></span>
+          URL encode/decode
+        </a>
+        <a href="timestamp.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline stroke-linecap="round" points="12 6 12 12 16 14"/></svg></span>
+          Timestamp converter
+        </a>
+        <a href="hash-generator.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span>
+          Hash generator
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="base64.html">Base64</a>
+        <a href="url-encode.html">URL encode</a>
+        <a href="json-csv.html">JSON → CSV</a>
+        <a href="timestamp.html">Timestamp</a>
+        <a href="hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../texto/ordenar-texto.html">Ordenar texto</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let csvContent = '';
+let separator = ',';
+
+function setSep(sep, el) {
+  separator = sep;
+  document.querySelectorAll('[data-sep]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function escapeField(value) {
+  if (value === null || value === undefined) return '';
+  const str = String(value);
+  if (str.includes(separator) || str.includes('"') || str.includes('\n') || str.includes('\r')) {
+    return '"' + str.replace(/"/g, '""') + '"';
+  }
+  return str;
+}
+
+function flattenObject(obj, prefix = '') {
+  const result = {};
+  for (const key in obj) {
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
+    const fullKey = prefix ? prefix + '.' + key : key;
+    const val = obj[key];
+    if (val !== null && typeof val === 'object' && !Array.isArray(val)) {
+      Object.assign(result, flattenObject(val, fullKey));
+    } else {
+      result[fullKey] = Array.isArray(val) ? JSON.stringify(val) : val;
+    }
+  }
+  return result;
+}
+
+function convert() {
+  const raw = document.getElementById('input-json').value.trim();
+  const errBox = document.getElementById('error-box');
+  errBox.style.display = 'none';
+
+  if (!raw) { showError('Cole um JSON antes de converter.'); return; }
+
+  let data;
+  try { data = JSON.parse(raw); } catch(e) { showError('JSON inválido: ' + e.message); return; }
+
+  if (!Array.isArray(data)) {
+    // Try wrapping single object
+    if (typeof data === 'object' && data !== null) { data = [data]; }
+    else { showError('O JSON precisa ser um array de objetos: [{...}, {...}]'); return; }
+  }
+
+  if (data.length === 0) { showError('Array JSON está vazio.'); return; }
+
+  // Flatten all objects and collect all keys
+  const flatRows = data.map(row => typeof row === 'object' && row !== null ? flattenObject(row) : { value: row });
+  const allKeys = [];
+  const keySet = new Set();
+  flatRows.forEach(row => {
+    Object.keys(row).forEach(k => { if (!keySet.has(k)) { keySet.add(k); allKeys.push(k); } });
+  });
+
+  // Build CSV
+  const lines = [];
+  lines.push(allKeys.map(escapeField).join(separator));
+  flatRows.forEach(row => {
+    lines.push(allKeys.map(k => escapeField(row[k])).join(separator));
+  });
+
+  csvContent = lines.join('\r\n');
+
+  document.getElementById('output-text').textContent = csvContent;
+  document.getElementById('result-stats').textContent = `— ${data.length} linha${data.length !== 1 ? 's' : ''}, ${allKeys.length} coluna${allKeys.length !== 1 ? 's' : ''}`;
+  document.getElementById('output-box').style.display = 'block';
+  document.getElementById('copy-label').textContent = 'Copiar';
+  document.getElementById('output-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function showError(msg) {
+  const box = document.getElementById('error-box');
+  box.textContent = '⚠ ' + msg;
+  box.style.display = 'block';
+  document.getElementById('output-box').style.display = 'none';
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(csvContent).then(() => {
+    document.getElementById('copy-label').textContent = 'Copiado!';
+    setTimeout(() => { document.getElementById('copy-label').textContent = 'Copiar'; }, 1600);
+  });
+}
+
+function downloadCsv() {
+  if (!csvContent) return;
+  const addBom = document.getElementById('cb-bom').checked;
+  const bytes = addBom ? '﻿' + csvContent : csvContent;
+  const blob = new Blob([bytes], { type: 'text/csv;charset=utf-8;' });
+  downloadBlob(blob, 'dados.csv');
+}
+
+function clearAll() {
+  document.getElementById('input-json').value = '';
+  document.getElementById('output-box').style.display = 'none';
+  document.getElementById('error-box').style.display = 'none';
+  csvContent = '';
+}
+
+function loadSample() {
+  document.getElementById('input-json').value = JSON.stringify([
+    { "id": 1, "nome": "Ana Silva", "email": "ana@email.com", "cidade": "São Paulo", "ativo": true },
+    { "id": 2, "nome": "Bruno Costa", "email": "bruno@email.com", "cidade": "Rio de Janeiro", "ativo": false },
+    { "id": 3, "nome": "Carla Mendes", "email": "carla@email.com", "cidade": "Belo Horizonte", "ativo": true }
+  ], null, 2);
+  document.getElementById('output-box').style.display = 'none';
+  document.getElementById('error-box').style.display = 'none';
+}
+</script>
+</body>
+</html>

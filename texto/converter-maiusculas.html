@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter Maiúsculas e Minúsculas Online — Canivete Digital</title>
+  <meta name="description" content="Converta texto para maiúsculas, minúsculas, título ou frase com um clique. Grátis, sem cadastro.">
+  <meta name="keywords" content="converter maiuscula minuscula, texto maiusculo, caixa alta, title case online">
+  <link rel="canonical" href="https://canivetedigital.com.br/texto/converter-maiusculas.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="converter-maiusculas">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="contador-caracteres.html" class="active">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="contador-caracteres.html">Texto</a><span class="sep">›</span>
+        Maiúsculas / minúsculas
+      </div>
+      <div class="tool-header tc">
+        <div class="cat-badge cat-badge-c">Texto</div>
+        <h1>Converter maiúsculas e minúsculas</h1>
+        <p>Escolha um modo e o texto é convertido na hora.</p>
+      </div>
+
+      <div class="tool-box">
+        <label for="input-text">TEXTO DE ENTRADA</label>
+        <textarea id="input-text" rows="7" placeholder="Cole ou digite o texto aqui…"></textarea>
+
+        <div class="options-grid" style="margin-top: 14px;" id="mode-options">
+          <label class="opt-toggle selected" data-mode="upper">
+            <input type="radio" name="mode" value="upper" checked> MAIÚSCULAS
+          </label>
+          <label class="opt-toggle" data-mode="lower">
+            <input type="radio" name="mode" value="lower"> minúsculas
+          </label>
+          <label class="opt-toggle" data-mode="title">
+            <input type="radio" name="mode" value="title"> Título (Title Case)
+          </label>
+          <label class="opt-toggle" data-mode="sentence">
+            <input type="radio" name="mode" value="sentence"> Frase (Sentence case)
+          </label>
+          <label class="opt-toggle" data-mode="alternate">
+            <input type="radio" name="mode" value="alternate"> aLtErNaDo
+          </label>
+          <label class="opt-toggle" data-mode="invert">
+            <input type="radio" name="mode" value="invert"> iNVERTIDO
+          </label>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="convert()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/>
+              <polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/>
+            </svg>
+            Converter
+          </button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+        </div>
+      </div>
+
+      <div class="tool-box" id="output-box" style="display:none">
+        <label>RESULTADO</label>
+        <div style="position:relative">
+          <div class="output-box" id="output-text"></div>
+          <button class="copy-btn" id="copy-btn" onclick="copyOutput()">Copiar</button>
+        </div>
+        <div class="tool-row" style="margin-top:12px">
+          <button class="btn btn-outline btn-sm" onclick="useAsInput()">Usar como entrada</button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Modos disponíveis</h2>
+        <ol>
+          <li><strong>MAIÚSCULAS</strong> — converte tudo para caixa alta.</li>
+          <li><strong>minúsculas</strong> — converte tudo para caixa baixa.</li>
+          <li><strong>Title Case</strong> — primeira letra de cada palavra em maiúscula.</li>
+          <li><strong>Sentence case</strong> — primeira letra de cada frase em maiúscula.</li>
+          <li><strong>Alternado</strong> — alterna entre maiúscula e minúscula em cada letra.</li>
+          <li><strong>Invertido</strong> — inverte o case de cada letra.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Converter o case de um texto manualmente é tedioso e sujeito a erros — especialmente em listas longas de nomes, títulos ou siglas. Com essa ferramenta você padroniza qualquer texto em segundos.</p>
+        <ul>
+          <li>"Title Case" é o padrão para títulos de artigos, posts de blog e nomes de produtos em inglês — cada palavra com inicial maiúscula.</li>
+          <li>"MAIÚSCULAS" é ideal para siglas e acrônimos. "minúsculas" é o formato mais usado para normalizar dados antes de salvar em banco de dados.</li>
+          <li>Ao importar dados de planilhas com nomes de clientes, use "Capitalizado" para garantir consistência antes de enviar e-mails personalizados.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Depois de ajustar o case, use o <a href="remover-espacos.html">Removedor de espaços extras</a> para limpar espaços duplos que podem ter vindo junto com o texto copiado.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de texto</h3>
+        <a href="contador-caracteres.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/></svg></span>
+          Contador de caracteres
+        </a>
+        <a href="remover-espacos.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h8"/></svg></span>
+          Remover espaços extras
+        </a>
+        <a href="gerador-senha.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+          Gerador de senha
+        </a>
+        <a href="json-formatter.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          JSON Formatter
+        </a>
+      </div>
+      <div class="sidebar-widget" id="recent-wrap">
+        <h3>Usadas recentemente</h3>
+        <div id="recent-tools"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Texto</h4>
+        <a href="contador-caracteres.html">Contador de caracteres</a>
+        <a href="converter-maiusculas.html">Maiúsculas / minúsculas</a>
+        <a href="remover-espacos.html">Remover espaços</a>
+        <a href="gerador-senha.html">Gerador de senha</a>
+        <a href="json-formatter.html">JSON Formatter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../pdf/comprimir-pdf.html">Comprimir PDF</a>
+      </div>
+      <div class="footer-col">
+        <h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let currentMode = 'upper';
+
+// Mode toggles
+document.querySelectorAll('.opt-toggle').forEach(label => {
+  label.addEventListener('click', () => {
+    document.querySelectorAll('.opt-toggle').forEach(l => l.classList.remove('selected'));
+    label.classList.add('selected');
+    currentMode = label.dataset.mode;
+  });
+});
+
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+}
+function toSentenceCase(str) {
+  return str.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()).replace(/(^\s*[A-Z]|[.!?]\s*[A-Z])/g, c => c).replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+}
+function toAlternate(str) {
+  return str.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join('');
+}
+function toInvert(str) {
+  return str.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+}
+
+function convert() {
+  const text = document.getElementById('input-text').value;
+  if (!text.trim()) return;
+
+  let result = '';
+  switch (currentMode) {
+    case 'upper':    result = text.toUpperCase(); break;
+    case 'lower':    result = text.toLowerCase(); break;
+    case 'title':    result = toTitleCase(text); break;
+    case 'sentence': result = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase(); break;
+    case 'alternate':result = toAlternate(text); break;
+    case 'invert':   result = toInvert(text); break;
+  }
+
+  document.getElementById('output-text').textContent = result;
+  document.getElementById('output-box').style.display = 'block';
+  document.getElementById('copy-btn').textContent = 'Copiar';
+  document.getElementById('copy-btn').classList.remove('copied');
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1600);
+  });
+}
+
+function useAsInput() {
+  const result = document.getElementById('output-text').textContent;
+  document.getElementById('input-text').value = result;
+  document.getElementById('output-box').style.display = 'none';
+}
+
+function clearAll() {
+  document.getElementById('input-text').value = '';
+  document.getElementById('output-box').style.display = 'none';
+}
+
+// Enter no textarea não converte, mas ctrl+enter sim
+document.getElementById('input-text').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.ctrlKey) convert();
+});
+</script>
+</body>
+</html>

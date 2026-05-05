@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Gerador de Código de Barras Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Gere códigos de barras EAN-13, Code 128, UPC-A e outros formatos. Baixe em PNG gratuitamente.">
+  <meta name="keywords" content="gerador código de barras, EAN-13 online, code 128 grátis, criar código de barras, barcode generator">
+  <link rel="canonical" href="https://canivetedigital.com.br/cripto/codigo-barras.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+</head>
+<body data-tool-id="codigo-barras">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="binario.html" class="active">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="binario.html">Cripto</a><span class="sep">›</span>
+        Gerador de Código de Barras 1D
+      </div>
+      <div class="tool-header cc">
+        <div class="cat-badge cat-badge-c">Cripto</div>
+        <h1>Gerador de Código de Barras 1D</h1>
+        <p>Gere EAN-13, Code 128, UPC-A e outros formatos. Baixe em PNG.</p>
+      </div>
+
+      <div class="tool-box">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <label for="bc-value">VALOR</label>
+            <input type="text" id="bc-value" placeholder="Ex: 7898090218957" style="margin-top:6px">
+          </div>
+          <div>
+            <label for="bc-format">FORMATO</label>
+            <select id="bc-format" style="margin-top:6px;width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);font-size:0.875rem">
+              <option value="EAN13">EAN-13 (produto varejo)</option>
+              <option value="UPC">UPC-A (varejo EUA)</option>
+              <option value="EAN8">EAN-8 (produto pequeno)</option>
+              <option value="CODE128">Code 128 (geral)</option>
+              <option value="CODE39">Code 39 (industrial)</option>
+              <option value="ITF14">ITF-14 (caixa/logística)</option>
+              <option value="MSI">MSI (estoque)</option>
+              <option value="pharmacode">Pharmacode (farmácia)</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px">
+          <div><label>ALTURA (px)</label><input type="number" id="bc-height" value="80" min="20" max="300" style="margin-top:6px"></div>
+          <div><label>LARGURA BARRA</label><input type="number" id="bc-width" value="2" min="1" max="5" step="0.5" style="margin-top:6px"></div>
+          <div><label>MARGEM (px)</label><input type="number" id="bc-margin" value="10" min="0" max="50" style="margin-top:6px"></div>
+        </div>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:12px;cursor:pointer;font-size:0.875rem;font-weight:normal;text-transform:none;color:var(--text)">
+          <input type="checkbox" id="bc-show-text" checked style="width:15px;height:15px;accent-color:var(--primary)">
+          Exibir número abaixo do código
+        </label>
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="generate()">Gerar código de barras</button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+        </div>
+        <div id="error-box" class="notice notice-error" style="display:none"></div>
+      </div>
+      <div id="output-box" class="tool-box" style="display:none;text-align:center">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <label style="margin:0">CÓDIGO DE BARRAS</label>
+          <button class="btn btn-primary btn-sm" onclick="downloadPng()">Baixar PNG</button>
+        </div>
+        <svg id="barcode-svg" style="max-width:100%;border-radius:6px"></svg>
+      </div>
+      <div class="howto">
+        <h2>Qual formato usar?</h2>
+        <ul style="font-size:0.875rem">
+          <li><strong>EAN-13:</strong> Padrão para produtos vendidos no varejo brasileiro. Exige exatamente 12 dígitos (o 13º é calculado automaticamente).</li>
+          <li><strong>Code 128:</strong> Formato geral — aceita letras, números e símbolos. Ideal para etiquetas internas e logística.</li>
+          <li><strong>ITF-14:</strong> Para caixas e unidades de logística. Derivado do EAN-13 com dígito adicional.</li>
+          <li><strong>UPC-A:</strong> Padrão norte-americano, comum em produtos importados. 12 dígitos.</li>
+        </ul>
+      </div>
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Códigos de barras 1D são lidos por leitores laser e de câmera em PDVs, estoques e portarias. A escolha do formato correto é essencial para compatibilidade com o sistema que vai fazer a leitura.</p>
+        <ul>
+          <li>Para produtos vendidos em supermercados brasileiros, use EAN-13 — é o padrão obrigatório da GS1.</li>
+          <li>Imprima com resolução mínima de 300 DPI para leitura confiável. Tamanho mínimo recomendado: 37,29mm × 26,26mm para EAN-13.</li>
+          <li>Sempre verifique o código gerado com um leitor real antes de imprimir em lote.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Precisa gerar vários códigos de uma vez? Use o <a href="codigo-barras-lote.html">Gerador em Lote</a> com download em ZIP.</p>
+      </div>
+
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Cripto &amp; Codificação</h3>
+        <a href="binario.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="4" rx="1"/><rect x="4" y="10" width="4" height="4" rx="1"/><rect x="10" y="4" width="4" height="4" rx="1"/><rect x="16" y="10" width="4" height="4" rx="1"/><rect x="16" y="16" width="4" height="4" rx="1"/><rect x="10" y="16" width="4" height="4" rx="1"/></svg></span>Código Binário</a>
+        <a href="morse.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="11" cy="12" r="2" fill="currentColor"/><rect x="15" y="9" width="5" height="6" rx="2" fill="currentColor"/></svg></span>Código Morse</a>
+        <a href="texto-criptografado.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path stroke-linecap="round" d="M8 11V7a4 4 0 018 0v4"/></svg></span>Texto Criptografado</a>
+        <a href="qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path stroke-linecap="round" d="M14 14h3v3m0 0v3h-3m3 0h3"/></svg></span>Gerador de QR Code</a>
+        <a href="qrcode-wifi.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>QR Code Wi-Fi</a>
+        <a href="qrcode-pix.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>QR Code Pix</a>
+        <a href="leitor-qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 9V5a2 2 0 012-2h4M15 3h4a2 2 0 012 2v4M21 15v4a2 2 0 01-2 2h-4M9 21H5a2 2 0 01-2-2v-4M8 12h8"/></svg></span>Leitor de QR Code</a>
+        <a href="codigo-barras.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6v12M8 6v12M12 6v12M14 6v12M17 6v12M20 6v12M6 6v12"/></svg></span>Código de Barras 1D</a>
+        <a href="codigo-barras-lote.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 5v7M7 5v7M10 5v7M12 5v7M15 5v7M18 5v7M20 5v7M4 16h16M4 19h16"/></svg></span>Código de Barras em Lote</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Cripto</h4>
+        <a href="binario.html">Binário</a>
+        <a href="morse.html">Morse</a>
+        <a href="qrcode.html">QR Code</a>
+        <a href="qrcode-wifi.html">QR Wi-Fi</a>
+        <a href="qrcode-pix.html">QR Pix</a>
+        <a href="codigo-barras-lote.html">Barras em Lote</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+        <a href="../dev/json-csv.html">JSON → CSV</a>
+        <a href="../dev/timestamp.html">Timestamp</a>
+        <a href="../dev/hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto &amp; PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+<script>
+function generate(){
+  const value=document.getElementById('bc-value').value.trim();
+  if(!value){showError('Informe o valor do código.');return;}
+  try{
+    JsBarcode('#barcode-svg',value,{
+      format:document.getElementById('bc-format').value,
+      height:parseInt(document.getElementById('bc-height').value)||80,
+      width:parseFloat(document.getElementById('bc-width').value)||2,
+      margin:parseInt(document.getElementById('bc-margin').value)||10,
+      displayValue:document.getElementById('bc-show-text').checked,
+      background:'#ffffff',lineColor:'#000000'
+    });
+    document.getElementById('output-box').style.display='block';
+    document.getElementById('error-box').style.display='none';
+    document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
+  }catch(e){showError('Erro ao gerar: '+e.message+'. Verifique se o valor é válido para o formato escolhido.');}
+}
+function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';document.getElementById('output-box').style.display='none';}
+function clearAll(){document.getElementById('bc-value').value='';document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';}
+function downloadPng(){
+  const svg=document.getElementById('barcode-svg');
+  const canvas=document.createElement('canvas');
+  const bbox=svg.getBBox();const padding=10;
+  canvas.width=svg.width.baseVal.value+padding*2;canvas.height=svg.height.baseVal.value+padding*2;
+  const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
+  const xml=new XMLSerializer().serializeToString(svg);
+  const img=new Image();
+  img.onload=()=>{ctx.drawImage(img,padding,padding);canvas.toBlob(b=>downloadBlob(b,'codigo-barras.png'));};
+  img.src='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(xml)));
+}
+</script>
+</body>
+</html>

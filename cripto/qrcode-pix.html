@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Gerador de QR Code Pix Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Gere QR Codes Pix para receber pagamentos. Suporte a todas as chaves Pix. Payload EMV oficial com CRC16.">
+  <meta name="keywords" content="QR code pix, gerar QR pix, receber pix QR code, pix QR grátis, cobrar via pix">
+  <link rel="canonical" href="https://canivetedigital.com.br/cripto/qrcode-pix.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  
+</head>
+<body data-tool-id="qrcode-pix">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="binario.html" class="active">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="binario.html">Cripto</a><span class="sep">›</span>
+        QR Code Pix
+      </div>
+      <div class="tool-header cc">
+        <div class="cat-badge cat-badge-c">Cripto</div>
+        <h1>QR Code Pix</h1>
+        <p>Gere QR Codes Pix para receber pagamentos. Suporte a CPF, CNPJ, e-mail, telefone e chave aleatória.</p>
+      </div>
+
+      <div class="tool-box">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div>
+            <label for="pix-key-type">TIPO DA CHAVE</label>
+            <select id="pix-key-type" style="margin-top:6px;width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--card-bg);color:var(--text);font-size:0.875rem" onchange="updateKeyPlaceholder()">
+              <option value="cpf">CPF</option>
+              <option value="cnpj">CNPJ</option>
+              <option value="email">E-mail</option>
+              <option value="phone">Telefone</option>
+              <option value="random">Chave aleatória (EVP)</option>
+            </select>
+          </div>
+          <div>
+            <label for="pix-key" id="lbl-key">CHAVE CPF</label>
+            <input type="text" id="pix-key" placeholder="000.000.000-00" style="margin-top:6px">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <div>
+            <label for="pix-name">NOME DO RECEBEDOR</label>
+            <input type="text" id="pix-name" placeholder="João Silva" maxlength="25" style="margin-top:6px">
+          </div>
+          <div>
+            <label for="pix-city">CIDADE</label>
+            <input type="text" id="pix-city" placeholder="São Paulo" maxlength="15" style="margin-top:6px">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <div>
+            <label for="pix-amount">VALOR (opcional)</label>
+            <input type="number" id="pix-amount" placeholder="0.00" min="0" step="0.01" style="margin-top:6px">
+          </div>
+          <div>
+            <label for="pix-desc">DESCRIÇÃO (opcional)</label>
+            <input type="text" id="pix-desc" placeholder="Pagamento serviço" maxlength="50" style="margin-top:6px">
+          </div>
+        </div>
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="generate()">Gerar QR Pix</button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+        </div>
+      </div>
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <label style="margin:0">QR CODE PIX</label>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-outline btn-sm" onclick="copyPayload()"><span id="copy-label">Copiar payload</span></button>
+            <button class="btn btn-primary btn-sm" onclick="downloadPng()">Baixar PNG</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
+          <canvas id="qr-canvas" style="border-radius:8px;flex-shrink:0"></canvas>
+          <div style="flex:1;min-width:200px">
+            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px">PAYLOAD EMV (BR Code)</p>
+            <div class="output-box" id="payload-text" style="font-size:0.75rem;font-family:monospace;word-break:break-all;max-height:160px;overflow:auto"></div>
+          </div>
+        </div>
+      </div>
+      <div id="error-box" class="notice notice-error" style="display:none"></div>
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>O QR Code Pix gerado segue o padrão EMV BR Code do Banco Central do Brasil — compatível com todos os bancos e apps de pagamento do país.</p>
+        <ul>
+          <li>Sem valor definido, o pagador pode digitar qualquer quantia — ideal para receber gorjetas, doações ou valores variáveis.</li>
+          <li>Com valor fixo, o app do pagador preenche automaticamente o campo — reduz erros em cobranças pontuais.</li>
+          <li>Imprima o QR e coloque no balcão, mesa ou cartão de visita para receber pagamentos sem maquininha.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Precisa ler um QR Code no computador? Use o <a href="leitor-qrcode.html">Leitor de QR Code Online</a>.</p>
+      </div>
+
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Cripto &amp; Codificação</h3>
+        <a href="binario.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="4" rx="1"/><rect x="4" y="10" width="4" height="4" rx="1"/><rect x="10" y="4" width="4" height="4" rx="1"/><rect x="16" y="10" width="4" height="4" rx="1"/><rect x="16" y="16" width="4" height="4" rx="1"/><rect x="10" y="16" width="4" height="4" rx="1"/></svg></span>Código Binário</a>
+        <a href="morse.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2" fill="currentColor"/><circle cx="11" cy="12" r="2" fill="currentColor"/><rect x="15" y="9" width="5" height="6" rx="2" fill="currentColor"/></svg></span>Código Morse</a>
+        <a href="texto-criptografado.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path stroke-linecap="round" d="M8 11V7a4 4 0 018 0v4"/></svg></span>Texto Criptografado</a>
+        <a href="qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="5" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="16" y="5" width="3" height="3" fill="currentColor" stroke="none"/><rect x="5" y="16" width="3" height="3" fill="currentColor" stroke="none"/><path stroke-linecap="round" d="M14 14h3v3m0 0v3h-3m3 0h3"/></svg></span>Gerador de QR Code</a>
+        <a href="qrcode-wifi.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M5 12.55a11 11 0 0114.08 0M1.42 9a16 16 0 0121.16 0M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor" stroke="none"/></svg></span>QR Code Wi-Fi</a>
+        <a href="qrcode-pix.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>QR Code Pix</a>
+        <a href="leitor-qrcode.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 9V5a2 2 0 012-2h4M15 3h4a2 2 0 012 2v4M21 15v4a2 2 0 01-2 2h-4M9 21H5a2 2 0 01-2-2v-4M8 12h8"/></svg></span>Leitor de QR Code</a>
+        <a href="codigo-barras.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6v12M8 6v12M12 6v12M14 6v12M17 6v12M20 6v12M6 6v12"/></svg></span>Código de Barras 1D</a>
+        <a href="codigo-barras-lote.html" class="related-link cc"><span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 5v7M7 5v7M10 5v7M12 5v7M15 5v7M18 5v7M20 5v7M4 16h16M4 19h16"/></svg></span>Código de Barras em Lote</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Cripto</h4>
+        <a href="binario.html">Binário</a>
+        <a href="morse.html">Morse</a>
+        <a href="qrcode.html">QR Code</a>
+        <a href="qrcode-wifi.html">QR Wi-Fi</a>
+        <a href="qrcode-pix.html">QR Pix</a>
+        <a href="codigo-barras-lote.html">Barras em Lote</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+        <a href="../dev/json-csv.html">JSON → CSV</a>
+        <a href="../dev/timestamp.html">Timestamp</a>
+        <a href="../dev/hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto &amp; PDF</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+<script>
+const KEY_PLACEHOLDERS={cpf:'000.000.000-00',cnpj:'00.000.000/0001-00',email:'nome@email.com',phone:'+5511999999999',random:'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'};
+const KEY_LABELS={cpf:'CHAVE CPF',cnpj:'CHAVE CNPJ',email:'CHAVE E-MAIL',phone:'CHAVE TELEFONE',random:'CHAVE ALEATÓRIA (EVP)'};
+function updateKeyPlaceholder(){const t=document.getElementById('pix-key-type').value;document.getElementById('pix-key').placeholder=KEY_PLACEHOLDERS[t];document.getElementById('lbl-key').textContent=KEY_LABELS[t];}
+function crc16(str){let c=0xFFFF;for(let i=0;i<str.length;i++){c^=str.charCodeAt(i)<<8;for(let j=0;j<8;j++){c=c&0x8000?(c<<1)^0x1021:c<<1;c&=0xFFFF;}}return c.toString(16).toUpperCase().padStart(4,'0');}
+function f(id,val){const s=String(val.length).padStart(2,'0');return id+s+val;}
+function buildPix(key,name,city,amount,desc){
+  let mai=f('00','BR.GOV.BCB.PIX')+f('01',key.replace(/[^\w@.+\-]/g,''));
+  if(desc)mai+=f('02',desc.substring(0,72));
+  let p=f('00','01')+f('26',mai)+f('52','0000')+f('53','986');
+  if(amount)p+=f('54',parseFloat(amount).toFixed(2));
+  p+=f('58','BR')+f('59',name.substring(0,25).normalize('NFD').replace(/[\u0300-\u036f]/g,''))+f('60',city.substring(0,15).normalize('NFD').replace(/[\u0300-\u036f]/g,''))+f('62',f('05','***'))+'6304';
+  return p+crc16(p);
+}
+let pixPayload='';
+function generate(){
+  const key=document.getElementById('pix-key').value.trim();
+  const name=document.getElementById('pix-name').value.trim();
+  const city=document.getElementById('pix-city').value.trim();
+  const amount=document.getElementById('pix-amount').value;
+  const desc=document.getElementById('pix-desc').value.trim();
+  if(!key){showError('Informe a chave Pix.');return;}
+  if(!name){showError('Informe o nome do recebedor.');return;}
+  if(!city){showError('Informe a cidade.');return;}
+  pixPayload=buildPix(key,name,city,amount,desc);
+  document.getElementById('payload-text').textContent=pixPayload;
+  QRCode.toCanvas(document.getElementById('qr-canvas'),pixPayload,{width:256,errorCorrectionLevel:'M',color:{dark:'#000000',light:'#ffffff'}},err=>{
+    if(err){showError('Erro: '+err.message);return;}
+    document.getElementById('output-box').style.display='block';
+    document.getElementById('error-box').style.display='none';
+    document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+}
+function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';}
+function clearAll(){['pix-key','pix-name','pix-city','pix-amount','pix-desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';}
+function copyPayload(){navigator.clipboard.writeText(pixPayload).then(()=>{document.getElementById('copy-label').textContent='Copiado!';setTimeout(()=>document.getElementById('copy-label').textContent='Copiar payload',1600);});}
+function downloadPng(){document.getElementById('qr-canvas').toBlob(b=>downloadBlob(b,'qrcode-pix.png'));}
+</script>
+</body>
+</html>

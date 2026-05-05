@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Gerador de Hash Online Grátis — MD5, SHA-256, SHA-512 — Canivete Digital</title>
+  <meta name="description" content="Gere hashes MD5, SHA-1, SHA-256 e SHA-512 de texto ou arquivo. Online, grátis, sem enviar dados para servidor.">
+  <meta name="keywords" content="gerador hash online, md5 online, sha256 online, sha512 online, hash texto, hash arquivo, checksum online">
+  <link rel="canonical" href="https://canivetedigital.com.br/dev/hash-generator.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="hash-generator">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="../texto/contador-caracteres.html">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="base64.html" class="active">Dev</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="base64.html">Dev</a><span class="sep">›</span>
+        Hash generator
+      </div>
+      <div class="tool-header dc">
+        <div class="cat-badge cat-badge-d">Dev</div>
+        <h1>Hash generator</h1>
+        <p>Gere MD5, SHA-1, SHA-256 e SHA-512 de qualquer texto ou arquivo. Tudo no seu navegador — nenhum dado é enviado.</p>
+      </div>
+
+      <div class="notice notice-info">
+        <strong>Privacidade:</strong> O processamento é 100% local no seu navegador. Nenhum texto ou arquivo é enviado para servidores.
+      </div>
+
+      <!-- Tabs -->
+      <div style="display:flex; gap:0; border-bottom: 2px solid var(--border); margin-bottom:0">
+        <button id="tab-text" class="tab-btn active" onclick="switchTab('text')">Texto</button>
+        <button id="tab-file" class="tab-btn" onclick="switchTab('file')">Arquivo</button>
+      </div>
+
+      <!-- Texto -->
+      <div id="panel-text" class="tool-box" style="border-top:none; border-radius:0 0 var(--radius) var(--radius)">
+        <label for="input-text">TEXTO DE ENTRADA</label>
+        <textarea id="input-text" rows="5" placeholder="Cole seu texto aqui…" oninput="hashText()"></textarea>
+        <div style="margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+          <label style="font-size:0.8rem; color:var(--text-muted); font-weight:normal; text-transform:none">
+            ENCODING:
+          </label>
+          <label class="opt-toggle selected" data-enc="utf8" onclick="setEnc('utf8',this)">UTF-8</label>
+          <label class="opt-toggle" data-enc="ascii" onclick="setEnc('ascii',this)">ASCII</label>
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal; margin-left:8px">
+            <input type="checkbox" id="cb-uppercase" style="width:15px; height:15px; accent-color:var(--primary)" onchange="hashText()">
+            Maiúsculas
+          </label>
+        </div>
+      </div>
+
+      <!-- Arquivo -->
+      <div id="panel-file" class="tool-box" style="display:none; border-top:none; border-radius:0 0 var(--radius) var(--radius)">
+        <div class="drop-area" id="drop-area">
+          <input type="file" id="file-input" accept="*/*">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+          <p><strong>Arraste um arquivo</strong> ou clique para selecionar</p>
+          <p id="file-name" style="font-size:0.8rem; margin-top:6px; color:var(--text-muted)">Qualquer tipo de arquivo</p>
+        </div>
+        <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal; margin-top:12px">
+          <input type="checkbox" id="cb-uppercase-file" style="width:15px; height:15px; accent-color:var(--primary)" onchange="reRenderResults()">
+          Maiúsculas
+        </label>
+      </div>
+
+      <!-- Resultados -->
+      <div id="results-box" style="display:none; margin-top:16px">
+        <div id="hash-rows"></div>
+      </div>
+
+      <div id="loading-box" style="display:none; text-align:center; padding:20px; color:var(--text-muted)">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24" height="24" style="animation:spin 1s linear infinite; margin-bottom:8px">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+        </svg>
+        <p style="margin:0">Calculando hashes…</p>
+      </div>
+
+      <div class="howto">
+        <h2>Para que servem os hashes?</h2>
+        <ol>
+          <li><strong>MD5</strong> — rápido, útil para checksums e comparação de arquivos. Não é seguro para senhas.</li>
+          <li><strong>SHA-1</strong> — mais antigo, ainda usado em Git commits e certificados legados.</li>
+          <li><strong>SHA-256</strong> — padrão atual para verificação de integridade, assinaturas digitais e blockchain.</li>
+          <li><strong>SHA-512</strong> — variante mais longa do SHA-256, maior resistência a colisões.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Hashes são impressões digitais de dados: qualquer mudança mínima no conteúdo gera um hash completamente diferente. São usados para verificar integridade de arquivos, armazenar senhas e assinar digitalmente documentos.</p>
+        <ul>
+          <li>MD5 e SHA-1 são considerados criptograficamente quebrados — não use para armazenar senhas. Para isso, use SHA-256 no mínimo, ou melhor ainda, bcrypt/argon2.</li>
+          <li>Para verificar um download: gere o hash do arquivo baixado e compare com o hash publicado no site oficial. Se forem iguais, o arquivo é autêntico e não foi corrompido.</li>
+          <li>Hashes são unidirecionais — você não consegue recuperar o texto original a partir do hash. São úteis para verificação, não para armazenamento de dados recuperáveis.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Para trabalhar com encoding (não hashing), o <a href="base64.html">Base64 encoder</a> é o complemento ideal — transforme dados binários em texto e vice-versa.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas Dev</h3>
+        <a href="base64.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          Base64 encode/decode
+        </a>
+        <a href="json-csv.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+          JSON → CSV
+        </a>
+        <a href="timestamp.html" class="related-link dc">
+          <span class="r-icon cat-icon-d"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline stroke-linecap="round" points="12 6 12 12 16 14"/></svg></span>
+          Timestamp converter
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="base64.html">Base64</a>
+        <a href="url-encode.html">URL encode</a>
+        <a href="json-csv.html">JSON → CSV</a>
+        <a href="timestamp.html">Timestamp</a>
+        <a href="hash-generator.html">Hash generator</a>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="../texto/contador-caracteres.html">Contador de caracteres</a>
+        <a href="../texto/ordenar-texto.html">Ordenar texto</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+.tab-btn {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+.hash-row {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 8px;
+}
+.hash-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.hash-algo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.hash-value {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.8rem;
+  word-break: break-all;
+  color: var(--text);
+  line-height: 1.5;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let activeTab = 'text';
+let hashEncoding = 'utf8';
+let lastHashes = null;
+
+// ── MD5 pure-JS implementation ──────────────────────────────────────────────
+function md5(str) {
+  function safeAdd(x,y){var lsw=(x&65535)+(y&65535);return((x>>16)+(y>>16)+(lsw>>16)<<16|lsw&65535)}
+  function bitRotateLeft(num,cnt){return num<<cnt|num>>>32-cnt}
+  function md5cmn(q,a,b,x,s,t){return safeAdd(bitRotateLeft(safeAdd(safeAdd(a,q),safeAdd(x,t)),s),b)}
+  function md5ff(a,b,c,d,x,s,t){return md5cmn(b&c|~b&d,a,b,x,s,t)}
+  function md5gg(a,b,c,d,x,s,t){return md5cmn(b&d|c&~d,a,b,x,s,t)}
+  function md5hh(a,b,c,d,x,s,t){return md5cmn(b^c^d,a,b,x,s,t)}
+  function md5ii(a,b,c,d,x,s,t){return md5cmn(c^(b|~d),a,b,x,s,t)}
+  function utf8Encode(s){
+    return unescape(encodeURIComponent(s));
+  }
+  function str2binl(str){
+    var bin=[];
+    for(var i=0;i<str.length*8;i+=8)bin[i>>5]|=(str.charCodeAt(i/8)&255)<<i%32;
+    return bin;
+  }
+  function binl2hex(binarray){
+    var hex='';var hexChars='0123456789abcdef';
+    for(var i=0;i<binarray.length*4;i++){hex+=hexChars[(binarray[i>>2]>>(i%4*8+4))&15]+hexChars[(binarray[i>>2]>>(i%4*8))&15];}
+    return hex;
+  }
+  function coreMD5(x,len){
+    x[len>>5]|=128<<len%32;x[(len+64>>>9<<4)+14]=len;
+    var i,olda,oldb,oldc,oldd;
+    var a=1732584193,b=-271733879,c=-1732584194,d=271733878;
+    for(i=0;i<x.length;i+=16){
+      olda=a;oldb=b;oldc=c;oldd=d;
+      a=md5ff(a,b,c,d,x[i],7,-680876936);d=md5ff(d,a,b,c,x[i+1],12,-389564586);c=md5ff(c,d,a,b,x[i+2],17,606105819);b=md5ff(b,c,d,a,x[i+3],22,-1044525330);
+      a=md5ff(a,b,c,d,x[i+4],7,-176418897);d=md5ff(d,a,b,c,x[i+5],12,1200080426);c=md5ff(c,d,a,b,x[i+6],17,-1473231341);b=md5ff(b,c,d,a,x[i+7],22,-45705983);
+      a=md5ff(a,b,c,d,x[i+8],7,1770035416);d=md5ff(d,a,b,c,x[i+9],12,-1958414417);c=md5ff(c,d,a,b,x[i+10],17,-42063);b=md5ff(b,c,d,a,x[i+11],22,-1990404162);
+      a=md5ff(a,b,c,d,x[i+12],7,1804603682);d=md5ff(d,a,b,c,x[i+13],12,-40341101);c=md5ff(c,d,a,b,x[i+14],17,-1502002290);b=md5ff(b,c,d,a,x[i+15],22,1236535329);
+      a=md5gg(a,b,c,d,x[i+1],5,-165796510);d=md5gg(d,a,b,c,x[i+6],9,-1069501632);c=md5gg(c,d,a,b,x[i+11],14,643717713);b=md5gg(b,c,d,a,x[i],20,-373897302);
+      a=md5gg(a,b,c,d,x[i+5],5,-701558691);d=md5gg(d,a,b,c,x[i+10],9,38016083);c=md5gg(c,d,a,b,x[i+15],14,-660478335);b=md5gg(b,c,d,a,x[i+4],20,-405537848);
+      a=md5gg(a,b,c,d,x[i+9],5,568446438);d=md5gg(d,a,b,c,x[i+14],9,-1019803690);c=md5gg(c,d,a,b,x[i+3],14,-187363961);b=md5gg(b,c,d,a,x[i+8],20,1163531501);
+      a=md5gg(a,b,c,d,x[i+13],5,-1444681467);d=md5gg(d,a,b,c,x[i+2],9,-51403784);c=md5gg(c,d,a,b,x[i+7],14,1735328473);b=md5gg(b,c,d,a,x[i+12],20,-1926607734);
+      a=md5hh(a,b,c,d,x[i+5],4,-378558);d=md5hh(d,a,b,c,x[i+8],11,-2022574463);c=md5hh(c,d,a,b,x[i+11],16,1839030562);b=md5hh(b,c,d,a,x[i+14],23,-35309556);
+      a=md5hh(a,b,c,d,x[i+1],4,-1530992060);d=md5hh(d,a,b,c,x[i+4],11,1272893353);c=md5hh(c,d,a,b,x[i+7],16,-155497632);b=md5hh(b,c,d,a,x[i+10],23,-1094730640);
+      a=md5hh(a,b,c,d,x[i+13],4,681279174);d=md5hh(d,a,b,c,x[i],11,-358537222);c=md5hh(c,d,a,b,x[i+3],16,-722521979);b=md5hh(b,c,d,a,x[i+6],23,76029189);
+      a=md5hh(a,b,c,d,x[i+9],4,-640364487);d=md5hh(d,a,b,c,x[i+12],11,-421815835);c=md5hh(c,d,a,b,x[i+15],16,530742520);b=md5hh(b,c,d,a,x[i+2],23,-995338651);
+      a=md5ii(a,b,c,d,x[i],6,-198630844);d=md5ii(d,a,b,c,x[i+7],10,1126891415);c=md5ii(c,d,a,b,x[i+14],15,-1416354905);b=md5ii(b,c,d,a,x[i+5],21,-57434055);
+      a=md5ii(a,b,c,d,x[i+12],6,1700485571);d=md5ii(d,a,b,c,x[i+3],10,-1894986606);c=md5ii(c,d,a,b,x[i+10],15,-1051523);b=md5ii(b,c,d,a,x[i+1],21,-2054922799);
+      a=md5ii(a,b,c,d,x[i+8],6,1873313359);d=md5ii(d,a,b,c,x[i+15],10,-30611744);c=md5ii(c,d,a,b,x[i+6],15,-1560198380);b=md5ii(b,c,d,a,x[i+13],21,1309151649);
+      a=md5ii(a,b,c,d,x[i+4],6,-145523070);d=md5ii(d,a,b,c,x[i+11],10,-1120210379);c=md5ii(c,d,a,b,x[i+2],15,718787259);b=md5ii(b,c,d,a,x[i+9],21,-343485551);
+      a=safeAdd(a,olda);b=safeAdd(b,oldb);c=safeAdd(c,oldc);d=safeAdd(d,oldd);
+    }
+    return[a,b,c,d];
+  }
+  var s = utf8Encode(str);
+  return binl2hex(coreMD5(str2binl(s), s.length*8));
+}
+
+// ── Web Crypto hashes ────────────────────────────────────────────────────────
+async function sha(algo, buffer) {
+  const hashBuffer = await crypto.subtle.digest(algo, buffer);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function strToBuffer(str, encoding) {
+  if (encoding === 'ascii') {
+    const bytes = new Uint8Array(str.length);
+    for (let i = 0; i < str.length; i++) bytes[i] = str.charCodeAt(i) & 0xFF;
+    return bytes.buffer;
+  }
+  return new TextEncoder().encode(str).buffer;
+}
+
+// ── Render ───────────────────────────────────────────────────────────────────
+function maybeUpper(h) {
+  const uc = activeTab === 'text'
+    ? document.getElementById('cb-uppercase').checked
+    : document.getElementById('cb-uppercase-file').checked;
+  return uc ? h.toUpperCase() : h;
+}
+
+function renderHashes(hashes) {
+  lastHashes = hashes;
+  const ALGOS = [
+    { key: 'md5',    label: 'MD5',    bits: 128 },
+    { key: 'sha1',   label: 'SHA-1',  bits: 160 },
+    { key: 'sha256', label: 'SHA-256',bits: 256 },
+    { key: 'sha512', label: 'SHA-512',bits: 512 },
+  ];
+
+  const rows = ALGOS.map(a => `
+    <div class="hash-row">
+      <div class="hash-row-header">
+        <span class="hash-algo">${a.label} <span style="font-weight:400; opacity:0.6">${a.bits} bits</span></span>
+        <button class="btn btn-outline btn-sm" onclick="copyHash('${a.key}')">Copiar</button>
+      </div>
+      <div class="hash-value" id="hash-${a.key}">${maybeUpper(hashes[a.key])}</div>
+    </div>`).join('');
+
+  document.getElementById('hash-rows').innerHTML = rows;
+  document.getElementById('results-box').style.display = 'block';
+  document.getElementById('loading-box').style.display = 'none';
+}
+
+function reRenderResults() {
+  if (!lastHashes) return;
+  ['md5','sha1','sha256','sha512'].forEach(k => {
+    const el = document.getElementById('hash-' + k);
+    if (el) el.textContent = maybeUpper(lastHashes[k]);
+  });
+}
+
+async function computeHashes(buffer, md5Input) {
+  document.getElementById('loading-box').style.display = 'block';
+  document.getElementById('results-box').style.display = 'none';
+
+  const [sha1, sha256, sha512] = await Promise.all([
+    sha('SHA-1', buffer),
+    sha('SHA-256', buffer),
+    sha('SHA-512', buffer),
+  ]);
+
+  renderHashes({ md5: md5Input, sha1, sha256, sha512 });
+}
+
+// ── Text mode ────────────────────────────────────────────────────────────────
+let hashTextTimer;
+function hashText() {
+  clearTimeout(hashTextTimer);
+  hashTextTimer = setTimeout(async () => {
+    const text = document.getElementById('input-text').value;
+    if (!text) {
+      document.getElementById('results-box').style.display = 'none';
+      document.getElementById('loading-box').style.display = 'none';
+      lastHashes = null;
+      return;
+    }
+    const md5hash = md5(text);
+    const buffer = strToBuffer(text, hashEncoding);
+    await computeHashes(buffer, md5hash);
+  }, 200);
+}
+
+function setEnc(enc, el) {
+  hashEncoding = enc;
+  document.querySelectorAll('[data-enc]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+  hashText();
+}
+
+// ── File mode ────────────────────────────────────────────────────────────────
+function hashFile(file) {
+  document.getElementById('file-name').textContent = `${file.name} (${fmtSize(file.size)})`;
+  document.getElementById('loading-box').style.display = 'block';
+  document.getElementById('results-box').style.display = 'none';
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const buffer = e.target.result;
+    // MD5 on file bytes
+    const bytes = new Uint8Array(buffer);
+    let binStr = '';
+    for (let i = 0; i < bytes.length; i++) binStr += String.fromCharCode(bytes[i]);
+    // For MD5 on binary we need binl approach with raw bytes
+    const md5hash = md5BinaryBuffer(buffer);
+    await computeHashes(buffer, md5hash);
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// MD5 on ArrayBuffer directly
+function md5BinaryBuffer(buf) {
+  function safeAdd(x,y){var lsw=(x&65535)+(y&65535);return((x>>16)+(y>>16)+(lsw>>16)<<16|lsw&65535)}
+  function bitRotateLeft(num,cnt){return num<<cnt|num>>>32-cnt}
+  function md5cmn(q,a,b,x,s,t){return safeAdd(bitRotateLeft(safeAdd(safeAdd(a,q),safeAdd(x,t)),s),b)}
+  function md5ff(a,b,c,d,x,s,t){return md5cmn(b&c|~b&d,a,b,x,s,t)}
+  function md5gg(a,b,c,d,x,s,t){return md5cmn(b&d|c&~d,a,b,x,s,t)}
+  function md5hh(a,b,c,d,x,s,t){return md5cmn(b^c^d,a,b,x,s,t)}
+  function md5ii(a,b,c,d,x,s,t){return md5cmn(c^(b|~d),a,b,x,s,t)}
+  function binl2hex(binarray){var hex='';var hc='0123456789abcdef';for(var i=0;i<binarray.length*4;i++){hex+=hc[(binarray[i>>2]>>(i%4*8+4))&15]+hc[(binarray[i>>2]>>(i%4*8))&15];}return hex;}
+  function coreMD5(x,len){
+    x[len>>5]|=128<<len%32;x[(len+64>>>9<<4)+14]=len;
+    var i,olda,oldb,oldc,oldd;
+    var a=1732584193,b=-271733879,c=-1732584194,d=271733878;
+    for(i=0;i<x.length;i+=16){
+      olda=a;oldb=b;oldc=c;oldd=d;
+      a=md5ff(a,b,c,d,x[i],7,-680876936);d=md5ff(d,a,b,c,x[i+1],12,-389564586);c=md5ff(c,d,a,b,x[i+2],17,606105819);b=md5ff(b,c,d,a,x[i+3],22,-1044525330);
+      a=md5ff(a,b,c,d,x[i+4],7,-176418897);d=md5ff(d,a,b,c,x[i+5],12,1200080426);c=md5ff(c,d,a,b,x[i+6],17,-1473231341);b=md5ff(b,c,d,a,x[i+7],22,-45705983);
+      a=md5ff(a,b,c,d,x[i+8],7,1770035416);d=md5ff(d,a,b,c,x[i+9],12,-1958414417);c=md5ff(c,d,a,b,x[i+10],17,-42063);b=md5ff(b,c,d,a,x[i+11],22,-1990404162);
+      a=md5ff(a,b,c,d,x[i+12],7,1804603682);d=md5ff(d,a,b,c,x[i+13],12,-40341101);c=md5ff(c,d,a,b,x[i+14],17,-1502002290);b=md5ff(b,c,d,a,x[i+15],22,1236535329);
+      a=md5gg(a,b,c,d,x[i+1],5,-165796510);d=md5gg(d,a,b,c,x[i+6],9,-1069501632);c=md5gg(c,d,a,b,x[i+11],14,643717713);b=md5gg(b,c,d,a,x[i],20,-373897302);
+      a=md5gg(a,b,c,d,x[i+5],5,-701558691);d=md5gg(d,a,b,c,x[i+10],9,38016083);c=md5gg(c,d,a,b,x[i+15],14,-660478335);b=md5gg(b,c,d,a,x[i+4],20,-405537848);
+      a=md5gg(a,b,c,d,x[i+9],5,568446438);d=md5gg(d,a,b,c,x[i+14],9,-1019803690);c=md5gg(c,d,a,b,x[i+3],14,-187363961);b=md5gg(b,c,d,a,x[i+8],20,1163531501);
+      a=md5gg(a,b,c,d,x[i+13],5,-1444681467);d=md5gg(d,a,b,c,x[i+2],9,-51403784);c=md5gg(c,d,a,b,x[i+7],14,1735328473);b=md5gg(b,c,d,a,x[i+12],20,-1926607734);
+      a=md5hh(a,b,c,d,x[i+5],4,-378558);d=md5hh(d,a,b,c,x[i+8],11,-2022574463);c=md5hh(c,d,a,b,x[i+11],16,1839030562);b=md5hh(b,c,d,a,x[i+14],23,-35309556);
+      a=md5hh(a,b,c,d,x[i+1],4,-1530992060);d=md5hh(d,a,b,c,x[i+4],11,1272893353);c=md5hh(c,d,a,b,x[i+7],16,-155497632);b=md5hh(b,c,d,a,x[i+10],23,-1094730640);
+      a=md5hh(a,b,c,d,x[i+13],4,681279174);d=md5hh(d,a,b,c,x[i],11,-358537222);c=md5hh(c,d,a,b,x[i+3],16,-722521979);b=md5hh(b,c,d,a,x[i+6],23,76029189);
+      a=md5hh(a,b,c,d,x[i+9],4,-640364487);d=md5hh(d,a,b,c,x[i+12],11,-421815835);c=md5hh(c,d,a,b,x[i+15],16,530742520);b=md5hh(b,c,d,a,x[i+2],23,-995338651);
+      a=md5ii(a,b,c,d,x[i],6,-198630844);d=md5ii(d,a,b,c,x[i+7],10,1126891415);c=md5ii(c,d,a,b,x[i+14],15,-1416354905);b=md5ii(b,c,d,a,x[i+5],21,-57434055);
+      a=md5ii(a,b,c,d,x[i+12],6,1700485571);d=md5ii(d,a,b,c,x[i+3],10,-1894986606);c=md5ii(c,d,a,b,x[i+10],15,-1051523);b=md5ii(b,c,d,a,x[i+1],21,-2054922799);
+      a=md5ii(a,b,c,d,x[i+8],6,1873313359);d=md5ii(d,a,b,c,x[i+15],10,-30611744);c=md5ii(c,d,a,b,x[i+6],15,-1560198380);b=md5ii(b,c,d,a,x[i+13],21,1309151649);
+      a=md5ii(a,b,c,d,x[i+4],6,-145523070);d=md5ii(d,a,b,c,x[i+11],10,-1120210379);c=md5ii(c,d,a,b,x[i+2],15,718787259);b=md5ii(b,c,d,a,x[i+9],21,-343485551);
+      a=safeAdd(a,olda);b=safeAdd(b,oldb);c=safeAdd(c,oldc);d=safeAdd(d,oldd);
+    }
+    return[a,b,c,d];
+  }
+  const bytes = new Uint8Array(buf);
+  const bin = [];
+  for (let i = 0; i < bytes.length * 8; i += 8) bin[i >> 5] |= (bytes[i / 8] & 255) << (i % 32);
+  return binl2hex(coreMD5(bin, bytes.length * 8));
+}
+
+// ── Tabs ─────────────────────────────────────────────────────────────────────
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('panel-text').style.display = tab === 'text' ? 'block' : 'none';
+  document.getElementById('panel-file').style.display = tab === 'file' ? 'block' : 'none';
+  document.getElementById('tab-text').classList.toggle('active', tab === 'text');
+  document.getElementById('tab-file').classList.toggle('active', tab === 'file');
+  document.getElementById('results-box').style.display = 'none';
+  document.getElementById('loading-box').style.display = 'none';
+  lastHashes = null;
+  if (tab === 'text') hashText();
+}
+
+// ── Copy ──────────────────────────────────────────────────────────────────────
+function copyHash(key) {
+  const text = document.getElementById('hash-' + key).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.hash-row .btn');
+    const algos = ['md5','sha1','sha256','sha512'];
+    const btn = btns[algos.indexOf(key)];
+    if (!btn) return;
+    const orig = btn.textContent;
+    btn.textContent = 'Copiado!';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+}
+
+// ── Drop area (file mode) ─────────────────────────────────────────────────────
+initDropArea('drop-area', 'file-input', files => { if (files.length) hashFile(files[0]); });
+</script>
+</body>
+</html>

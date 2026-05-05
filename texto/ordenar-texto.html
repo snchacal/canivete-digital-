@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Ordenar Texto Online — Alfabético, por Comprimento, Aleatório — Canivete Digital</title>
+  <meta name="description" content="Ordene linhas de texto em ordem alfabética, por comprimento, de forma aleatória ou reversa. Remova duplicatas. Grátis, sem cadastro.">
+  <meta name="keywords" content="ordenar texto online, ordenar linhas, sort text, organizar lista, remover duplicatas texto">
+  <link rel="canonical" href="https://canivetedigital.com.br/texto/ordenar-texto.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="ordenar-texto">
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="logo">
+        <img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital">
+      </a>
+      <nav>
+        <a href="contador-caracteres.html" class="active">Texto</a>
+        <a href="../imagem/comprimir-imagem.html">Imagem</a>
+        <a href="../pdf/juntar-pdf.html">PDF</a>
+        <a href="../dev/base64.html">Dev</a>
+        <a href="../cripto/binario.html">Cripto</a>
+      </nav>
+      <div class="header-search">
+        <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/>
+        </svg>
+        <input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="ad-wrap">
+    <div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="tool-page">
+
+    <div class="tool-main">
+      <div class="breadcrumb">
+        <a href="../index.html">Início</a><span class="sep">›</span>
+        <a href="contador-caracteres.html">Texto</a><span class="sep">›</span>
+        Ordenar texto
+      </div>
+      <div class="tool-header tc">
+        <div class="cat-badge cat-badge-c">Texto</div>
+        <h1>Ordenar texto</h1>
+        <p>Cole uma lista de linhas e escolha como organizar. Funciona com qualquer lista — nomes, URLs, dados.</p>
+      </div>
+
+      <div class="tool-box">
+        <label for="input-text">TEXTO DE ENTRADA <span style="font-weight:400; text-transform:none">(uma item por linha)</span></label>
+        <textarea id="input-text" rows="9" placeholder="Banana&#10;Maçã&#10;Laranja&#10;Abacaxi&#10;Manga"></textarea>
+
+        <div style="margin-top:16px">
+          <p style="font-size:0.8125rem; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:10px;">ORDENAÇÃO</p>
+          <div class="options-grid">
+            <label class="opt-toggle selected" data-mode="az" onclick="setMode('az',this)">A → Z</label>
+            <label class="opt-toggle" data-mode="za" onclick="setMode('za',this)">Z → A</label>
+            <label class="opt-toggle" data-mode="len-asc" onclick="setMode('len-asc',this)">Comprimento ↑</label>
+            <label class="opt-toggle" data-mode="len-desc" onclick="setMode('len-desc',this)">Comprimento ↓</label>
+            <label class="opt-toggle" data-mode="random" onclick="setMode('random',this)">🎲 Aleatório</label>
+            <label class="opt-toggle" data-mode="reverse" onclick="setMode('reverse',this)">↩ Inverter ordem</label>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; align-items:center">
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal">
+            <input type="checkbox" id="cb-dedup" style="width:15px; height:15px; accent-color:var(--primary)">
+            Remover duplicatas
+          </label>
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal">
+            <input type="checkbox" id="cb-trim-lines" checked style="width:15px; height:15px; accent-color:var(--primary)">
+            Ignorar espaços nas pontas
+          </label>
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal">
+            <input type="checkbox" id="cb-ignore-case" checked style="width:15px; height:15px; accent-color:var(--primary)">
+            Ignorar maiúsculas/minúsculas
+          </label>
+          <label style="display:flex; align-items:center; gap:7px; cursor:pointer; font-size:0.875rem; text-transform:none; color:var(--text); font-weight:normal">
+            <input type="checkbox" id="cb-remove-empty" checked style="width:15px; height:15px; accent-color:var(--primary)">
+            Remover linhas em branco
+          </label>
+        </div>
+
+        <div class="tool-row">
+          <button class="btn btn-primary" onclick="sort()">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="16" height="16">
+              <path stroke-linecap="round" d="M3 4h13M3 8h9m-9 4h9m5-4v12m0 0l-4-4m4 4l4-4"/>
+            </svg>
+            Ordenar
+          </button>
+          <button class="btn btn-outline" onclick="clearAll()">Limpar</button>
+          <button class="btn btn-ghost btn-sm" onclick="loadSample()">Exemplo</button>
+        </div>
+      </div>
+
+      <div id="output-box" class="tool-box" style="display:none">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px">
+          <label style="margin-bottom:0">RESULTADO</label>
+          <div style="display:flex; gap:8px; align-items:center">
+            <span id="result-stats" style="font-size:0.8rem; color:var(--text-muted)"></span>
+            <button class="btn btn-outline btn-sm" onclick="copyOutput()">
+              <span id="copy-label">Copiar</span>
+            </button>
+          </div>
+        </div>
+        <div style="position:relative">
+          <div class="output-box" id="output-text" style="max-height:400px; overflow:auto; white-space:pre"></div>
+        </div>
+        <div class="tool-row" style="margin-top:10px">
+          <button class="btn btn-ghost btn-sm" onclick="useAsInput()">Usar como entrada</button>
+        </div>
+      </div>
+
+      <div class="howto">
+        <h2>Casos de uso comuns</h2>
+        <ol>
+          <li>Organizar lista de nomes ou palavras em ordem alfabética.</li>
+          <li>Remover duplicatas de uma lista exportada de planilha ou banco de dados.</li>
+          <li>Embaralhar itens aleatoriamente para sorteios ou shuffles.</li>
+          <li>Ordenar URLs, tags ou SKUs por comprimento para análise.</li>
+        </ol>
+      </div>
+
+      <div class="howto">
+        <h2>Dicas de uso</h2>
+        <p>Listas desordenadas são difíceis de navegar e comparar. Seja uma lista de nomes, domínios, IDs ou palavras-chave, ordenar em segundos faz uma diferença enorme na produtividade.</p>
+        <ul>
+          <li>A opção "remover duplicatas" junto com a ordenação é ótima para limpar listas de e-mails ou keywords antes de importar em uma ferramenta.</li>
+          <li>Para ordenar por comprimento (do menor pro maior), use a opção correspondente — útil para ajustar textos que precisam caber em espaços fixos.</li>
+          <li>Cole uma lista de URLs e ordene para identificar padrões ou agrupar subdomínios visualmente.</li>
+        </ul>
+        <p class="tip-next">💡 <strong>Próximo passo:</strong> Depois de organizar, use o <a href="contador-caracteres.html">Contador de caracteres</a> para saber quantas linhas (itens) tem sua lista final.</p>
+      </div>
+    </div>
+
+    <div class="tool-sidebar">
+      <div class="ad-wrap" style="margin:0">
+        <div class="ad-rect"><span>Publicidade • 300×250</span></div>
+      </div>
+      <div class="sidebar-widget">
+        <h3>Ferramentas de texto</h3>
+        <a href="contador-caracteres.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/></svg></span>
+          Contador de caracteres
+        </a>
+        <a href="remover-espacos.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h8"/></svg></span>
+          Remover espaços extras
+        </a>
+        <a href="converter-maiusculas.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3 6h18M3 12h18M3 18h12"/></svg></span>
+          Maiúsculas / minúsculas
+        </a>
+        <a href="json-formatter.html" class="related-link tc">
+          <span class="r-icon cat-icon-c"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg></span>
+          JSON Formatter
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="footer-logo">
+          <img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital">
+        </a>
+        <p>Ferramentas online gratuitas. Sem cadastro.</p>
+      </div>
+      <div class="footer-col"><h4>Texto</h4>
+        <a href="contador-caracteres.html">Contador de caracteres</a>
+        <a href="converter-maiusculas.html">Maiúsculas / minúsculas</a>
+        <a href="remover-espacos.html">Remover espaços</a>
+        <a href="ordenar-texto.html">Ordenar texto</a>
+        <a href="gerador-senha.html">Gerador de senha</a>
+        <a href="json-formatter.html">JSON Formatter</a>
+      </div>
+      <div class="footer-col"><h4>Imagem & PDF</h4>
+        <a href="../imagem/comprimir-imagem.html">Comprimir imagem</a>
+        <a href="../pdf/juntar-pdf.html">Juntar PDF</a>
+      </div>
+      <div class="footer-col"><h4>Dev</h4>
+        <a href="../dev/base64.html">Base64</a>
+        <a href="../dev/url-encode.html">URL encode</a>
+      </div>
+    </div>
+    <div class="footer-sobre">
+      <div class="footer-sobre-col">
+        <h4>Sobre o Site</h4>
+        <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Privacidade</h4>
+        <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+      </div>
+      <div class="footer-sobre-col">
+        <h4>Termos de Uso</h4>
+        <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Canivete Digital — Todos os direitos reservados. Criado por SJS Project.</span>
+      <span>Feito com ☕ no Brasil</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let sortMode = 'az';
+
+function setMode(mode, el) {
+  sortMode = mode;
+  document.querySelectorAll('[data-mode]').forEach(l => l.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function getLines() {
+  let lines = document.getElementById('input-text').value.split('\n');
+  if (document.getElementById('cb-trim-lines').checked)  lines = lines.map(l => l.trim());
+  if (document.getElementById('cb-remove-empty').checked) lines = lines.filter(l => l.length > 0);
+  if (document.getElementById('cb-dedup').checked) {
+    const seen = new Set();
+    lines = lines.filter(l => {
+      const key = document.getElementById('cb-ignore-case').checked ? l.toLowerCase() : l;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+  return lines;
+}
+
+function sort() {
+  let lines = getLines();
+  if (!lines.length) return;
+
+  const ignoreCase = document.getElementById('cb-ignore-case').checked;
+
+  switch (sortMode) {
+    case 'az':
+      lines.sort((a, b) => {
+        const ka = ignoreCase ? a.toLowerCase() : a;
+        const kb = ignoreCase ? b.toLowerCase() : b;
+        return ka.localeCompare(kb, 'pt-BR');
+      });
+      break;
+    case 'za':
+      lines.sort((a, b) => {
+        const ka = ignoreCase ? a.toLowerCase() : a;
+        const kb = ignoreCase ? b.toLowerCase() : b;
+        return kb.localeCompare(ka, 'pt-BR');
+      });
+      break;
+    case 'len-asc':
+      lines.sort((a, b) => a.length - b.length || a.localeCompare(b, 'pt-BR'));
+      break;
+    case 'len-desc':
+      lines.sort((a, b) => b.length - a.length || a.localeCompare(b, 'pt-BR'));
+      break;
+    case 'random':
+      for (let i = lines.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [lines[i], lines[j]] = [lines[j], lines[i]];
+      }
+      break;
+    case 'reverse':
+      lines.reverse();
+      break;
+  }
+
+  const result = lines.join('\n');
+  document.getElementById('output-text').textContent = result;
+  document.getElementById('output-box').style.display = 'block';
+  document.getElementById('result-stats').textContent = `${lines.length} linha${lines.length !== 1 ? 's' : ''}`;
+  document.getElementById('copy-label').textContent = 'Copiar';
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(document.getElementById('output-text').textContent).then(() => {
+    document.getElementById('copy-label').textContent = 'Copiado!';
+    setTimeout(() => { document.getElementById('copy-label').textContent = 'Copiar'; }, 1600);
+  });
+}
+
+function useAsInput() {
+  document.getElementById('input-text').value = document.getElementById('output-text').textContent;
+  document.getElementById('output-box').style.display = 'none';
+}
+
+function clearAll() {
+  document.getElementById('input-text').value = '';
+  document.getElementById('output-box').style.display = 'none';
+}
+
+function loadSample() {
+  document.getElementById('input-text').value = 'Banana\nMaçã\nLaranja\nAbacaxi\nManga\nGoiaba\nUva\nPêssego\nLaranja\nMaçã';
+}
+</script>
+</body>
+</html>
