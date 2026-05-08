@@ -378,7 +378,7 @@ function injectSchema() {
       'publisher': {
         '@type': 'Organization',
         'name': 'Canivete Digital',
-        'url': 'https://canivetedigital.com.br'
+        'url': 'https://canivetedg.com.br'
       }
     };
   } else {
@@ -387,12 +387,12 @@ function injectSchema() {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       'name': 'Canivete Digital',
-      'url': 'https://canivetedigital.com.br/',
+      'url': 'https://canivetedg.com.br/',
       'description': 'Ferramentas online gratuitas para texto, imagem, PDF e dev. Sem cadastro.',
       'inLanguage': 'pt-BR',
       'potentialAction': {
         '@type': 'SearchAction',
-        'target': 'https://canivetedigital.com.br/?q={search_term_string}',
+        'target': 'https://canivetedg.com.br/?q={search_term_string}',
         'query-input': 'required name=search_term_string'
       }
     };
@@ -404,11 +404,74 @@ function injectSchema() {
   document.head.appendChild(script);
 }
 
+// ---- FOOTER ----
+function buildFooter() {
+  const footer = document.querySelector('footer');
+  if (!footer) return;
+
+  // Detect base path from logo link
+  const logoLink = document.querySelector('a.logo, .footer-logo');
+  const logoHref = logoLink ? logoLink.getAttribute('href') : '';
+  const base = logoHref.includes('../') ? '../' : '';
+
+  // Rebuild tool columns with complete listings
+  const footerGrid = footer.querySelector('.footer-grid');
+  if (footerGrid) {
+    footerGrid.querySelectorAll('.footer-col').forEach(c => c.remove());
+
+    const catGroups = [
+      { label: 'Texto',       cats: ['texto']           },
+      { label: 'Imagem & PDF', cats: ['imagem', 'pdf']  },
+      { label: 'Dev & Cripto', cats: ['dev', 'cripto']  },
+    ];
+
+    catGroups.forEach(group => {
+      const col = document.createElement('div');
+      col.className = 'footer-col';
+      col.innerHTML = `<h4>${group.label}</h4>`;
+      group.cats.forEach(catId => {
+        TOOLS.filter(t => t.cat === catId).forEach(tool => {
+          const a = document.createElement('a');
+          a.href = base + tool.url.slice(1);
+          a.textContent = tool.name;
+          col.appendChild(a);
+        });
+      });
+      footerGrid.appendChild(col);
+    });
+  }
+
+  // Replace footer-sobre with accordion
+  const sobreEl = footer.querySelector('.footer-sobre');
+  if (!sobreEl) return;
+
+  sobreEl.className = 'footer-accordion';
+  sobreEl.innerHTML = `
+    <details>
+      <summary>Sobre o Site</summary>
+      <p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia: texto, imagem, PDF, desenvolvimento e codificação. Tudo direto no browser, sem instalar nada e sem precisar criar conta.</p>
+    </details>
+    <details>
+      <summary>Privacidade</summary>
+      <p>Não coletamos dados pessoais. Tudo o que você processa aqui fica no seu próprio dispositivo. Não há rastreamento, não há venda de informações e nenhum dado é enviado para servidores externos.</p>
+    </details>
+    <details>
+      <summary>Termos de Uso</summary>
+      <p>As ferramentas são oferecidas no estado em que se encontram, sem garantia de exatidão. O uso é de inteira responsabilidade do usuário. Para dúvidas ou sugestões, entre em contato pelo e-mail do site.</p>
+    </details>
+    <details>
+      <summary>Contato</summary>
+      <p>Para dúvidas, sugestões ou parcerias: <a href="mailto:sjs@sjsproject.com.br">sjs@sjsproject.com.br</a></p>
+    </details>
+  `;
+}
+
 // ---- INIT ----
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initLogo();
   buildNavDropdowns();
+  buildFooter();
   injectSchema();
   initFavButtons();
   initSearch('header-search');

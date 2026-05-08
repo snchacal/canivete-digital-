@@ -723,31 +723,52 @@ footer {
   transition: color var(--transition);
 }
 .footer-col a:hover { color: white; text-decoration: none; }
-.footer-sobre {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.footer-accordion {
   border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 28px;
+  padding-top: 8px;
   margin-top: 28px;
 }
-.footer-sobre-col h4 {
-  color: white;
-  font-size: 0.8rem;
+.footer-accordion details {
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.footer-accordion summary {
+  cursor: pointer;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.78rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin: 0 0 8px;
+  padding: 11px 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: color var(--transition);
 }
-.footer-sobre-col p {
+.footer-accordion summary::-webkit-details-marker { display: none; }
+.footer-accordion summary::after {
+  content: '+';
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  line-height: 1;
+}
+.footer-accordion details[open] > summary { color: white; }
+.footer-accordion details[open] > summary::after { content: '−'; }
+.footer-accordion details p {
   color: rgba(255,255,255,0.5);
-  font-size: 0.78rem;
-  line-height: 1.6;
+  font-size: 0.8rem;
+  line-height: 1.65;
+  padding: 0 0 14px;
   margin: 0;
+  max-width: 680px;
 }
-@media (max-width: 640px) {
-  .footer-sobre { grid-template-columns: 1fr; gap: 20px; }
+.footer-accordion details p a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
 }
+.footer-accordion details p a:hover { color: white; text-decoration: underline; }
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 20px;
