@@ -699,7 +699,7 @@ footer {
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 36px;
   margin-bottom: 32px;
 }
@@ -723,6 +723,7 @@ footer {
   transition: color var(--transition);
 }
 .footer-col a:hover { color: white; text-decoration: none; }
+.footer-more { color: rgba(255,255,255,0.35) !important; font-style: italic; margin-top: 2px; }
 .footer-accordion {
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 8px;

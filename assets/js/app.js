@@ -444,23 +444,31 @@ function buildFooter() {
     footerGrid.querySelectorAll('.footer-col').forEach(c => c.remove());
 
     const catGroups = [
-      { label: 'Texto',       cats: ['texto']           },
-      { label: 'Imagem & PDF', cats: ['imagem', 'pdf']  },
-      { label: 'Dev & Cripto', cats: ['dev', 'cripto']  },
+      { label: 'Texto',        cats: ['texto'],           first: 'texto/contador-caracteres.html'       },
+      { label: 'Imagem & PDF', cats: ['imagem', 'pdf'],   first: 'imagem/comprimir-imagem.html'         },
+      { label: 'Dev & Cripto', cats: ['dev', 'cripto'],   first: 'dev/base64.html'                      },
+      { label: 'Calc',         cats: ['calc'],             first: 'calc/calculadora-porcentagem.html'    },
     ];
 
     catGroups.forEach(group => {
       const col = document.createElement('div');
       col.className = 'footer-col';
       col.innerHTML = `<h4>${group.label}</h4>`;
-      group.cats.forEach(catId => {
-        TOOLS.filter(t => t.cat === catId).forEach(tool => {
-          const a = document.createElement('a');
-          a.href = base + tool.url.slice(1);
-          a.textContent = tool.name;
-          col.appendChild(a);
-        });
+      const tools = group.cats.flatMap(catId => TOOLS.filter(t => t.cat === catId));
+      const shown = tools.slice(0, 6);
+      shown.forEach(tool => {
+        const a = document.createElement('a');
+        a.href = base + tool.url.slice(1);
+        a.textContent = tool.name;
+        col.appendChild(a);
       });
+      if (tools.length > 6) {
+        const more = document.createElement('a');
+        more.href = base + group.first;
+        more.textContent = `+ ${tools.length - 6} mais…`;
+        more.className = 'footer-more';
+        col.appendChild(more);
+      }
       footerGrid.appendChild(col);
     });
   }
