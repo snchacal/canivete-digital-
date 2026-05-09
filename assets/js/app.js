@@ -324,6 +324,12 @@ function buildNavDropdowns() {
   const inSubdir = navLinks.some(a => a.getAttribute('href').startsWith('../'));
   const base = inSubdir ? '../' : '';
 
+  // Reorder nav links alphabetically
+  const sorted = [...navLinks].sort((a, b) =>
+    a.textContent.trim().localeCompare(b.textContent.trim(), 'pt-BR')
+  );
+  sorted.forEach(a => nav.appendChild(a));
+
   navLinks.forEach(a => {
     const catInfo = NAV_CATS.find(c => a.textContent.trim() === c.label);
     if (!catInfo) return;
