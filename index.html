@@ -40,6 +40,7 @@
         <a href="pdf/juntar-pdf.html">PDF</a>
         <a href="dev/base64.html">Dev</a>
         <a href="cripto/binario.html">Cripto</a>
+        <a href="calc/calculadora-porcentagem.html">Calc</a>
       </nav>
       <div class="header-search">
         <svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -101,7 +102,7 @@
         </div>
         <h3>Texto</h3>
         <p>Contar, formatar e transformar textos</p>
-        <span class="cat-count">6 ferramentas</span>
+        <span class="cat-count">11 ferramentas</span>
       </a>
 
       <!-- IMAGEM -->
@@ -115,7 +116,7 @@
         </div>
         <h3>Imagem</h3>
         <p>Converter, redimensionar e comprimir</p>
-        <span class="cat-count">5 ferramentas</span>
+        <span class="cat-count">7 ferramentas</span>
       </a>
 
       <!-- PDF -->
@@ -143,7 +144,7 @@
         </div>
         <h3>Dev</h3>
         <p>Encode, decode e utilitários técnicos</p>
-        <span class="cat-count">5 ferramentas</span>
+        <span class="cat-count">10 ferramentas</span>
       </a>
 
       <!-- CRIPTO -->
@@ -161,6 +162,23 @@
         <h3>Cripto</h3>
         <p>QR Code, código de barras e criptografia</p>
         <span class="cat-count">9 ferramentas</span>
+      </a>
+
+      <!-- CALC -->
+      <a href="calc/calculadora-porcentagem.html" class="category-card dc">
+        <div class="cat-icon cat-icon-c">
+          <svg fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <rect x="4" y="2" width="16" height="20" rx="2"/>
+            <line x1="8" y1="8" x2="16" y2="8"/>
+            <line x1="8" y1="12" x2="10" y2="12"/>
+            <line x1="14" y1="12" x2="16" y2="12"/>
+            <line x1="8" y1="16" x2="10" y2="16"/>
+            <line x1="14" y1="16" x2="16" y2="16"/>
+          </svg>
+        </div>
+        <h3>Calc</h3>
+        <p>Calculadoras, conversores e validadores</p>
+        <span class="cat-count">7 ferramentas</span>
       </a>
 
     </div>
@@ -444,6 +462,27 @@
         <button class="fav-btn" data-tool="codigo-barras-lote" title="Favoritar"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
       </a>
 
+      <a href="calc/conversor-moedas.html" class="tool-card dc">
+        <div class="tool-icon cat-icon-c">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path stroke-linecap="round" d="M12 6v2m0 8v2M9 9h4a1.5 1.5 0 0 1 0 3H11a1.5 1.5 0 0 0 0 3h4"/>
+          </svg>
+        </div>
+        <div class="tool-info"><h4>Conversor de moedas</h4><p>Câmbio em tempo real: BRL, USD, EUR e mais</p></div>
+        <button class="fav-btn" data-tool="conversor-moedas" title="Favoritar"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+      </a>
+
+      <a href="calc/calculadora-imc.html" class="tool-card dc">
+        <div class="tool-icon cat-icon-c">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14c-5 0-8 2.5-8 4v1h16v-1c0-1.5-3-4-8-4z"/>
+          </svg>
+        </div>
+        <div class="tool-info"><h4>Calculadora de IMC</h4><p>Índice de Massa Corporal com classificação OMS</p></div>
+        <button class="fav-btn" data-tool="calculadora-imc" title="Favoritar"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+      </a>
+
     </div><!-- /.tools-grid -->
   </div><!-- /.container -->
 
@@ -463,22 +502,32 @@
         <a href="texto/contador-caracteres.html">Contador de caracteres</a>
         <a href="texto/converter-maiusculas.html">Maiúsculas / minúsculas</a>
         <a href="texto/remover-espacos.html">Remover espaços</a>
-        <a href="texto/ordenar-texto.html">Ordenar texto</a>
-        <a href="texto/gerador-senha.html">Gerador de senha</a>
+        <a href="texto/gerador-slug.html">Gerador de slug</a>
+        <a href="texto/comparar-textos.html">Comparar textos</a>
       </div>
       <div class="footer-col">
         <h4>Imagem & PDF</h4>
         <a href="imagem/comprimir-imagem.html">Comprimir imagem</a>
-        <a href="imagem/redimensionar-imagem.html">Redimensionar imagem</a>
+        <a href="imagem/svg-para-png.html">SVG para PNG</a>
+        <a href="imagem/paleta-cores.html">Paleta de cores</a>
         <a href="pdf/juntar-pdf.html">Juntar PDF</a>
         <a href="pdf/comprimir-pdf.html">Comprimir PDF</a>
       </div>
       <div class="footer-col">
         <h4>Dev & Cripto</h4>
         <a href="dev/base64.html">Base64</a>
-        <a href="dev/url-encode.html">URL encode</a>
-        <a href="cripto/binario.html">Código Binário</a>
+        <a href="dev/gerador-uuid.html">Gerador de UUID</a>
+        <a href="dev/regex-tester.html">Regex Tester</a>
         <a href="cripto/qrcode.html">QR Code</a>
+        <a href="cripto/qrcode-pix.html">QR Code Pix</a>
+      </div>
+      <div class="footer-col">
+        <h4>Calc</h4>
+        <a href="calc/calculadora-porcentagem.html">Calculadora de %</a>
+        <a href="calc/conversor-moedas.html">Conversor de moedas</a>
+        <a href="calc/calculadora-imc.html">Calculadora de IMC</a>
+        <a href="calc/juros-compostos.html">Juros compostos</a>
+        <a href="calc/conversor-unidades.html">Conversor de unidades</a>
       </div>
     </div>
     <div class="footer-sobre">

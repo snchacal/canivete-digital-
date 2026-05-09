@@ -46,10 +46,33 @@ const TOOLS = [
   { id: 'leitor-qrcode',         name: 'Leitor de QR Code',              cat: 'cripto', url: '/cripto/leitor-qrcode.html',        desc: 'Leia QR Codes por upload de imagem ou câmera' },
   { id: 'codigo-barras',         name: 'Código de Barras 1D',            cat: 'cripto', url: '/cripto/codigo-barras.html',        desc: 'Gere EAN-13, Code 128, UPC-A e outros formatos' },
   { id: 'codigo-barras-lote',    name: 'Código de Barras em Lote',       cat: 'cripto', url: '/cripto/codigo-barras-lote.html',   desc: 'Gere vários códigos de barras e baixe em ZIP' },
+  // Texto (novas)
+  { id: 'freq-palavras',         name: 'Frequência de palavras',         cat: 'texto',  url: '/texto/freq-palavras.html',          desc: 'Descubra quais palavras aparecem mais no seu texto' },
+  { id: 'lorem-ipsum',           name: 'Gerador de Lorem Ipsum',         cat: 'texto',  url: '/texto/lorem-ipsum.html',            desc: 'Gere texto placeholder para protótipos e layouts' },
+  { id: 'remover-acentos',       name: 'Remover acentos',                cat: 'texto',  url: '/texto/remover-acentos.html',        desc: 'Remove acentos e caracteres especiais do texto' },
+  { id: 'comparar-textos',       name: 'Comparador de textos',           cat: 'texto',  url: '/texto/comparar-textos.html',        desc: 'Compare dois textos e veja as diferenças destacadas' },
+  { id: 'gerador-slug',          name: 'Gerador de slug',                cat: 'texto',  url: '/texto/gerador-slug.html',           desc: 'Converta títulos em slugs limpos para URLs' },
+  // Dev (novas)
+  { id: 'conversor-cores',       name: 'Conversor de cores',             cat: 'dev',    url: '/dev/conversor-cores.html',          desc: 'Converta cores entre HEX, RGB e HSL' },
+  { id: 'gerador-uuid',          name: 'Gerador de UUID',                cat: 'dev',    url: '/dev/gerador-uuid.html',             desc: 'Gere UUIDs v4 únicos e aleatórios' },
+  { id: 'regex-tester',          name: 'Testador de Regex',              cat: 'dev',    url: '/dev/regex-tester.html',             desc: 'Teste expressões regulares em tempo real' },
+  { id: 'minificador',           name: 'Minificador CSS / JS',           cat: 'dev',    url: '/dev/minificador.html',              desc: 'Minifique CSS e JavaScript, reduza o tamanho do arquivo' },
+  { id: 'css-formatter',         name: 'Formatador de CSS',              cat: 'dev',    url: '/dev/css-formatter.html',            desc: 'Formate e embeleze seu CSS ou HTML' },
+  // Imagem (novas)
+  { id: 'svg-para-png',          name: 'SVG para PNG',                   cat: 'imagem', url: '/imagem/svg-para-png.html',          desc: 'Converta arquivos SVG em PNG com qualquer tamanho' },
+  { id: 'paleta-cores',          name: 'Paleta de cores',                cat: 'imagem', url: '/imagem/paleta-cores.html',          desc: 'Extraia as cores dominantes de qualquer imagem' },
+  // Calc
+  { id: 'calc-porcentagem',      name: 'Calculadora de porcentagem',     cat: 'calc',   url: '/calc/calculadora-porcentagem.html', desc: 'Calcule descontos, aumentos e porcentagens' },
+  { id: 'conversor-moedas',      name: 'Conversor de moedas',            cat: 'calc',   url: '/calc/conversor-moedas.html',        desc: 'Converta moedas com câmbio atualizado em tempo real' },
+  { id: 'calc-imc',              name: 'Calculadora de IMC',             cat: 'calc',   url: '/calc/calculadora-imc.html',         desc: 'Calcule seu IMC e veja a classificação da OMS' },
+  { id: 'gerador-cpf-cnpj',      name: 'Gerador de CPF / CNPJ',         cat: 'calc',   url: '/calc/gerador-cpf-cnpj.html',        desc: 'Gere CPF e CNPJ válidos para testes de desenvolvimento' },
+  { id: 'validador-cpf-cnpj',    name: 'Validador de CPF / CNPJ',       cat: 'calc',   url: '/calc/validador-cpf-cnpj.html',      desc: 'Valide CPF e CNPJ em tempo real' },
+  { id: 'juros-compostos',       name: 'Juros compostos',                cat: 'calc',   url: '/calc/juros-compostos.html',         desc: 'Simule rendimentos com juros compostos e aportes mensais' },
+  { id: 'conversor-unidades',    name: 'Conversor de unidades',          cat: 'calc',   url: '/calc/conversor-unidades.html',      desc: 'Converta comprimento, peso, temperatura, área e volume' },
 ];
 
-const CAT_LABELS = { texto: 'Texto', imagem: 'Imagem', pdf: 'PDF', dev: 'Dev', cripto: 'Cripto' };
-const CAT_CLASSES = { texto: 'tc', imagem: 'ic', pdf: 'pc', dev: 'dc', cripto: 'cc' };
+const CAT_LABELS = { texto: 'Texto', imagem: 'Imagem', pdf: 'PDF', dev: 'Dev', cripto: 'Cripto', calc: 'Calc' };
+const CAT_CLASSES = { texto: 'tc', imagem: 'ic', pdf: 'pc', dev: 'dc', cripto: 'cc', calc: 'dc' };
 
 // ---- FAVORITOS ----
 const FAV_KEY  = 'cd_favorites';
@@ -289,6 +312,7 @@ const NAV_CATS = [
   { label: 'PDF',    id: 'pdf'    },
   { label: 'Dev',    id: 'dev'    },
   { label: 'Cripto', id: 'cripto' },
+  { label: 'Calc',   id: 'calc'   },
 ];
 
 function buildNavDropdowns() {

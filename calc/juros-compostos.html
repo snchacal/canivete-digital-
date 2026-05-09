@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Calculadora de Juros Compostos Online — Canivete Digital</title>
+  <meta name="description" content="Calcule juros compostos com aportes mensais. Veja quanto seu dinheiro vai render com simulação mês a mês.">
+  <link rel="canonical" href="https://canivetedg.com.br/calc/juros-compostos.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="juros-compostos">
+<header><div class="container"><div class="header-inner">
+  <a href="../index.html" class="logo"><img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital"></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <nav>
+    <a href="../texto/contador-caracteres.html">Texto</a>
+    <a href="../imagem/comprimir-imagem.html">Imagem</a>
+    <a href="../pdf/juntar-pdf.html">PDF</a>
+    <a href="../dev/base64.html">Dev</a>
+    <a href="../cripto/binario.html">Cripto</a>
+    <a href="calculadora-porcentagem.html" class="active">Calc</a>
+  </nav>
+  <div class="header-search"><svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg><input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off"></div>
+</div></div></header>
+<div class="container"><div class="ad-wrap"><div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div></div></div>
+<div class="container"><div class="tool-page">
+  <div class="tool-main">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span class="sep">›</span><a href="calculadora-porcentagem.html">Calc</a><span class="sep">›</span>Juros compostos</div>
+    <div class="tool-header dc">
+      <div class="cat-badge cat-badge-c"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg> Calc</div>
+      <h1>Calculadora de juros compostos</h1>
+      <p>Simule quanto seu dinheiro vai render com juros compostos e aportes mensais.</p>
+    </div>
+    <div class="tool-box">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <div>
+          <label for="capital">CAPITAL INICIAL (R$)</label>
+          <input type="number" id="capital" placeholder="1000" min="0" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:1rem;box-sizing:border-box;">
+        </div>
+        <div>
+          <label for="aporte">APORTE MENSAL (R$)</label>
+          <input type="number" id="aporte" placeholder="200" min="0" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:1rem;box-sizing:border-box;">
+        </div>
+        <div>
+          <label for="taxa">TAXA MENSAL (%)</label>
+          <input type="number" id="taxa" placeholder="1" step="0.01" min="0" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:1rem;box-sizing:border-box;">
+        </div>
+        <div>
+          <label for="meses">PERÍODO (meses)</label>
+          <input type="number" id="meses" placeholder="60" min="1" max="600" style="width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:1rem;box-sizing:border-box;">
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="calcular()">Calcular</button>
+
+      <div id="resultado" style="display:none;margin-top:20px;">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:4px;">MONTANTE FINAL</div>
+            <div id="res-montante" style="font-size:1.3rem;font-weight:700;color:var(--primary);"></div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:4px;">TOTAL INVESTIDO</div>
+            <div id="res-investido" style="font-size:1.3rem;font-weight:700;"></div>
+          </div>
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:4px;">JUROS GANHOS</div>
+            <div id="res-juros" style="font-size:1.3rem;font-weight:700;color:#22c55e;"></div>
+          </div>
+        </div>
+        <label>EVOLUÇÃO MÊS A MÊS</label>
+        <div style="overflow-x:auto;margin-top:8px;">
+          <table id="tabela" style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+            <thead><tr style="border-bottom:2px solid var(--border);">
+              <th style="padding:6px 8px;text-align:left;">Mês</th>
+              <th style="padding:6px 8px;text-align:right;">Investido</th>
+              <th style="padding:6px 8px;text-align:right;">Juros</th>
+              <th style="padding:6px 8px;text-align:right;">Montante</th>
+            </tr></thead>
+            <tbody id="tabela-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="tool-info">
+      <h2>Como funciona o juro composto?</h2>
+      <p>No juro composto, os juros gerados em cada período são incorporados ao capital e passam a gerar novos juros. Fórmula: M = C×(1+i)ⁿ + A×((1+i)ⁿ−1)/i, onde C é o capital inicial, i é a taxa, n é o período e A é o aporte mensal.</p>
+    </div>
+  </div>
+  <aside class="tool-sidebar">
+    <div class="sidebar-ad"><div class="ad-sidebar"><span>Publicidade • 300×250</span></div></div>
+    <div class="related-tools" id="recent-wrap"><h3>Usadas recentemente</h3><div id="recent-tools"></div></div>
+  </aside>
+</div></div>
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital"></a><p>Ferramentas online gratuitas. Sem cadastro.</p></div>
+    <div class="footer-col"><h4>Texto</h4><a href="../texto/contador-caracteres.html">Contador de caracteres</a><a href="../texto/gerador-senha.html">Gerador de senha</a></div>
+    <div class="footer-col"><h4>Imagem & PDF</h4><a href="../imagem/comprimir-imagem.html">Comprimir imagem</a><a href="../pdf/juntar-pdf.html">Juntar PDF</a></div>
+    <div class="footer-col"><h4>Calculadoras</h4><a href="calculadora-porcentagem.html">Porcentagem</a><a href="calculadora-imc.html">IMC</a><a href="juros-compostos.html">Juros compostos</a><a href="conversor-moedas.html">Conversor de moedas</a></div>
+  </div>
+  <div class="footer-sobre">
+    <div class="footer-sobre-col"><h4>Sobre</h4><p>Ferramentas gratuitas, tudo no browser.</p></div>
+    <div class="footer-sobre-col"><h4>Privacidade</h4><p>Não coletamos dados pessoais.</p></div>
+    <div class="footer-sobre-col"><h4>Contato</h4><p>sjs@sjsproject.com.br</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Canivete Digital</span><span>Feito com ☕ no Brasil</span></div>
+</div></footer>
+<script src="../assets/js/app.js"></script>
+<script>
+const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function calcular(){
+  const C=parseFloat(document.getElementById('capital').value)||0;
+  const A=parseFloat(document.getElementById('aporte').value)||0;
+  const i=parseFloat(document.getElementById('taxa').value)/100;
+  const n=parseInt(document.getElementById('meses').value)||0;
+  if(!i||!n){alert('Preencha taxa e período.');return;}
+  let montante=C, totalInvestido=C;
+  const rows=[];
+  for(let m=1;m<=n;m++){
+    montante=montante*(1+i)+A;
+    totalInvestido+=A;
+    rows.push({m,investido:totalInvestido,juros:montante-totalInvestido,montante});
+  }
+  document.getElementById('res-montante').textContent=brl(montante);
+  document.getElementById('res-investido').textContent=brl(totalInvestido);
+  document.getElementById('res-juros').textContent=brl(montante-totalInvestido);
+  const step=Math.max(1,Math.floor(n/24));
+  const body=rows.filter((_,idx)=>idx===0||(idx+1)%step===0||idx===rows.length-1).map(r=>
+    '<tr style="border-bottom:1px solid var(--border);"><td style="padding:5px 8px;">'+r.m+'</td>'+
+    '<td style="padding:5px 8px;text-align:right;">'+brl(r.investido)+'</td>'+
+    '<td style="padding:5px 8px;text-align:right;color:#22c55e;">'+brl(r.juros)+'</td>'+
+    '<td style="padding:5px 8px;text-align:right;font-weight:600;">'+brl(r.montante)+'</td></tr>'
+  ).join('');
+  document.getElementById('tabela-body').innerHTML=body;
+  document.getElementById('resultado').style.display='block';
+}
+</script>
+</body>
+</html>

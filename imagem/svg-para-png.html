@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Converter SVG para PNG Online Grátis — Canivete Digital</title>
+  <meta name="description" content="Converta arquivos SVG para PNG no browser. Escolha o tamanho e baixe na hora. Grátis, sem cadastro.">
+  <link rel="canonical" href="https://canivetedg.com.br/imagem/svg-para-png.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="svg-para-png">
+<header><div class="container"><div class="header-inner">
+  <a href="../index.html" class="logo"><img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital"></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <nav>
+    <a href="../texto/contador-caracteres.html">Texto</a>
+    <a href="comprimir-imagem.html" class="active">Imagem</a>
+    <a href="../pdf/juntar-pdf.html">PDF</a>
+    <a href="../dev/base64.html">Dev</a>
+    <a href="../cripto/binario.html">Cripto</a>
+    <a href="../calc/calculadora-porcentagem.html">Calc</a>
+  </nav>
+  <div class="header-search"><svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg><input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off"></div>
+</div></div></header>
+
+<div class="container"><div class="ad-wrap"><div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div></div></div>
+
+<div class="container"><div class="tool-page">
+  <div class="tool-main">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span class="sep">›</span><a href="comprimir-imagem.html">Imagem</a><span class="sep">›</span>SVG para PNG</div>
+    <div class="tool-header ic">
+      <div class="cat-badge cat-badge-c"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Imagem</div>
+      <h1>SVG para PNG</h1>
+      <p>Converta arquivos SVG em PNG com qualquer tamanho.</p>
+    </div>
+    <div class="tool-box">
+      <div id="drop-area" class="drop-area" style="cursor:pointer;">
+        <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom:8px;opacity:.4;"><path stroke-linecap="round" d="M12 16V4m0 0L8 8m4-4l4 4"/><rect x="3" y="16" width="18" height="5" rx="1"/></svg>
+        <p>Arraste um arquivo SVG ou clique para selecionar</p>
+        <input type="file" id="file-input" accept=".svg,image/svg+xml" style="display:none;">
+      </div>
+
+      <div id="config-area" style="display:none;margin-top:16px;">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px;">
+          <div>
+            <label>ESCALA</label>
+            <select id="escala" style="margin-top:4px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);">
+              <option value="1">1× (original)</option>
+              <option value="2" selected>2× (recomendado)</option>
+              <option value="3">3×</option>
+              <option value="4">4×</option>
+            </select>
+          </div>
+          <div>
+            <label>LARGURA (px)</label>
+            <input type="number" id="custom-w" placeholder="auto" style="margin-top:4px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);width:100px;">
+          </div>
+          <div>
+            <label>FUNDO</label>
+            <select id="bg" style="margin-top:4px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);">
+              <option value="transparent">Transparente</option>
+              <option value="white">Branco</option>
+              <option value="black">Preto</option>
+            </select>
+          </div>
+        </div>
+        <div id="preview-wrap" style="margin-bottom:16px;text-align:center;">
+          <img id="svg-preview" style="max-width:100%;max-height:200px;border:1px solid var(--border);border-radius:8px;padding:8px;">
+        </div>
+        <div id="dim-info" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px;"></div>
+        <button class="btn btn-primary" onclick="converter()">Converter e Baixar PNG</button>
+      </div>
+      <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+    <div class="tool-info">
+      <h2>Por que converter SVG para PNG?</h2>
+      <p>SVG é um formato vetorial ideal para ícones e logos, mas alguns sistemas só aceitam PNG. A conversão no browser é instantânea e sem enviar arquivos para servidores externos.</p>
+    </div>
+  </div>
+  <aside class="tool-sidebar">
+    <div class="sidebar-ad"><div class="ad-sidebar"><span>Publicidade • 300×250</span></div></div>
+    <div class="related-tools" id="recent-wrap"><h3>Usadas recentemente</h3><div id="recent-tools"></div></div>
+  </aside>
+</div></div>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital"></a><p>Ferramentas online gratuitas para texto, imagem, PDF e desenvolvimento. Sem cadastro.</p></div>
+    <div class="footer-col"><h4>Texto</h4><a href="../texto/contador-caracteres.html">Contador de caracteres</a><a href="../texto/converter-maiusculas.html">Maiúsculas/minúsculas</a><a href="../texto/remover-espacos.html">Remover espaços</a><a href="../texto/gerador-senha.html">Gerador de senha</a></div>
+    <div class="footer-col"><h4>Imagem & PDF</h4><a href="comprimir-imagem.html">Comprimir imagem</a><a href="converter-jpg-png.html">Converter JPG/PNG</a><a href="../pdf/juntar-pdf.html">Juntar PDF</a><a href="../pdf/comprimir-pdf.html">Comprimir PDF</a></div>
+    <div class="footer-col"><h4>Dev & Cripto</h4><a href="../dev/base64.html">Base64</a><a href="../dev/url-encode.html">URL encode</a><a href="../cripto/qrcode.html">QR Code</a><a href="../cripto/binario.html">Código Binário</a></div>
+  </div>
+  <div class="footer-sobre">
+    <div class="footer-sobre-col"><h4>Sobre o Site</h4><p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia. Tudo direto no browser, sem instalar nada.</p></div>
+    <div class="footer-sobre-col"><h4>Privacidade</h4><p>Não coletamos dados pessoais. Tudo fica no seu dispositivo.</p></div>
+    <div class="footer-sobre-col"><h4>Contato</h4><p>sjs@sjsproject.com.br</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Canivete Digital — Todos os direitos reservados.</span><span>Feito com ☕ no Brasil</span></div>
+</div></footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let svgContent='', svgName='imagem';
+const drop=document.getElementById('drop-area');
+const input=document.getElementById('file-input');
+drop.addEventListener('click',()=>input.click());
+drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('dragover');});
+drop.addEventListener('dragleave',()=>drop.classList.remove('dragover'));
+drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('dragover');if(e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0]);});
+input.addEventListener('change',()=>{if(input.files[0])loadFile(input.files[0]);});
+function loadFile(f){
+  if(!f.name.endsWith('.svg')&&f.type!=='image/svg+xml'){alert('Por favor selecione um arquivo SVG.');return;}
+  svgName=f.name.replace('.svg','');
+  const reader=new FileReader();
+  reader.onload=e=>{
+    svgContent=e.target.result;
+    const blob=new Blob([svgContent],{type:'image/svg+xml'});
+    const url=URL.createObjectURL(blob);
+    const img=document.getElementById('svg-preview');
+    img.onload=()=>{
+      document.getElementById('dim-info').textContent='Dimensões originais: '+img.naturalWidth+'×'+img.naturalHeight+' px';
+      URL.revokeObjectURL(url);
+    };
+    img.src=url;
+    document.getElementById('config-area').style.display='block';
+  };
+  reader.readAsText(f);
+}
+function converter(){
+  if(!svgContent) return;
+  const escala=parseFloat(document.getElementById('escala').value);
+  const customW=parseInt(document.getElementById('custom-w').value)||0;
+  const bg=document.getElementById('bg').value;
+  const img=document.getElementById('svg-preview');
+  const w=customW||(img.naturalWidth*escala)||512;
+  const h=customW?(img.naturalHeight*(customW/img.naturalWidth)):(img.naturalHeight*escala)||512;
+  const canvas=document.getElementById('canvas');
+  canvas.width=w; canvas.height=h;
+  const ctx=canvas.getContext('2d');
+  if(bg!=='transparent'){ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);}
+  const blob=new Blob([svgContent],{type:'image/svg+xml'});
+  const url=URL.createObjectURL(blob);
+  const i=new Image();
+  i.onload=()=>{
+    ctx.drawImage(i,0,0,w,h);
+    const a=document.createElement('a');
+    a.href=canvas.toDataURL('image/png');
+    a.download=svgName+'@'+escala+'x.png';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  i.src=url;
+}
+</script>
+</body>
+</html>

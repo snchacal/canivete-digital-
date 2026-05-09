@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Gerador de CPF e CNPJ para Testes — Canivete Digital</title>
+  <meta name="description" content="Gere CPF e CNPJ válidos para testes de desenvolvimento. Apenas para fins de teste. Grátis, sem cadastro.">
+  <link rel="canonical" href="https://canivetedg.com.br/calc/gerador-cpf-cnpj.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="gerador-cpf-cnpj">
+<header><div class="container"><div class="header-inner">
+  <a href="../index.html" class="logo"><img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital"></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <nav>
+    <a href="../texto/contador-caracteres.html">Texto</a>
+    <a href="../imagem/comprimir-imagem.html">Imagem</a>
+    <a href="../pdf/juntar-pdf.html">PDF</a>
+    <a href="../dev/base64.html">Dev</a>
+    <a href="../cripto/binario.html">Cripto</a>
+    <a href="calculadora-porcentagem.html" class="active">Calc</a>
+  </nav>
+  <div class="header-search"><svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg><input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off"></div>
+</div></div></header>
+<div class="container"><div class="ad-wrap"><div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div></div></div>
+<div class="container"><div class="tool-page">
+  <div class="tool-main">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span class="sep">›</span><a href="calculadora-porcentagem.html">Calc</a><span class="sep">›</span>Gerador de CPF / CNPJ</div>
+    <div class="tool-header dc">
+      <div class="cat-badge cat-badge-c"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg> Calc</div>
+      <h1>Gerador de CPF / CNPJ</h1>
+      <p>Gere números válidos para testes de desenvolvimento.</p>
+    </div>
+    <div class="tool-box">
+      <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:0.85rem;color:#664d03;">
+        ⚠️ <strong>Apenas para testes.</strong> Os números gerados são matematicamente válidos mas não pertencem a pessoas ou empresas reais. Usar CPF/CNPJ falso em transações é crime.
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <button class="btn" id="tab-cpf" onclick="setTab('cpf')" style="font-weight:700;">CPF</button>
+        <button class="btn" id="tab-cnpj" onclick="setTab('cnpj')">CNPJ</button>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
+        <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;text-transform:none;letter-spacing:0;cursor:pointer;"><input type="checkbox" id="formatado" checked> Com formatação</label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;text-transform:none;letter-spacing:0;cursor:pointer;">
+          Quantidade:
+          <input type="number" id="qtd" value="1" min="1" max="20" style="width:60px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);">
+        </label>
+      </div>
+      <button class="btn btn-primary" onclick="gerar()">Gerar</button>
+      <div id="resultados" style="margin-top:16px;display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+    <div class="tool-info">
+      <h2>Para que serve?</h2>
+      <p>Durante o desenvolvimento de sistemas, formulários e APIs, é necessário testar validações com números de CPF e CNPJ que passem na verificação dos dígitos verificadores. Esta ferramenta gera números com a estrutura matemática correta exclusivamente para esse fim.</p>
+    </div>
+  </div>
+  <aside class="tool-sidebar">
+    <div class="sidebar-ad"><div class="ad-sidebar"><span>Publicidade • 300×250</span></div></div>
+    <div class="related-tools" id="recent-wrap"><h3>Usadas recentemente</h3><div id="recent-tools"></div></div>
+  </aside>
+</div></div>
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital"></a><p>Ferramentas online gratuitas. Sem cadastro.</p></div>
+    <div class="footer-col"><h4>Texto</h4><a href="../texto/contador-caracteres.html">Contador de caracteres</a><a href="../texto/gerador-senha.html">Gerador de senha</a></div>
+    <div class="footer-col"><h4>Imagem & PDF</h4><a href="../imagem/comprimir-imagem.html">Comprimir imagem</a><a href="../pdf/juntar-pdf.html">Juntar PDF</a></div>
+    <div class="footer-col"><h4>Calculadoras</h4><a href="calculadora-porcentagem.html">Porcentagem</a><a href="calculadora-imc.html">IMC</a><a href="validador-cpf-cnpj.html">Validador CPF/CNPJ</a></div>
+  </div>
+  <div class="footer-sobre">
+    <div class="footer-sobre-col"><h4>Sobre</h4><p>Ferramentas gratuitas, tudo no browser.</p></div>
+    <div class="footer-sobre-col"><h4>Privacidade</h4><p>Não coletamos dados pessoais.</p></div>
+    <div class="footer-sobre-col"><h4>Contato</h4><p>sjs@sjsproject.com.br</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Canivete Digital</span><span>Feito com ☕ no Brasil</span></div>
+</div></footer>
+<script src="../assets/js/app.js"></script>
+<script>
+let tipo='cpf';
+function setTab(t){tipo=t;document.getElementById('tab-cpf').style.fontWeight=t==='cpf'?'700':'400';document.getElementById('tab-cnpj').style.fontWeight=t==='cnpj'?'700':'400';}
+function rnd(n){return Math.floor(Math.random()*n);}
+function dvCpf(nums){let s=0;nums.forEach((n,i)=>s+=n*(nums.length+1-i));const r=s%11;return r<2?0:11-r;}
+function gerarCpf(fmt){
+  const n=Array.from({length:9},()=>rnd(10));
+  n.push(dvCpf(n));n.push(dvCpf(n));
+  const s=n.join('');
+  return fmt?s.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/,'$1.$2.$3-$4'):s;
+}
+function dvCnpj(nums){
+  const w=nums.length===12?[5,4,3,2,9,8,7,6,5,4,3,2]:[6,5,4,3,2,9,8,7,6,5,4,3,2];
+  let s=0;nums.forEach((n,i)=>s+=n*w[i]);
+  const r=s%11;return r<2?0:11-r;
+}
+function gerarCnpj(fmt){
+  const n=Array.from({length:8},()=>rnd(10));
+  n.push(0,0,0,1);
+  n.push(dvCnpj(n));n.push(dvCnpj(n));
+  const s=n.join('');
+  return fmt?s.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,'$1.$2.$3/$4-$5'):s;
+}
+function gerar(){
+  const qtd=Math.max(1,Math.min(20,parseInt(document.getElementById('qtd').value)||1));
+  const fmt=document.getElementById('formatado').checked;
+  const items=[];
+  for(let i=0;i<qtd;i++) items.push(tipo==='cpf'?gerarCpf(fmt):gerarCnpj(fmt));
+  const html=items.map(v=>
+    '<div style="display:flex;gap:8px;align-items:center;">'+
+    '<code style="flex:1;font-family:monospace;font-size:1.1rem;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">'+v+'</code>'+
+    '<button class="btn" style="padding:6px 12px;" onclick="navigator.clipboard.writeText(\''+v+'\').then(()=>{this.textContent=\'Copiado!\';setTimeout(()=>this.textContent=\'Copiar\',1500)})">Copiar</button>'+
+    '</div>'
+  ).join('');
+  document.getElementById('resultados').innerHTML=html;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Formatador de CSS e HTML Online — Canivete Digital</title>
+  <meta name="description" content="Formate e embeleze seu CSS ou HTML com indentação correta. Beautifier online grátis, sem cadastro.">
+  <link rel="canonical" href="https://canivetedg.com.br/dev/css-formatter.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="css-formatter">
+<header><div class="container"><div class="header-inner">
+  <a href="../index.html" class="logo"><img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital"></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <nav>
+    <a href="../texto/contador-caracteres.html">Texto</a>
+    <a href="../imagem/comprimir-imagem.html">Imagem</a>
+    <a href="../pdf/juntar-pdf.html">PDF</a>
+    <a href="base64.html" class="active">Dev</a>
+    <a href="../cripto/binario.html">Cripto</a>
+    <a href="../calc/calculadora-porcentagem.html">Calc</a>
+  </nav>
+  <div class="header-search"><svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg><input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off"></div>
+</div></div></header>
+
+<div class="container"><div class="ad-wrap"><div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div></div></div>
+
+<div class="container"><div class="tool-page">
+  <div class="tool-main">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span class="sep">›</span><a href="base64.html">Dev</a><span class="sep">›</span>Formatador de CSS</div>
+    <div class="tool-header dc">
+      <div class="cat-badge cat-badge-c"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Dev</div>
+      <h1>Formatador de CSS</h1>
+      <p>Formate e organize seu CSS com indentação correta.</p>
+    </div>
+    <div class="tool-box">
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <button class="btn" id="tab-css" onclick="setTab('css')" style="font-weight:700;">CSS</button>
+        <button class="btn" id="tab-html" onclick="setTab('html')">HTML</button>
+      </div>
+      <label for="input-code">CÓDIGO PARA FORMATAR</label>
+      <textarea id="input-code" rows="10" placeholder="Cole seu CSS aqui…" style="font-family:monospace;font-size:0.85rem;"></textarea>
+      <button class="btn btn-primary" style="margin-top:10px;" onclick="formatar()">Formatar</button>
+      <label style="margin-top:16px;">RESULTADO FORMATADO</label>
+      <textarea id="output-code" rows="12" readonly style="margin-top:4px;font-family:monospace;font-size:0.85rem;"></textarea>
+      <button class="btn" style="margin-top:8px;" onclick="copiar()">Copiar resultado</button>
+    </div>
+    <div class="tool-info">
+      <h2>Para que serve formatar CSS?</h2>
+      <p>Código CSS minificado ou mal indentado é difícil de ler e manter. O formatador adiciona quebras de linha e espaços no lugar certo, deixando cada propriedade em sua própria linha e respeitando a hierarquia dos seletores.</p>
+    </div>
+  </div>
+  <aside class="tool-sidebar">
+    <div class="sidebar-ad"><div class="ad-sidebar"><span>Publicidade • 300×250</span></div></div>
+    <div class="related-tools" id="recent-wrap"><h3>Usadas recentemente</h3><div id="recent-tools"></div></div>
+  </aside>
+</div></div>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital"></a><p>Ferramentas online gratuitas para texto, imagem, PDF e desenvolvimento. Sem cadastro.</p></div>
+    <div class="footer-col"><h4>Texto</h4><a href="../texto/contador-caracteres.html">Contador de caracteres</a><a href="../texto/converter-maiusculas.html">Maiúsculas/minúsculas</a><a href="../texto/remover-espacos.html">Remover espaços</a><a href="../texto/gerador-senha.html">Gerador de senha</a></div>
+    <div class="footer-col"><h4>Imagem & PDF</h4><a href="../imagem/comprimir-imagem.html">Comprimir imagem</a><a href="../imagem/converter-jpg-png.html">Converter JPG/PNG</a><a href="../pdf/juntar-pdf.html">Juntar PDF</a><a href="../pdf/comprimir-pdf.html">Comprimir PDF</a></div>
+    <div class="footer-col"><h4>Dev & Cripto</h4><a href="base64.html">Base64</a><a href="url-encode.html">URL encode</a><a href="../cripto/qrcode.html">QR Code</a><a href="../cripto/binario.html">Código Binário</a></div>
+  </div>
+  <div class="footer-sobre">
+    <div class="footer-sobre-col"><h4>Sobre o Site</h4><p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia. Tudo direto no browser, sem instalar nada.</p></div>
+    <div class="footer-sobre-col"><h4>Privacidade</h4><p>Não coletamos dados pessoais. Tudo fica no seu dispositivo.</p></div>
+    <div class="footer-sobre-col"><h4>Contato</h4><p>sjs@sjsproject.com.br</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Canivete Digital — Todos os direitos reservados.</span><span>Feito com ☕ no Brasil</span></div>
+</div></footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+let currentTab='css';
+function setTab(t){
+  currentTab=t;
+  document.getElementById('tab-css').style.fontWeight=t==='css'?'700':'400';
+  document.getElementById('tab-html').style.fontWeight=t==='html'?'700':'400';
+  document.getElementById('input-code').placeholder='Cole seu '+(t==='css'?'CSS':'HTML')+' aqui…';
+}
+function formatCSS(s){
+  s=s.replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s+/g,' ').trim();
+  let out='', indent=0;
+  for(let i=0;i<s.length;i++){
+    const c=s[i];
+    if(c==='{'){out+=' {\n'+'  '.repeat(++indent);continue;}
+    if(c==='}'){indent=Math.max(0,indent-1);out=out.trimEnd()+'\n'+'  '.repeat(indent)+'}\n\n';continue;}
+    if(c===';'){out+=';\n'+'  '.repeat(indent);continue;}
+    out+=c;
+  }
+  return out.replace(/\n{3,}/g,'\n\n').trim();
+}
+function formatHTML(s){
+  const INDENT='  ';
+  let out='',level=0;
+  s=s.replace(/>\s+</g,'><').trim();
+  const tokens=s.split(/(?=>)|(?<=<[^>]+>)/);
+  tokens.forEach(tok=>{
+    tok=tok.trim();
+    if(!tok) return;
+    if(/^<\//.test(tok)){level=Math.max(0,level-1);out+=INDENT.repeat(level)+tok+'\n';}
+    else if(/^<[^!]/.test(tok)&&!/\/>$/.test(tok)&&!/<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)/i.test(tok)){
+      out+=INDENT.repeat(level)+tok+'\n';level++;
+    } else {out+=INDENT.repeat(level)+tok+'\n';}
+  });
+  return out.trim();
+}
+function formatar(){
+  const input=document.getElementById('input-code').value;
+  if(!input.trim()) return;
+  document.getElementById('output-code').value=currentTab==='css'?formatCSS(input):formatHTML(input);
+}
+function copiar(){
+  navigator.clipboard.writeText(document.getElementById('output-code').value).then(()=>{
+    const btn=document.querySelector('button.btn:last-of-type');
+    btn.textContent='Copiado!';setTimeout(()=>btn.textContent='Copiar resultado',1500);
+  });
+}
+</script>
+</body>
+</html>

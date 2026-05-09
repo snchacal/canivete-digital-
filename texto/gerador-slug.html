@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Gerador de Slug para URL Online — Canivete Digital</title>
+  <meta name="description" content='Converta títulos em slugs para URL. Transforma "Meu Título" em "meu-titulo" com um clique. Grátis.'>
+  <link rel="canonical" href="https://canivetedg.com.br/texto/gerador-slug.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body data-tool-id="gerador-slug">
+<header><div class="container"><div class="header-inner">
+  <a href="../index.html" class="logo"><img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital"></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <nav>
+    <a href="contador-caracteres.html" class="active">Texto</a>
+    <a href="../imagem/comprimir-imagem.html">Imagem</a>
+    <a href="../pdf/juntar-pdf.html">PDF</a>
+    <a href="../dev/base64.html">Dev</a>
+    <a href="../cripto/binario.html">Cripto</a>
+    <a href="../calc/calculadora-porcentagem.html">Calc</a>
+  </nav>
+  <div class="header-search"><svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg><input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off"></div>
+</div></div></header>
+
+<div class="container"><div class="ad-wrap"><div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div></div></div>
+
+<div class="container"><div class="tool-page">
+  <div class="tool-main">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span class="sep">›</span><a href="contador-caracteres.html">Texto</a><span class="sep">›</span>Gerador de slug</div>
+    <div class="tool-header tc">
+      <div class="cat-badge cat-badge-c"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h7"/></svg> Texto</div>
+      <h1>Gerador de slug</h1>
+      <p>Converta qualquer título em um slug limpo para URLs.</p>
+    </div>
+    <div class="tool-box">
+      <label for="input-text">SEU TÍTULO</label>
+      <input type="text" id="input-text" placeholder="Ex: Meu Artigo Incrível sobre SEO!" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-size:1rem;box-sizing:border-box;">
+
+      <div id="resultados" style="margin-top:20px;display:none;">
+        <div class="slug-row" id="row-slug">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <label style="margin:0;">SLUG (com hífens)</label>
+            <button class="btn" style="padding:4px 12px;font-size:0.78rem;" onclick="copiarSlug('slug-val')">Copiar</button>
+          </div>
+          <div id="slug-val" style="font-family:monospace;font-size:1.05rem;padding:12px 14px;background:var(--surface-alt,var(--surface));border:1px solid var(--border);border-radius:8px;word-break:break-all;"></div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <label style="margin:0;">COM UNDERSCORES</label>
+            <button class="btn" style="padding:4px 12px;font-size:0.78rem;" onclick="copiarSlug('slug-under')">Copiar</button>
+          </div>
+          <div id="slug-under" style="font-family:monospace;font-size:0.95rem;padding:10px 14px;background:var(--surface-alt,var(--surface));border:1px solid var(--border);border-radius:8px;word-break:break-all;color:var(--text-muted);"></div>
+        </div>
+        <div style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <label style="margin:0;">MAIÚSCULAS</label>
+            <button class="btn" style="padding:4px 12px;font-size:0.78rem;" onclick="copiarSlug('slug-upper')">Copiar</button>
+          </div>
+          <div id="slug-upper" style="font-family:monospace;font-size:0.95rem;padding:10px 14px;background:var(--surface-alt,var(--surface));border:1px solid var(--border);border-radius:8px;word-break:break-all;color:var(--text-muted);"></div>
+        </div>
+      </div>
+    </div>
+    <div class="tool-info">
+      <h2>O que é um slug?</h2>
+      <p>Slug é a parte de uma URL que identifica uma página de forma legível. Por exemplo, em "seusite.com/meu-artigo-incrivel", o slug é "meu-artigo-incrivel". Slugs bem formados melhoram o SEO e a usabilidade das URLs.</p>
+      <h2>Como usar</h2>
+      <p>Digite ou cole seu título no campo acima. O slug é gerado automaticamente, removendo acentos, convertendo espaços em hífens e eliminando caracteres especiais. Clique em "Copiar" para usar o resultado.</p>
+    </div>
+  </div>
+  <aside class="tool-sidebar">
+    <div class="sidebar-ad"><div class="ad-sidebar"><span>Publicidade • 300×250</span></div></div>
+    <div class="related-tools" id="recent-wrap"><h3>Usadas recentemente</h3><div id="recent-tools"></div></div>
+  </aside>
+</div></div>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital"></a><p>Ferramentas online gratuitas para texto, imagem, PDF e desenvolvimento. Sem cadastro.</p></div>
+    <div class="footer-col"><h4>Texto</h4><a href="contador-caracteres.html">Contador de caracteres</a><a href="converter-maiusculas.html">Maiúsculas/minúsculas</a><a href="remover-espacos.html">Remover espaços</a><a href="gerador-senha.html">Gerador de senha</a></div>
+    <div class="footer-col"><h4>Imagem & PDF</h4><a href="../imagem/comprimir-imagem.html">Comprimir imagem</a><a href="../imagem/converter-jpg-png.html">Converter JPG/PNG</a><a href="../pdf/juntar-pdf.html">Juntar PDF</a><a href="../pdf/comprimir-pdf.html">Comprimir PDF</a></div>
+    <div class="footer-col"><h4>Dev & Cripto</h4><a href="../dev/base64.html">Base64</a><a href="../dev/url-encode.html">URL encode</a><a href="../cripto/qrcode.html">QR Code</a><a href="../cripto/binario.html">Código Binário</a></div>
+  </div>
+  <div class="footer-sobre">
+    <div class="footer-sobre-col"><h4>Sobre o Site</h4><p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia. Tudo direto no browser, sem instalar nada.</p></div>
+    <div class="footer-sobre-col"><h4>Privacidade</h4><p>Não coletamos dados pessoais. Tudo fica no seu dispositivo.</p></div>
+    <div class="footer-sobre-col"><h4>Contato</h4><p>sjs@sjsproject.com.br</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Canivete Digital — Todos os direitos reservados.</span><span>Feito com ☕ no Brasil</span></div>
+</div></footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+function toSlug(str, sep) {
+  return str.normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/ç/g,'c').replace(/Ç/g,'c')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g,'')
+    .trim()
+    .replace(/[\s-]+/g, sep);
+}
+function atualizar() {
+  const v = document.getElementById('input-text').value;
+  if (!v.trim()) { document.getElementById('resultados').style.display='none'; return; }
+  const slug = toSlug(v,'-');
+  document.getElementById('slug-val').textContent = slug;
+  document.getElementById('slug-under').textContent = toSlug(v,'_');
+  document.getElementById('slug-upper').textContent = slug.toUpperCase();
+  document.getElementById('resultados').style.display='block';
+}
+function copiarSlug(id) {
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const btns = document.querySelectorAll('button.btn');
+    btns.forEach(b=>{ if(b.getAttribute('onclick')==='copiarSlug(\''+id+'\')') { b.textContent='Copiado!'; setTimeout(()=>b.textContent='Copiar',1500); } });
+  });
+}
+document.getElementById('input-text').addEventListener('input', atualizar);
+</script>
+</body>
+</html>

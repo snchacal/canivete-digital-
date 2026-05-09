@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3847950831860295" crossorigin="anonymous"></script>
+  <title>Testador de Regex Online — Canivete Digital</title>
+  <meta name="description" content="Teste expressões regulares em tempo real. Veja matches destacados no texto e grupos capturados. Grátis.">
+  <link rel="canonical" href="https://canivetedg.com.br/dev/regex-tester.html">
+  <link rel="icon" type="image/png" href="../assets/img/Favicon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .regex-input-wrap { display:flex; gap:8px; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:8px 12px; }
+    .regex-slash { font-family:monospace; font-size:1.2rem; color:var(--text-muted); }
+    .regex-input-wrap input { flex:1; border:none; background:transparent; color:var(--text); font-family:monospace; font-size:1rem; outline:none; }
+    .flags-wrap { display:flex; gap:8px; }
+    .flag-btn { padding:4px 10px; border:1px solid var(--border); border-radius:6px; font-family:monospace; font-size:0.85rem; cursor:pointer; background:var(--surface); color:var(--text); }
+    .flag-btn.active { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .highlight { background:#fef08a; border-radius:2px; }
+    [data-theme="dark"] .highlight { background:#713f12; color:#fef9c3; }
+    .match-item { font-family:monospace; font-size:0.82rem; padding:4px 8px; background:var(--surface); border:1px solid var(--border); border-radius:6px; margin-bottom:4px; }
+  </style>
+</head>
+<body data-tool-id="regex-tester">
+<header><div class="container"><div class="header-inner">
+  <a href="../index.html" class="logo"><img src="../assets/img/logo.png" class="logo-img" alt="Canivete Digital"></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Menu"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <nav>
+    <a href="../texto/contador-caracteres.html">Texto</a>
+    <a href="../imagem/comprimir-imagem.html">Imagem</a>
+    <a href="../pdf/juntar-pdf.html">PDF</a>
+    <a href="base64.html" class="active">Dev</a>
+    <a href="../cripto/binario.html">Cripto</a>
+    <a href="../calc/calculadora-porcentagem.html">Calc</a>
+  </nav>
+  <div class="header-search"><svg class="s-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg><input type="text" id="header-search" placeholder="Buscar ferramenta…" autocomplete="off"></div>
+</div></div></header>
+
+<div class="container"><div class="ad-wrap"><div class="ad-banner-leaderboard"><span>Publicidade • 728×90</span></div></div></div>
+
+<div class="container"><div class="tool-page">
+  <div class="tool-main">
+    <div class="breadcrumb"><a href="../index.html">Início</a><span class="sep">›</span><a href="base64.html">Dev</a><span class="sep">›</span>Testador de Regex</div>
+    <div class="tool-header dc">
+      <div class="cat-badge cat-badge-c"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Dev</div>
+      <h1>Testador de Regex</h1>
+      <p>Teste expressões regulares em tempo real com matches destacados.</p>
+    </div>
+    <div class="tool-box">
+      <label>EXPRESSÃO REGULAR</label>
+      <div class="regex-input-wrap" style="margin-top:4px;">
+        <span class="regex-slash">/</span>
+        <input type="text" id="regex-input" placeholder="sua regex aqui…" autocomplete="off" autocorrect="off" spellcheck="false">
+        <span class="regex-slash">/</span>
+        <div class="flags-wrap">
+          <button class="flag-btn active" id="flag-g" onclick="toggleFlag('g')">g</button>
+          <button class="flag-btn active" id="flag-i" onclick="toggleFlag('i')">i</button>
+          <button class="flag-btn" id="flag-m" onclick="toggleFlag('m')">m</button>
+        </div>
+      </div>
+      <div id="regex-error" style="color:#dc2626;font-size:0.82rem;margin-top:6px;display:none;"></div>
+
+      <label style="margin-top:16px;">TEXTO DE TESTE</label>
+      <textarea id="test-input" rows="7" placeholder="Cole o texto que quer testar aqui…" style="margin-top:4px;"></textarea>
+
+      <div id="resultado-wrap" style="margin-top:16px;display:none;">
+        <div id="match-count" style="font-size:0.82rem;color:var(--text-muted);margin-bottom:10px;"></div>
+        <label>TEXTO COM MATCHES DESTACADOS</label>
+        <div id="highlighted" style="margin-top:4px;font-family:monospace;font-size:0.875rem;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;line-height:1.8;white-space:pre-wrap;word-break:break-word;"></div>
+        <div id="matches-list" style="margin-top:12px;"></div>
+      </div>
+    </div>
+    <div class="tool-info">
+      <h2>O que são expressões regulares?</h2>
+      <p>Regex (expressões regulares) são padrões usados para encontrar, validar ou substituir texto. São usadas em programação, editores de código e ferramentas de busca para encontrar padrões complexos em strings.</p>
+      <h2>Flags</h2>
+      <p><strong>g</strong> — encontra todos os matches (global). <strong>i</strong> — ignora maiúsculas/minúsculas. <strong>m</strong> — trata cada linha como início/fim de string.</p>
+    </div>
+  </div>
+  <aside class="tool-sidebar">
+    <div class="sidebar-ad"><div class="ad-sidebar"><span>Publicidade • 300×250</span></div></div>
+    <div class="related-tools" id="recent-wrap"><h3>Usadas recentemente</h3><div id="recent-tools"></div></div>
+  </aside>
+</div></div>
+
+<footer><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../assets/img/logo.png" class="footer-logo-img" alt="Canivete Digital"></a><p>Ferramentas online gratuitas para texto, imagem, PDF e desenvolvimento. Sem cadastro.</p></div>
+    <div class="footer-col"><h4>Texto</h4><a href="../texto/contador-caracteres.html">Contador de caracteres</a><a href="../texto/converter-maiusculas.html">Maiúsculas/minúsculas</a><a href="../texto/remover-espacos.html">Remover espaços</a><a href="../texto/gerador-senha.html">Gerador de senha</a></div>
+    <div class="footer-col"><h4>Imagem & PDF</h4><a href="../imagem/comprimir-imagem.html">Comprimir imagem</a><a href="../imagem/converter-jpg-png.html">Converter JPG/PNG</a><a href="../pdf/juntar-pdf.html">Juntar PDF</a><a href="../pdf/comprimir-pdf.html">Comprimir PDF</a></div>
+    <div class="footer-col"><h4>Dev & Cripto</h4><a href="base64.html">Base64</a><a href="url-encode.html">URL encode</a><a href="../cripto/qrcode.html">QR Code</a><a href="../cripto/binario.html">Código Binário</a></div>
+  </div>
+  <div class="footer-sobre">
+    <div class="footer-sobre-col"><h4>Sobre o Site</h4><p>O Canivete Digital reúne ferramentas gratuitas para uso no dia a dia. Tudo direto no browser, sem instalar nada.</p></div>
+    <div class="footer-sobre-col"><h4>Privacidade</h4><p>Não coletamos dados pessoais. Tudo fica no seu dispositivo.</p></div>
+    <div class="footer-sobre-col"><h4>Contato</h4><p>sjs@sjsproject.com.br</p></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 Canivete Digital — Todos os direitos reservados.</span><span>Feito com ☕ no Brasil</span></div>
+</div></footer>
+
+<script src="../assets/js/app.js"></script>
+<script>
+const activeFlags = new Set(['g','i']);
+function toggleFlag(f){
+  activeFlags.has(f)?activeFlags.delete(f):activeFlags.add(f);
+  document.getElementById('flag-'+f).classList.toggle('active', activeFlags.has(f));
+  testar();
+}
+function getFlags(){ return [...activeFlags].join(''); }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function testar(){
+  const pattern = document.getElementById('regex-input').value;
+  const texto = document.getElementById('test-input').value;
+  const errEl = document.getElementById('regex-error');
+  const resWrap = document.getElementById('resultado-wrap');
+
+  if(!pattern||!texto){ resWrap.style.display='none'; errEl.style.display='none'; return; }
+
+  let regex;
+  try {
+    const flags = getFlags();
+    regex = new RegExp(pattern, flags.includes('g')?flags:flags+'g');
+    errEl.style.display='none';
+  } catch(e) {
+    errEl.textContent='Regex inválida: '+e.message;
+    errEl.style.display='block';
+    resWrap.style.display='none';
+    return;
+  }
+
+  const matches = [...texto.matchAll(regex)];
+  document.getElementById('match-count').textContent = matches.length + ' match(es) encontrado(s)';
+
+  let highlighted = '';
+  let last=0;
+  matches.forEach(m=>{
+    highlighted += esc(texto.slice(last,m.index));
+    highlighted += '<mark class="highlight">'+esc(m[0])+'</mark>';
+    last = m.index+m[0].length;
+  });
+  highlighted += esc(texto.slice(last));
+  document.getElementById('highlighted').innerHTML = highlighted;
+
+  const groups = matches.flatMap((m,i)=>{
+    if(m.length<=1) return [];
+    return ['<div class="match-item">Match '+(i+1)+': '+m.slice(1).map((g,j)=>'grupo '+(j+1)+': '+(g||'(vazio)')).join(' | ')+'</div>'];
+  }).join('');
+  document.getElementById('matches-list').innerHTML = groups ? '<label>GRUPOS CAPTURADOS</label><div style="margin-top:6px;">'+groups+'</div>' : '';
+  resWrap.style.display='block';
+}
+
+document.getElementById('regex-input').addEventListener('input', testar);
+document.getElementById('test-input').addEventListener('input', testar);
+</script>
+</body>
+</html>
