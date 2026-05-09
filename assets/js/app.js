@@ -363,7 +363,7 @@ function buildNavDropdowns() {
     header.textContent = catInfo.label;
     dd.appendChild(header);
 
-    tools.forEach(tool => {
+    [...tools].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR')).forEach(tool => {
       const link = document.createElement('a');
       link.className = 'nav-dd-item';
       link.href = base + tool.url.slice(1); // remove leading /
