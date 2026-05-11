@@ -51,9 +51,23 @@
       <button class="btn btn-primary" onclick="gerar()">Gerar</button>
       <div id="resultados" style="margin-top:16px;display:flex;flex-direction:column;gap:8px;"></div>
     </div>
-    <div class="tool-info">
-      <h2>Para que serve?</h2>
-      <p>Durante o desenvolvimento de sistemas, formulários e APIs, é necessário testar validações com números de CPF e CNPJ que passem na verificação dos dígitos verificadores. Esta ferramenta gera números com a estrutura matemática correta exclusivamente para esse fim.</p>
+        <div class="howto">
+      <h2>Como usar</h2>
+      <ol>
+        <li>Escolha entre gerar CPF ou CNPJ.</li>
+        <li>Selecione a quantidade de números (até 20 por vez).</li>
+        <li>Clique em <strong>Gerar</strong> e copie os números para usar nos testes do seu sistema.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>Os CPFs e CNPJs gerados por esta ferramenta passam na verificação matemática dos dígitos verificadores, mas não pertencem a nenhuma pessoa ou empresa real. São válidos somente para testes de desenvolvimento.</p>
+      <ul>
+        <li>Use em formulários de cadastro durante o desenvolvimento para testar campos de validação sem usar dados reais de terceiros.</li>
+        <li>Nunca use números gerados para cadastros em sistemas reais, tentativas de fraude ou qualquer fim além de testes — isso constitui crime.</li>
+        <li>A validação matemática usa o algoritmo módulo 11 da Receita Federal — o mesmo usado em produção nos sistemas do governo.</li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="validador-cpf-cnpj.html">Validador de CPF / CNPJ</a> — valide os números gerados para confirmar que os dígitos verificadores estão corretos antes de usar nos testes.</p>
     </div>
   </div>
   <aside class="tool-sidebar">

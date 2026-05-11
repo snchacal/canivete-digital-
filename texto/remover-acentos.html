@@ -45,11 +45,23 @@
       <textarea id="output-text" rows="7" readonly style="margin-top:4px;background:var(--surface-alt,var(--surface));"></textarea>
       <button class="btn" style="margin-top:8px;" onclick="copiar()">Copiar resultado</button>
     </div>
-    <div class="tool-info">
-      <h2>Para que serve remover acentos?</h2>
-      <p>Remover acentos é útil para normalizar texto para buscas, gerar slugs de URL, importar dados em sistemas que não suportam UTF-8, ou preparar texto para processamento em bancos de dados legados.</p>
+        <div class="howto">
       <h2>Como usar</h2>
-      <p>Cole ou digite seu texto na primeira caixa. O resultado aparece automaticamente na segunda caixa, já sem os acentos. Clique em "Copiar resultado" para usar em outro lugar.</p>
+      <ol>
+        <li>Cole o texto com acentos na área de entrada.</li>
+        <li>O resultado aparece em tempo real, sem precisar clicar em nenhum botão.</li>
+        <li>Ative a opção "manter cedilha" se quiser preservar o ç. Clique em <strong>Copiar</strong> para usar o resultado.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>Remover acentos é necessário quando você precisa exportar dados para sistemas legados, gerar nomes de arquivo compatíveis com todos os sistemas operacionais, ou preparar strings para comparação sem distinção de caracteres especiais.</p>
+      <ul>
+        <li>IDs de banco de dados e nomes de arquivo nunca devem ter acentos — use esta ferramenta antes de qualquer exportação.</li>
+        <li>Algumas APIs antigas não aceitam UTF-8 completo e exigem ASCII puro — este conversor resolve em segundos.</li>
+        <li>Para slugs de URL, o Gerador de Slug já faz essa conversão automaticamente junto com outras transformações necessárias.</li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="gerador-slug.html">Gerador de slug</a> — transforme o texto sem acentos em URL amigável para SEO com hífens no lugar de espaços.</p>
     </div>
   </div>
   <aside class="tool-sidebar">

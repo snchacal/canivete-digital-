@@ -372,7 +372,22 @@ function buildNavDropdowns() {
     });
 
     wrapper.appendChild(dd);
+
+    // Click handler — abre/fecha dropdown
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const isOpen = wrapper.classList.contains('open');
+      document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) wrapper.classList.add('open');
+    });
   });
+
+  // Fecha ao clicar fora
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav-item')) {
+      document.querySelectorAll('.nav-item.open').forEach(i => i.classList.remove('open'));
+    }
+  }, true);
 }
 
 // ---- SCHEMA.ORG JSON-LD ----
@@ -432,6 +447,27 @@ function injectSchema() {
   script.type = 'application/ld+json';
   script.textContent = JSON.stringify(schema);
   document.head.appendChild(script);
+}
+
+// ---- MOBILE RELATED TOOLS ----
+function injectMobileRelated() {
+  const toolBox = document.querySelector('.tool-box');
+  const toolId  = document.body.dataset.toolId;
+  if (!toolBox || !toolId) return;
+  const tool = TOOLS.find(t => t.id === toolId);
+  if (!tool) return;
+
+  const inSubdir = document.querySelector('a.logo')?.getAttribute('href')?.startsWith('../');
+  const base = inSubdir ? '../' : '';
+
+  const related = TOOLS.filter(t => t.cat === tool.cat && t.id !== toolId).slice(0, 5);
+  if (!related.length) return;
+
+  const div = document.createElement('div');
+  div.className = 'mobile-related';
+  div.innerHTML = `<p class="mobile-related-title">Outras ferramentas de ${CAT_LABELS[tool.cat]}</p>` +
+    related.map(t => `<a href="${base}${t.url.slice(1)}" class="mobile-related-link">${t.name}</a>`).join('');
+  toolBox.after(div);
 }
 
 // ---- FOOTER ----
@@ -510,6 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLogo();
   buildNavDropdowns();
   buildFooter();
+  injectMobileRelated();
   injectSchema();
   initFavButtons();
   initSearch('header-search');

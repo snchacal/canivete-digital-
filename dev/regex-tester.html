@@ -70,11 +70,23 @@
         <div id="matches-list" style="margin-top:12px;"></div>
       </div>
     </div>
-    <div class="tool-info">
-      <h2>O que são expressões regulares?</h2>
-      <p>Regex (expressões regulares) são padrões usados para encontrar, validar ou substituir texto. São usadas em programação, editores de código e ferramentas de busca para encontrar padrões complexos em strings.</p>
-      <h2>Flags</h2>
-      <p><strong>g</strong> — encontra todos os matches (global). <strong>i</strong> — ignora maiúsculas/minúsculas. <strong>m</strong> — trata cada linha como início/fim de string.</p>
+        <div class="howto">
+      <h2>Como usar</h2>
+      <ol>
+        <li>Digite a expressão regular no campo Regex.</li>
+        <li>Cole o texto de teste no campo abaixo.</li>
+        <li>Os matches são destacados em tempo real — use os toggles de flags (g, i, m) para ajustar o comportamento da busca.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>Regex é uma linguagem de padrões usada em validação de dados, busca em texto e transformações. Pode parecer complexo no início, mas salva horas de trabalho manual em tarefas repetitivas.</p>
+      <ul>
+        <li>Use a flag <code>g</code> (global) para encontrar todas as ocorrências — sem ela, só a primeira é retornada.</li>
+        <li>Use a flag <code>i</code> para busca case-insensitive, útil em validações de e-mail e nomes.</li>
+        <li>Validação de e-mail simples que funciona para 99% dos casos: <code>^[^\s@]+@[^\s@]+\.[^\s@]+$</code></li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="hash-generator.html">Hash Generator</a> — depois de extrair e validar dados com regex, gere hashes para verificação de integridade.</p>
     </div>
   </div>
   <aside class="tool-sidebar">

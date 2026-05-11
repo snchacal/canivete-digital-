@@ -49,11 +49,23 @@
       </div>
       <div id="lista-uuid" style="display:flex;flex-direction:column;gap:6px;"></div>
     </div>
-    <div class="tool-info">
-      <h2>O que é UUID?</h2>
-      <p>UUID (Universally Unique Identifier) é um identificador único de 128 bits, representado em 32 caracteres hexadecimais separados por hífens. A versão v4 é gerada de forma aleatória, com probabilidade praticamente nula de colisão.</p>
+        <div class="howto">
       <h2>Como usar</h2>
-      <p>Defina a quantidade de UUIDs que precisa (1 a 100) e clique em "Gerar". Cada UUID tem seu próprio botão de cópia, ou você pode copiar todos de uma vez com "Copiar todos".</p>
+      <ol>
+        <li>Escolha a quantidade de UUIDs a gerar, de 1 até 100.</li>
+        <li>Clique em <strong>Gerar</strong> para criar os identificadores únicos.</li>
+        <li>Copie individualmente clicando em cada UUID, ou use <strong>Copiar todos</strong> para pegar a lista completa.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>UUID v4 gera identificadores únicos de 36 caracteres usando randomização criptográfica. A probabilidade de colisão é tão baixa que é usado como chave primária em bancos de dados distribuídos sem nenhuma coordenação central.</p>
+      <ul>
+        <li>Use UUIDs como chaves primárias em bancos NoSQL para evitar conflitos em sistemas com múltiplas instâncias.</li>
+        <li>Em testes automatizados, gere um UUID para cada execução para garantir isolamento e rastreabilidade.</li>
+        <li>O formato padrão <code>xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code> é compatível com todos os bancos de dados e linguagens modernas.</li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="hash-generator.html">Hash Generator</a> — gere hashes MD5 ou SHA para assinaturas e verificação de integridade dos seus dados.</p>
     </div>
   </div>
   <aside class="tool-sidebar">

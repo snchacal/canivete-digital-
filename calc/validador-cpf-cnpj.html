@@ -46,9 +46,23 @@
         </div>
       </div>
     </div>
-    <div class="tool-info">
-      <h2>O que é validado?</h2>
-      <p>A validação verifica se os dígitos verificadores (os últimos dígitos) são matematicamente corretos de acordo com o algoritmo da Receita Federal. Isso confirma que o número tem estrutura válida, mas não garante que esteja cadastrado ou ativo.</p>
+        <div class="howto">
+      <h2>Como usar</h2>
+      <ol>
+        <li>Digite ou cole o CPF ou CNPJ no campo — com ou sem pontuação (ponto, traço, barra).</li>
+        <li>A ferramenta detecta automaticamente o tipo pelo número de dígitos.</li>
+        <li>O resultado aparece em tempo real: verde para válido, vermelho para inválido, com a mensagem explicando o resultado.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>A validação verifica os dígitos verificadores usando o algoritmo módulo 11 da Receita Federal. Um número matematicamente válido pode não estar cadastrado na Receita — para consulta real, use o portal da Receita Federal.</p>
+      <ul>
+        <li>CPF formato: 000.000.000-00 (11 dígitos); CNPJ: 00.000.000/0000-00 (14 dígitos).</li>
+        <li>CPFs com todos os dígitos iguais (111.111.111-11, 222.222.222-22, etc.) são automaticamente inválidos pelo algoritmo.</li>
+        <li>Use antes de salvar no banco de dados para evitar entradas corrompidas — validar no front-end economiza processamento no servidor.</li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="gerador-cpf-cnpj.html">Gerador de CPF / CNPJ</a> — se o número que você testou foi inválido, gere um novo número válido para continuar os testes.</p>
     </div>
   </div>
   <aside class="tool-sidebar">

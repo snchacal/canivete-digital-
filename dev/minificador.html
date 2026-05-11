@@ -48,11 +48,23 @@
       <textarea id="output-code" rows="6" readonly style="margin-top:4px;font-family:monospace;font-size:0.85rem;"></textarea>
       <button class="btn" style="margin-top:8px;" onclick="copiar()">Copiar resultado</button>
     </div>
-    <div class="tool-info">
-      <h2>O que é minificação?</h2>
-      <p>Minificação remove espaços em branco, quebras de linha e comentários do código sem alterar sua funcionalidade. Reduz o tamanho dos arquivos, diminuindo o tempo de carregamento das páginas.</p>
-      <h2>Limitações</h2>
-      <p>Este minificador aplica transformações básicas. Para minificação avançada com renomear variáveis, use ferramentas como Terser (JS) ou cssnano (CSS) no seu processo de build.</p>
+        <div class="howto">
+      <h2>Como usar</h2>
+      <ol>
+        <li>Escolha o tipo de código na aba: CSS ou JavaScript.</li>
+        <li>Cole o código formatado na área de entrada.</li>
+        <li>O código minificado aparece abaixo com o percentual de redução de tamanho.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>Minificação remove espaços, comentários e quebras de linha sem alterar a funcionalidade do código. Em produção, arquivos menores significam carregamento mais rápido e melhor pontuação no Google PageSpeed.</p>
+      <ul>
+        <li>Um CSS bem formatado de 50KB costuma virar ~35KB após minificação — redução de 30% em média.</li>
+        <li>Sempre mantenha a versão não-minificada no repositório — minifique apenas no build de produção.</li>
+        <li>Para projetos grandes, use ferramentas como Webpack ou esbuild com minificação automática; este minificador é ideal para scripts avulsos e snippets rápidos.</li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="css-formatter.html">Formatador de CSS</a> — antes de minificar, organize o código para garantir que está sem erros e fácil de revisar.</p>
     </div>
   </div>
   <aside class="tool-sidebar">

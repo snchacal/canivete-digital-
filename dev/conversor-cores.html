@@ -85,9 +85,23 @@
         </div>
       </div>
     </div>
-    <div class="tool-info">
-      <h2>Formatos de cor</h2>
-      <p>HEX é o formato mais usado em CSS (#rrggbb). RGB define a cor por intensidade de vermelho, verde e azul (0-255). HSL usa matiz, saturação e luminosidade, sendo mais intuitivo para ajustar cores manualmente.</p>
+        <div class="howto">
+      <h2>Como usar</h2>
+      <ol>
+        <li>Digite um valor HEX, RGB ou HSL no campo correspondente — ou use o seletor de cor visual.</li>
+        <li>Os outros formatos são calculados e exibidos automaticamente.</li>
+        <li>Clique em qualquer valor para copiar no formato desejado.</li>
+      </ol>
+    </div>
+    <div class="howto">
+      <h2>Dicas de uso</h2>
+      <p>CSS usa os três formatos de cor em contextos diferentes. HEX é o mais compacto para paletas fixas, RGB para manipulações programáticas com JavaScript, e HSL para criar variações de tom e saturação de forma intuitiva.</p>
+      <ul>
+        <li>HSL é o mais intuitivo para criar variações: aumente o L (lightness) para tons mais claros, diminua para tons mais escuros da mesma cor.</li>
+        <li>Para variáveis CSS, prefira HSL: <code>--primary: hsl(220, 90%, 56%)</code> — você manipula as variações diretamente no código.</li>
+        <li>Copie o HEX para ferramentas de design como Figma; use RGB para manipulações em canvas e JavaScript.</li>
+      </ul>
+      <p class="tip-next">💡 <strong>Próximo passo:</strong> <a href="../imagem/paleta-cores.html">Paleta de cores</a> — extraia as cores dominantes de uma imagem e use este conversor para exportar no formato que o seu projeto precisa.</p>
     </div>
   </div>
   <aside class="tool-sidebar">
