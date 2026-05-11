@@ -257,7 +257,18 @@ nav a:hover, nav a.active {
   color: white;
   padding: 56px 20px 48px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
+#hero-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+#hero-dots canvas { display: block; }
+.hero > *:not(#hero-dots) { position: relative; z-index: 1; }
 .hero h1 {
   font-size: 2.375rem;
   font-weight: 800;
@@ -1035,3 +1046,52 @@ footer {
   width: 34px;
   height: 34px;
   align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  flex-shrink: 0;
+  padding: 0;
+}
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+
+  /* Nav: escondido por padrão, mostra como painel fixo ao abrir */
+  nav {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 8px 0 16px;
+    flex-direction: column;
+    gap: 0;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+  nav.open { display: flex !important; }
+
+  /* Links diretos no menu mobile */
+  nav > .nav-item > a,
+  nav > a {
+    display: block;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav > .nav-item > a:last-child,
+  nav > a:last-child { border-bottom: none; }
+
+  /* Esconde dropdowns e caret no mobile */
+  nav .nav-dropdown { display: none !important; }
+  nav .nav-caret { display: none !important; }
+  nav .nav-item { flex-direction: column; align-items: stretch; }
+
+  .header-search { max-width: none; }
+}

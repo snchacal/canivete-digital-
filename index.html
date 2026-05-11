@@ -54,6 +54,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div id="hero-dots" aria-hidden="true"></div>
   <h1>Ferramentas online gratuitas</h1>
   <p>Tudo que você precisa no dia a dia, direto no browser. Sem cadastro.</p>
   <div class="hero-search-wrap">
@@ -552,5 +553,65 @@
 </footer>
 
 <script src="assets/js/app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var container = document.getElementById('hero-dots');
+  if (!container || typeof THREE === 'undefined') return;
+
+  var SEP = 120, AX = 30, AY = 18;
+  var W = container.offsetWidth, H = container.offsetHeight;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(55, W / H, 1, 8000);
+  camera.position.set(0, 260, 900);
+
+  var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(W, H);
+  renderer.setClearColor(0x000000, 0);
+  container.appendChild(renderer.domElement);
+
+  var positions = [], colors = [];
+  for (var ix = 0; ix < AX; ix++) {
+    for (var iy = 0; iy < AY; iy++) {
+      positions.push(ix * SEP - (AX * SEP) / 2, 0, iy * SEP - (AY * SEP) / 2);
+      colors.push(0.55, 0.75, 1.0);
+    }
+  }
+
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geo.setAttribute('color',    new THREE.Float32BufferAttribute(colors, 3));
+
+  var mat = new THREE.PointsMaterial({ size: 5, vertexColors: true, transparent: true, opacity: 0.45, sizeAttenuation: true });
+  scene.add(new THREE.Points(geo, mat));
+
+  var count = 0, rafId;
+  function animate() {
+    rafId = requestAnimationFrame(animate);
+    var pos = geo.attributes.position.array;
+    var i = 0;
+    for (var ix = 0; ix < AX; ix++) {
+      for (var iy = 0; iy < AY; iy++) {
+        pos[i * 3 + 1] = Math.sin((ix + count) * 0.3) * 38 + Math.sin((iy + count) * 0.5) * 38;
+        i++;
+      }
+    }
+    geo.attributes.position.needsUpdate = true;
+    renderer.render(scene, camera);
+    count += 0.04;
+  }
+
+  function onResize() {
+    W = container.offsetWidth; H = container.offsetHeight;
+    camera.aspect = W / H;
+    camera.updateProjectionMatrix();
+    renderer.setSize(W, H);
+  }
+  window.addEventListener('resize', onResize);
+  animate();
+})();
+</script>
 </body>
 </html>
