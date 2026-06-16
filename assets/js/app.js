@@ -538,6 +538,15 @@ function buildFooter() {
       <p>Para dúvidas, sugestões ou parcerias: <a href="mailto:sjs@sjsproject.com.br">sjs@sjsproject.com.br</a></p>
     </details>
   `;
+
+  // Add institutional links to footer-bottom
+  const footerBottom = footer.querySelector('.footer-bottom');
+  if (footerBottom) {
+    const links = document.createElement('span');
+    links.className = 'footer-legal-links';
+    links.innerHTML = `<a href="${base}sobre.html">Sobre</a> · <a href="${base}politica-privacidade.html">Privacidade</a>`;
+    footerBottom.appendChild(links);
+  }
 }
 
 // ---- INIT ----
