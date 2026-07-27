@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://canivetedigital.com.br/sitemap.xml
+Sitemap: https://canivetedg.com.br/sitemap.xml
