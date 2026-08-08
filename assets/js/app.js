@@ -470,6 +470,9 @@ function injectMobileRelated() {
   toolBox.after(div);
 }
 
+// ---- CONTEXTO EDITORIAL ----
+const CATEGORY_GUIDANCE={texto:{focus:'organizar, revisar e transformar textos',check:'Revise o contexto, os caracteres e as quebras de linha antes de reutilizar o resultado.',guide:'guias.html#texto'},imagem:{focus:'preparar imagens para publicação e envio',check:'Guarde o original e confira dimensões, nitidez e formato final.',guide:'guias.html#arquivos'},pdf:{focus:'organizar documentos sem instalar programas',check:'Abra o arquivo final e confira ordem, rotação e legibilidade das páginas.',guide:'guias.html#arquivos'},dev:{focus:'resolver tarefas técnicas repetitivas',check:'Teste com uma amostra e não trate codificação como proteção de dados.',guide:'guias.html#dev'},cripto:{focus:'codificar informações para fluxos digitais',check:'Confirme o conteúdo e não use recursos de teste para expor ou falsificar dados.',guide:'guias.html#seguranca'},calc:{focus:'fazer estimativas e verificações rápidas',check:'Confira os valores inseridos; decisões profissionais exigem orientação adequada.',guide:'guias.html#calculos'}};
+function injectEditorialContext(){const id=document.body.dataset.toolId,tool=TOOLS.find(x=>x.id===id);if(!tool||document.querySelector('.editorial-context'))return;const g=CATEGORY_GUIDANCE[tool.cat],base=document.querySelector('a.logo')?.getAttribute('href')?.startsWith('../')?'../':'';const s=document.createElement('section');s.className='editorial-context';s.innerHTML=`<h2>Use ${tool.name} com mais confiança</h2><p>${tool.name} ajuda a ${g.focus}. A ferramenta acelera uma etapa, mas a qualidade do resultado também depende das informações inseridas e da sua conferência final.</p><h3>Quando ela ajuda</h3><p>${tool.desc}. Mantenha o texto ou arquivo original até validar a versão processada.</p><h3>O que conferir</h3><p>${g.check}</p><h3>Perguntas frequentes</h3><details><summary>Preciso criar uma conta?</summary><p>Não. O uso é direto no navegador, sem cadastro.</p></details><details><summary>O resultado dispensa revisão?</summary><p>Não. Confira sempre o resultado, especialmente em documentos, códigos, cálculos e dados pessoais.</p></details><p class="editorial-link"><a href="${base}${g.guide}">Ler o guia prático da categoria →</a></p>`;document.querySelector('.tool-main')?.appendChild(s)}
 // ---- FOOTER ----
 function buildFooter() {
   const footer = document.querySelector('footer');
@@ -544,7 +547,7 @@ function buildFooter() {
   if (footerBottom) {
     const links = document.createElement('span');
     links.className = 'footer-legal-links';
-    links.innerHTML = `<a href="${base}sobre.html">Sobre</a> · <a href="${base}politica-privacidade.html">Privacidade</a>`;
+    links.innerHTML = `<a href="${base}guias.html">Guias</a> · <a href="${base}sobre.html">Sobre</a> · <a href="${base}politica-privacidade.html">Privacidade</a> · <a href="${base}termos-de-uso.html">Termos</a>`;
     footerBottom.appendChild(links);
   }
 }
@@ -556,6 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildNavDropdowns();
   buildFooter();
   injectMobileRelated();
+  injectEditorialContext();
   injectSchema();
   initFavButtons();
   initSearch('header-search');
