@@ -94,7 +94,7 @@
           <label style="margin:0">QR CODE WI-FI</label>
           <button class="btn btn-primary btn-sm" onclick="downloadPng()">Baixar PNG</button>
         </div>
-        <canvas id="qr-canvas" style="border-radius:8px;max-width:100%"></canvas>
+        <div id="qr-canvas" style="display:inline-block;border-radius:8px;max-width:100%"></div>
         <p id="wifi-preview" style="margin-top:10px;font-size:0.85rem;color:var(--text-muted);font-family:monospace"></p>
       </div>
       <div id="error-box" class="notice notice-error" style="display:none"></div>
@@ -191,7 +191,7 @@
 </footer>
 
 <script src="../assets/js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/lib/browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
 function togglePw(){const i=document.getElementById('wifi-password');i.type=i.type==='password'?'text':'password';}
 function generate(){
@@ -205,16 +205,18 @@ function generate(){
   const escPw=pw.replace(/[\\;,"]/g,c=>'\\'+c);
   const payload=`WIFI:T:${sec};S:${escSsid};P:${escPw};H:${hidden?'true':'false'};;`;
   document.getElementById('wifi-preview').textContent=payload;
-  QRCode.toCanvas(document.getElementById('qr-canvas'),payload,{width:300,errorCorrectionLevel:'M',color:{dark:'#000000',light:'#ffffff'}},err=>{
-    if(err){showError('Erro: '+err.message);return;}
+  try{
+    const target=document.getElementById('qr-canvas');
+    target.innerHTML='';
+    new QRCode(target,{text:payload,width:300,height:300,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
     document.getElementById('output-box').style.display='block';
     document.getElementById('error-box').style.display='none';
     document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
+  }catch(err){showError('Erro: '+err.message);}
 }
 function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';}
 function clearAll(){['wifi-ssid','wifi-password'].forEach(id=>document.getElementById(id).value='');document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';}
-function downloadPng(){document.getElementById('qr-canvas').toBlob(b=>downloadBlob(b,'qrcode-wifi.png'));}
+function downloadPng(){const canvas=document.querySelector('#qr-canvas canvas');if(!canvas){showError('Gere o QR Code antes de baixar.');return;}canvas.toBlob(b=>downloadBlob(b,'qrcode-wifi.png'));}
 </script>
 </body>
 </html>

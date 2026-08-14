@@ -91,7 +91,7 @@
           <label style="margin:0">QR CODE GERADO</label>
           <button class="btn btn-primary btn-sm" onclick="downloadPng()">Baixar PNG</button>
         </div>
-        <canvas id="qr-canvas" style="border-radius:8px;max-width:100%"></canvas>
+        <div id="qr-canvas" style="display:inline-block;border-radius:8px;max-width:100%"></div>
       </div>
       <div id="error-box" class="notice notice-error" style="display:none"></div>
       <div class="howto">
@@ -187,7 +187,7 @@
 </footer>
 
 <script src="../assets/js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/lib/browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
 let sz=300, ec='L';
 function setSz(s,el){sz=s;document.querySelectorAll('[data-sz]').forEach(l=>l.classList.remove('selected'));el.classList.add('selected');}
@@ -198,16 +198,18 @@ function generate(){
   const dark=document.getElementById('color-dark').value;
   const light=document.getElementById('color-light').value;
   const canvas=document.getElementById('qr-canvas');
-  QRCode.toCanvas(canvas,text,{width:sz,errorCorrectionLevel:ec,color:{dark,light}},err=>{
-    if(err){showError('Erro ao gerar QR: '+err.message);return;}
+  try{
+    const target=document.getElementById('qr-canvas');
+    target.innerHTML='';
+    new QRCode(target,{text,width:sz,height:sz,colorDark:dark,colorLight:light,correctLevel:QRCode.CorrectLevel[ec]});
     document.getElementById('output-box').style.display='block';
     document.getElementById('error-box').style.display='none';
     document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
+  }catch(err){showError('Erro ao gerar QR: '+err.message);}
 }
 function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';}
 function clearAll(){document.getElementById('input-text').value='';document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';}
-function downloadPng(){const canvas=document.getElementById('qr-canvas');canvas.toBlob(blob=>downloadBlob(blob,'qrcode.png'));}
+function downloadPng(){const canvas=document.querySelector('#qr-canvas canvas');if(!canvas){showError('Gere o QR Code antes de baixar.');return;}canvas.toBlob(blob=>downloadBlob(blob,'qrcode.png'));}
 </script>
 </body>
 </html>

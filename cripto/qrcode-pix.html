@@ -107,7 +107,7 @@
           </div>
         </div>
         <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap">
-          <canvas id="qr-canvas" style="border-radius:8px;flex-shrink:0"></canvas>
+          <div id="qr-canvas" style="display:inline-block;border-radius:8px;flex-shrink:0"></div>
           <div style="flex:1;min-width:200px">
             <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px">PAYLOAD EMV (BR Code)</p>
             <div class="output-box" id="payload-text" style="font-size:0.75rem;font-family:monospace;word-break:break-all;max-height:160px;overflow:auto"></div>
@@ -199,7 +199,7 @@
 </footer>
 
 <script src="../assets/js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/lib/browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 <script>
 const KEY_PLACEHOLDERS={cpf:'000.000.000-00',cnpj:'00.000.000/0001-00',email:'nome@email.com',phone:'+5511999999999',random:'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'};
 const KEY_LABELS={cpf:'CHAVE CPF',cnpj:'CHAVE CNPJ',email:'CHAVE E-MAIL',phone:'CHAVE TELEFONE',random:'CHAVE ALEATÓRIA (EVP)'};
@@ -226,17 +226,19 @@ function generate(){
   if(!city){showError('Informe a cidade.');return;}
   pixPayload=buildPix(key,name,city,amount,desc);
   document.getElementById('payload-text').textContent=pixPayload;
-  QRCode.toCanvas(document.getElementById('qr-canvas'),pixPayload,{width:256,errorCorrectionLevel:'M',color:{dark:'#000000',light:'#ffffff'}},err=>{
-    if(err){showError('Erro: '+err.message);return;}
+  try{
+    const target=document.getElementById('qr-canvas');
+    target.innerHTML='';
+    new QRCode(target,{text:pixPayload,width:256,height:256,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
     document.getElementById('output-box').style.display='block';
     document.getElementById('error-box').style.display='none';
     document.getElementById('output-box').scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
+  }catch(err){showError('Erro: '+err.message);}
 }
 function showError(msg){const b=document.getElementById('error-box');b.textContent='⚠ '+msg;b.style.display='block';}
 function clearAll(){['pix-key','pix-name','pix-city','pix-amount','pix-desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('output-box').style.display='none';document.getElementById('error-box').style.display='none';}
 function copyPayload(){navigator.clipboard.writeText(pixPayload).then(()=>{document.getElementById('copy-label').textContent='Copiado!';setTimeout(()=>document.getElementById('copy-label').textContent='Copiar payload',1600);});}
-function downloadPng(){document.getElementById('qr-canvas').toBlob(b=>downloadBlob(b,'qrcode-pix.png'));}
+function downloadPng(){const canvas=document.querySelector('#qr-canvas canvas');if(!canvas){showError('Gere o QR Code antes de baixar.');return;}canvas.toBlob(b=>downloadBlob(b,'qrcode-pix.png'));}
 </script>
 </body>
 </html>
